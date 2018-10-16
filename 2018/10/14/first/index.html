@@ -9,17 +9,18 @@
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="算法- 0-1背包问题">
+  <meta name="description" content="算法- 0-1背包问题问题描述：   有N件物品和一个容量为V的背包。第i件物品的费用是c[i]，价值是w[i]。求解将哪些物品装入背包可使这些物品的费用总和不超过背包容量，且价值总和最大。">
+<meta name="keywords" content="算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法">
 <meta property="og:url" content="http://SlectRxz.github.io/2018/10/14/first/index.html">
 <meta property="og:site_name" content="荣先森">
-<meta property="og:description" content="算法- 0-1背包问题">
+<meta property="og:description" content="算法- 0-1背包问题问题描述：   有N件物品和一个容量为V的背包。第i件物品的费用是c[i]，价值是w[i]。求解将哪些物品装入背包可使这些物品的费用总和不超过背包容量，且价值总和最大。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-16T12:13:40.448Z">
+<meta property="og:updated_time" content="2018-10-16T12:22:42.879Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法">
-<meta name="twitter:description" content="算法- 0-1背包问题">
+<meta name="twitter:description" content="算法- 0-1背包问题问题描述：   有N件物品和一个容量为V的背包。第i件物品的费用是c[i]，价值是w[i]。求解将哪些物品装入背包可使这些物品的费用总和不超过背包容量，且价值总和最大。">
   
     <link rel="alternative" href="/atom.xml" title="荣先森" type="application/atom+xml">
   
@@ -121,7 +122,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/学习/" style="font-size: 10px;">学习</a>
+						<a href="/tags/blog记录/" style="font-size: 10px;">blog记录</a> <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
 					</div>
 				</section>
 				
@@ -207,7 +208,15 @@
       
       <div class="article-info article-info-post">
         
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+	</div>
+
         
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/0-1背包问题/">0-1背包问题</a>
+	</div>
+
 
         
           
@@ -226,8 +235,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><h3 id="0-1背包问题"><a href="#0-1背包问题" class="headerlink" title="- 0-1背包问题"></a>- 0-1背包问题</h3><a id="more"></a>
-<p>问题描述：<br>   有N件物品和一个容量为V的背包。第i件物品的费用是c[i]，价值是w[i]。求解将哪些物品装入背包可使这些物品的费用总和不超过背包容量，且价值总和最大。<br> 这个问题的特点是：每种物品只有一件，可以选择放或者不放。（放是1，不放是0）<br>        <strong>D[i][j]=max(D[i-1][j],D[i-1][j-v[i]]+b[i]);</strong><br>D[i][j]表示第前i件物品，j是其背包的容量，其价值用二维词典D[ ][ ]记录其值<br>储存不同的j（背包容量）能装的最大价值</p>
+        <h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><h3 id="0-1背包问题"><a href="#0-1背包问题" class="headerlink" title="- 0-1背包问题"></a>- 0-1背包问题</h3><p>问题描述：<br>   有N件物品和一个容量为V的背包。第i件物品的费用是c[i]，价值是w[i]。求解将哪些物品装入背包可使这些物品的费用总和不超过背包容量，且价值总和最大。<br>   <a id="more"></a><br> 这个问题的特点是：每种物品只有一件，可以选择放或者不放。（放是1，不放是0）<br>        <strong>D[i][j]=max(D[i-1][j],D[i-1][j-v[i]]+b[i]);</strong><br>D[i][j]表示第前i件物品，j是其背包的容量，其价值用二维词典D[ ][ ]记录其值<br>储存不同的j（背包容量）能装的最大价值</p>
 <hr>
 <blockquote>
 <p>问题描述：<br>   有N件物品和一个容量为V的背包。第i件物品的费用是c[i]，价值是w[i]。求解将哪些物品装入背包可使这些物品的费用总和不超过背包容量，且价值总和最大。<br> 这个问题的特点是：每种物品只有一件，可以选择放或者不放。（放是1，不放是0）<br>        <strong>D[i][j]=max(D[i-1][j],D[i-1][j-v[i]]+b[i]);</strong><br>D[i][j]表示第前i件物品，j是其背包的容量，其价值用二维词典D[ ][ ]记录其值<br>储存不同的j（背包容量）能装的最大价值</p>
