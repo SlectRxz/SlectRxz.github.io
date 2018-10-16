@@ -3,23 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>算法 | 荣先森</title>
+  <title>Linux基础（三） | 荣先森</title>
 
   <!-- keywords -->
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="算法- 0-1背包问题问题描述：   有N件物品和一个容量为V的背包。第i件物品的费用是c[i]，价值是w[i]。求解将哪些物品装入背包可使这些物品的费用总和不超过背包容量，且价值总和最大。 这个问题的特点是：每种物品只有一件，可以选择放或者不放。（放是1，不放是0）        D[i][j]=max(D[i-1][j],D[i-1][j-v[i]]+b[i]);D[i][j]表示第前i件物品">
+  <meta name="description" content="vi编辑器的使用">
+<meta name="keywords" content="学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法">
-<meta property="og:url" content="http://SlectRxz.github.io/2018/10/14/first/index.html">
+<meta property="og:title" content="Linux基础（三）">
+<meta property="og:url" content="http://SlectRxz.github.io/2017/05/11/Linux基础（三）/index.html">
 <meta property="og:site_name" content="荣先森">
-<meta property="og:description" content="算法- 0-1背包问题问题描述：   有N件物品和一个容量为V的背包。第i件物品的费用是c[i]，价值是w[i]。求解将哪些物品装入背包可使这些物品的费用总和不超过背包容量，且价值总和最大。 这个问题的特点是：每种物品只有一件，可以选择放或者不放。（放是1，不放是0）        D[i][j]=max(D[i-1][j],D[i-1][j-v[i]]+b[i]);D[i][j]表示第前i件物品">
+<meta property="og:description" content="vi编辑器的使用">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-16T11:16:08.714Z">
+<meta property="og:updated_time" content="2018-10-16T11:40:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法">
-<meta name="twitter:description" content="算法- 0-1背包问题问题描述：   有N件物品和一个容量为V的背包。第i件物品的费用是c[i]，价值是w[i]。求解将哪些物品装入背包可使这些物品的费用总和不超过背包容量，且价值总和最大。 这个问题的特点是：每种物品只有一件，可以选择放或者不放。（放是1，不放是0）        D[i][j]=max(D[i-1][j],D[i-1][j-v[i]]+b[i]);D[i][j]表示第前i件物品">
+<meta name="twitter:title" content="Linux基础（三）">
+<meta name="twitter:description" content="vi编辑器的使用">
   
     <link rel="alternative" href="/atom.xml" title="荣先森" type="application/atom+xml">
   
@@ -177,11 +178,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-first" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Linux基础（三）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/10/14/first/" class="article-date">
-  	<time datetime="2018-10-14T13:58:57.005Z" itemprop="datePublished">2018-10-14</time>
+      <a href="/2017/05/11/Linux基础（三）/" class="article-date">
+  	<time datetime="2017-05-11T02:01:44.000Z" itemprop="datePublished">2017-05-11</time>
 </a>
     </div>
   
@@ -194,7 +195,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      算法
+      Linux基础（三）
       
     </h1>
   
@@ -203,7 +204,15 @@
       
       <div class="article-info article-info-post">
         
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
+	</div>
+
         
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Linux基础/">Linux基础</a>
+	</div>
+
 
         
         <div class="clearfix"></div>
@@ -212,12 +221,30 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><h3 id="0-1背包问题"><a href="#0-1背包问题" class="headerlink" title="- 0-1背包问题"></a>- 0-1背包问题</h3><p>问题描述：<br>   有N件物品和一个容量为V的背包。第i件物品的费用是c[i]，价值是w[i]。求解将哪些物品装入背包可使这些物品的费用总和不超过背包容量，且价值总和最大。<br> 这个问题的特点是：每种物品只有一件，可以选择放或者不放。（放是1，不放是0）<br>        <strong>D[i][j]=max(D[i-1][j],D[i-1][j-v[i]]+b[i]);</strong><br>D[i][j]表示第前i件物品，j是其背包的容量，其价值用二维词典D[ ][ ]记录其值<br>储存不同的j（背包容量）能装的最大价值</p>
-<hr>
-<blockquote>
-<p>问题描述：<br>   有N件物品和一个容量为V的背包。第i件物品的费用是c[i]，价值是w[i]。求解将哪些物品装入背包可使这些物品的费用总和不超过背包容量，且价值总和最大。<br> 这个问题的特点是：每种物品只有一件，可以选择放或者不放。（放是1，不放是0）<br>        <strong>D[i][j]=max(D[i-1][j],D[i-1][j-v[i]]+b[i]);</strong><br>D[i][j]表示第前i件物品，j是其背包的容量，其价值用二维词典D[ ][ ]记录其值<br>储存不同的j（背包容量）能装的最大价值</p>
-</blockquote>
-<h3 id="Code-block"><a href="#Code-block" class="headerlink" title="Code block"></a>Code block</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#define MAX 20</span><br><span class="line">#define max(a,b) a&gt;b?a:b</span><br><span class="line">using namespace std;</span><br><span class="line">int D[MAX][MAX];</span><br><span class="line">int fill(int n,int v[],int b[],int c)</span><br><span class="line">&#123;</span><br><span class="line">	for(int i=1;i&lt;=n;i++)</span><br><span class="line">	for(int j=1;j&lt;=c;j++)</span><br><span class="line">	&#123;</span><br><span class="line">		If( j&lt;v[ I ] )    D[i][j]=D[i-1][j];</span><br><span class="line">		else</span><br><span class="line">		D[i][j]=max(D[i-1][j],D[i-1][j-v[i]]+b[i]);</span><br><span class="line">//解释：当背包的容量慢慢增加，此时大于这个物品v[i]，那么，我们需要判断</span><br><span class="line">//放物品 与 不放物品的价值哪个高。。。。。</span><br><span class="line">	&#125;</span><br><span class="line">	return 1;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int n,v[MAX],b[MAX],c;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	for(int i=1;i&lt;=n;i++)</span><br><span class="line">	cin&gt;&gt;v[i];</span><br><span class="line">	for(int i=1;i&lt;=n;i++)</span><br><span class="line">	cin&gt;&gt;b[i];</span><br><span class="line">	cin&gt;&gt;c;</span><br><span class="line">	fill(n,v,b,c);</span><br><span class="line">	cout&lt;&lt;D[n][c];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>vi编辑器的使用<br><a id="more"></a>    </p>
+<p><strong>3、编辑器vi的使用（vi和vim的联系）</strong><br>什么是编辑器？编辑器就是一款软件，它的主要作用就是用来编辑。譬如编写文件，编写代码。Windows中的常用编辑器，如自带的notepad。比较好用的notepad++，UltraEditor，SlickEditor<br>Linux中常用编辑器，自带的最古老的vi。比较好用的vim，gedit。<br>注：vi和vim的关系：vim是vi的升级版，推荐使用vim。我们在后面提到vi时，其实都是指vim。</p>
+<p><strong>3.1、vi基础使用</strong><br><em>使用vi来打开/创建一个文件，vi pathname
+</em>vi的两种模式：<br>命令模式：当vi打开时默认为命令模式，要转入输入模式，需要按a或者i键。在命令模式下，此时键盘上输入的所有东西都被vi当作命令来对待。<br>在命令模式下，最好不要乱输入。此时应该输入相应的命令，来让vi做相应的事。<br>输入模式：输入模式用来向文件输入内容。可以从命令模式中按a或者i进入输入模式。进入输入模式后，就可以随意按键盘进行输入了。输入完成后如果要保存，要先退回到命令模式（因为保存也是一种命令）。在输入模式下按ESC键退回到命令模式。<br>注：注意看屏幕左下角，当命令模式时无提示信息或者提示文件名等信息，等处于输入模式时，提示 – INSERT –<br>在命令模式下如何保存：<br>:wq            保存并且退出<br>:w            只保存不推出<br>:q            不保存退出        进来看了一下没改退出<br>:q!            不保存强制退出<br>:wq!        保存并强制退出</p>
+<p><strong>3.2、vi的高级使用</strong></p>
+<ul>
+<li><p>查找<br>在命令模式下，输入/xxx，就可以查找到xxx</p>
+</li>
+<li><p>快速切换行<br>在命令模式下，输入:num，就可以快速切换到num行</p>
+</li>
+<li><p>设置显示行号<br>在命令模式下，输入:set nu，就可以显示行号</p>
+</li>
+</ul>
+<p>注：设置不显示行号，命令模式输入:set nonu<br>设置永久显示行号，需要修改vi的配置文件。打开vi的配置文件~/.vimrc，在其中输入set nu即可。</p>
+<ul>
+<li><p>行删除<br>命令模式下，先将光标移动到要删除的行，然后输入dd<br>如果要删除连续多行，譬如要删除连续的3行，使用3dd </p>
+</li>
+<li><p>行复制粘贴<br>复制：命令模式下，nyy<br>粘贴：命令模式下，p<br>细节，复制时要把光标放在多行的第一行，粘贴时实际<br>粘贴到当前光标所在行的下一行。</p>
+</li>
+</ul>
+<p><strong>3.3、linux中权限表示&amp;管理</strong><br><strong>3.3.1、普通用户与特权用户 su命令切换用户</strong><br>Windows中有普通用户和特权用户，特权用户是Administrator，普通用户可以有很多个。<br>特权用户是系统的管理员，对系统内所有文件具有操作权限。每个普通用户只能处理自己的文件，不能访问其他用户的文件，更不能随意处理操作系统的文件。<br>Linux中也有普通用户和特权用户的区别。特权用户就是root用户。普通用户权限受到限制，譬如说普通用户不能<br>cd /root，普通用户不能使用apt-get install 来装软件。    </p>
+<p>可以使用su 用户名来在不同用户间切换。譬如要从普通<br>用户切换到root，可以su root，然后输入root的密码即可转入root用户。从root要切换到普通用户gec，则su gec即可。</p>
+<p><strong>3.3.2、rwx与权限表示</strong><br>ls -l显示详细信息<br>drwxr-xr-x    10个字符，第一个表示文件类型。剩下的9<br>个分成3组，表示文件权限。<br>前三个表示此文件的属主对文件的权限<br>中间三个表示此文件属主所在的组对文件的权限<br>最后三个表示其他用户对文件的权限<br>rwx怎么解析：r代表可读，w代表可写，x代表可执行<br>rwx：可读，可写，可执行<br>r-x: 可读，不可写，可执行<br>r–: 可读，不可写，不可执行</p>
+<p><strong>3.3.3、使用sudo暂时获取root权限</strong><br>这是ubuntu的一个特点，在ubuntu中可以使用sudo命令让普通用户暂时获取root用户的权限，而不必进行用户切换。</p>
 
       
     </div>
@@ -227,9 +254,18 @@
     
 <nav id="article-nav">
   
+    <a href="/2017/05/12/Linux基础（四）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          Linux基础（四）
+        
+      </div>
+    </a>
   
-    <a href="/2018/10/14/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">My first blog</div>
+  
+    <a href="/2017/05/08/Linux基础（二）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux基础（二）</div>
       <strong class="article-nav-caption">&gt;</strong>
     </a>
   
@@ -239,7 +275,7 @@
 </article>
 
 
-<div class="ds-share share" data-thread-key="first" data-title="算法" data-url="http://SlectRxz.github.io/2018/10/14/first/"  data-images="img/1.jpg" data-content="算法">
+<div class="ds-share share" data-thread-key="Linux基础（三）" data-title="Linux基础（三）" data-url="http://SlectRxz.github.io/2017/05/11/Linux基础（三）/"  data-images="img/1.jpg" data-content="Linux基础（三）">
     <div class="ds-share-inline">
       <ul  class="ds-share-icons-16">
       	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
