@@ -17,13 +17,13 @@
 <meta property="og:site_name" content="荣先森">
 <meta property="og:description" content="关于博客如何添加背景音乐">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://slectrxz.github.io/img/2.png">
-<meta property="og:image" content="http://slectrxz.github.io/img/3.jpg">
-<meta property="og:updated_time" content="2018-11-08T09:15:54.499Z">
+<meta property="og:image" content="http://slectrxz.github.io/img/imgs/2.png">
+<meta property="og:image" content="http://slectrxz.github.io/img/imgs/3.jpg">
+<meta property="og:updated_time" content="2018-11-12T03:15:28.400Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="背景音乐添加步骤">
 <meta name="twitter:description" content="关于博客如何添加背景音乐">
-<meta name="twitter:image" content="http://slectrxz.github.io/img/2.png">
+<meta name="twitter:image" content="http://slectrxz.github.io/img/imgs/2.png">
   
     <link rel="alternative" href="/atom.xml" title="荣先森" type="application/atom+xml">
   
@@ -242,9 +242,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>关于博客如何添加背景音乐<br><a id="more"></a></p>
-<p><strong>1、打开网易云音乐首页，然后搜索你要添加的背景音乐</strong><br><img src="/img/2.png" alt=""><br><strong>2、搜索到歌曲点击生成外链播放器，进去下一个界面</strong><br><img src="/img/3.jpg" alt=""><br><strong>3、打开主题下的<code>_partial</code>文件夹下的<code>left-col.ejs</code>文件，选择iframe插件，赋值HTML代码到<code>&lt;div&gt;&lt;/div&gt;</code>中</strong></p>
-<hr>
-<blockquote>
+<p><strong>1、打开网易云音乐首页，然后搜索你要添加的背景音乐</strong></p>
+<p><strong>2、搜索到歌曲点击生成外链播放器，进去下一个界面</strong><br><img src="/img/imgs/2.png" alt=""><br><strong>3、打开主题下的<code>_partial</code>文件夹下的<code>left-col.ejs</code>文件，选择iframe插件，赋值HTML代码到<code>&lt;div&gt;&lt;/div&gt;</code>中</strong></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="/img/imgs/3.jpg" alt=""></h2><blockquote>
 <p>注意：<br>因为我想把这个播放器放在博客页面的左侧栏里，所以就把以上代码复制到主题文件夹下实现左侧栏的那个模板文件里，也就是<code>left-col.ejs</code>文件，（需要值得注意的是，因为所使用的主题不同，可能文件也就不一样，但是大致原理就如刚才我所提到的：想放在哪个区域，就把代码复制到实现那块区域的模板文件里）。</p>
 </blockquote>
 <p>我的主题目录是<code>YourBlogName\themes\smackdown\layout\_partial\left-col.ejs</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div style=&quot;position:absolute;bottom:100px;left:15px;width:60%&quot;&gt;</span><br><span class="line">		&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=250 height=86 src=&quot;//music.163.com/outchain/player?type=2&amp;id=543681750&amp;auto=1&amp;height=66&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
