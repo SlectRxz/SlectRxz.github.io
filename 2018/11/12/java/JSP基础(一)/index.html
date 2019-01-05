@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="荣先森">
 <meta property="og:description" content="JSP基础语法">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-12T03:12:33.869Z">
+<meta property="og:updated_time" content="2018-12-03T08:37:26.813Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JSP基础语法">
 <meta name="twitter:description" content="JSP基础语法">
@@ -239,28 +239,20 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>JSP基础语法<br><a id="more"></a></p>
-<p> ##Jsp基础##<br>            4.1 Jsp引入<br>                Servlet的作用： 用java语言开发动态资源的技术！！！<br>                Jsp的作用：用java语言（+html语言）开发动态资源的技术！！！<br>                    Jsp就是servlet！！！<br>            4.2 Jsp的特点<br>                1）jsp的运行必须交给tomcat服务器！！！！<br>                        tomcat的work目录： tomcat服务器存放jsp运行时的临时文件<br>                2）jsp页面既可以写html代码，也可以写java代码。<br>                    （html页面不能写java代码 。而jsp页面可以写java代码）<br>            4.3 体验jsp页面作用<br>                需求：显示当前时间到浏览器上</p>
-<pre><code>            可以把jsp页面当做html页面在tomcat中访问！！！
-
-        4.4 Jsp的执行过程
-        问题： 访问http://localhost:8080/day12/01.hello.jsp  如何显示效果？
-
-        1）访问到01.hello.jsp页面，tomcat扫描到jsp文件，在%tomcat%/work把jsp文件翻译成java源文件
-                    (01.hello.jsp   -&gt;   _01_hello_jsp.java) （翻译）
-        2）tomcat服务器把java源文件编译成class字节码文件 （编译）
-                （_01_hello_jsp.java  -&gt;  _01_hello_jsp.class）
-        3）tomcat服务器构造_01_hello_jsp类对象
-        4）tomcat服务器调用_01_hello_jsp类里面方法，返回内容显示到浏览器。
-
-第一次访问jsp：
-            走（1）（2）（3）（4）
-第n次访问jsp：
-            走（4）
-
-注意：
-        1）jsp文件修改了或jsp的临时文件被删除了，要重新走翻译（1）和编译（2）的过程
-
-        4.5 疑问
+<p> ##Jsp基础##<br>  4.1 Jsp引入</p>
+<p>Servlet的作用： 用java语言开发动态资源的技术！！！<br>Jsp的作用：用java语言（+html语言）开发动态资源的技术！！！<br><br>                    Jsp就是servlet！！！<br>            4.2 Jsp的特点<br>                1）jsp的运行必须交给tomcat服务器！！！！<br>                        tomcat的work目录： tomcat服务器存放jsp运行时的临时文件<br>                2）jsp页面既可以写html代码，也可以写java代码。<br>                    （html页面不能写java代码 。而jsp页面可以写java代码）<br>            4.3 体验jsp页面作用<br>                需求：显示当前时间到浏览器上  </p>
+<p>可以把jsp页面当做html页面在tomcat中访问！！！<br>            4.4 Jsp的执行过程<br>            问题： 访问<a href="http://localhost:8080/day12/01.hello.jsp" target="_blank" rel="noopener">http://localhost:8080/day12/01.hello.jsp</a>  如何显示效果？      </p>
+<blockquote>
+</blockquote>
+<pre><code>1）访问到01.hello.jsp页面，tomcat扫描到jsp文件，在%tomcat%/work把jsp文件翻译成java源文件
+            (01.hello.jsp-&gt; _01_hello_jsp.java) （翻译）
+2）tomcat服务器把java源文件编译成class字节码文件 （编译）
+        （_01_hello_jsp.java  -&gt;  _01_hello_jsp.class）
+3）tomcat服务器构造_01_hello_jsp类对象
+4）tomcat服务器调用_01_hello_jsp类里面方法，返回内容显示到浏览器。
+</code></pre><hr>
+<p>1.第一次访问jsp：<br>2.走（1）（2）（3）（4）<br>3.第n次访问jsp：<br>4.走（4）<br>注意：<br>  1）jsp文件修改了或jsp的临时文件被删除了，要重新走翻译（1）和编译（2）的过程</p>
+<pre><code>        4.5 疑问
     问题： 为什么Jsp就是servlet！！！
         jsp翻译的java文件：
             public final class _01_hello_jsp extends org.apache.jasper.runtime.HttpJspBase
@@ -307,6 +299,15 @@ implements org.apache.jasper.runtime.JspSourceDependent {
     
 <nav id="article-nav">
   
+    <a href="/2019/01/05/java/注解/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          Java注解
+        
+      </div>
+    </a>
+  
   
     <a href="/2018/11/04/addmusic/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">背景音乐添加步骤</div>
@@ -343,7 +344,7 @@ implements org.apache.jasper.runtime.JspSourceDependent {
   <div class="outer">
     <div id="footer-info">
       <div class="footer-left">
-        &copy; 2018 Rong
+        &copy; 2019 Rong
       </div>
         <div class="footer-right">
           <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
