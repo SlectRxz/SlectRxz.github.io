@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Java注解 | 荣先森</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Java反射机制">
+<meta name="keywords" content="学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java注解">
+<meta property="og:url" content="http://SlectRxz.github.io/2019/01/07/java/反射/index.html">
+<meta property="og:site_name" content="荣先森">
+<meta property="og:description" content="Java反射机制">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://slectrxz.github.io/img/imgs/4.jpg">
+<meta property="og:updated_time" content="2019-01-07T07:35:19.093Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java注解">
+<meta name="twitter:description" content="Java反射机制">
+<meta name="twitter:image" content="http://slectrxz.github.io/img/imgs/4.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="荣先森" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="img/1.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+      <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("bpxE8dkqS0IAdFxTbcqm4IiX-gzGzoHsz", "VRnKkxnTxbDSQtPbl1TiWyLw");</script>
+<script src="/js/Counter.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="img/1.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Rong</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/SlectRxz" title="github">github</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/rselect/activities" title="zhihu">zhihu</a>
+					        
+								<a class="qq" target="_blank" href="/2215857051" title="qq">qq</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/blog记录/" style="font-size: 10px;">blog记录</a> <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+		<div style="position:absolute;bottom:100px;left:auto;width:60%;opacity:0.6">
+		<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=250 height=86 src="//music.163.com/outchain/player?type=2&id=543681750&auto=1&height=66"></iframe>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Rong</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="img/1.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Rong</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/SlectRxz" title="github">github</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/rselect/activities" title="zhihu">zhihu</a>
+			        
+						<a class="qq" target="_blank" href="/2215857051" title="qq">qq</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-java/反射" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/01/07/java/反射/" class="article-date">
+  	<time datetime="2019-01-06T16:00:00.000Z" itemprop="datePublished">2019-01-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java注解
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Java/">Java</a>
+	</div>
+
+
+        
+          
+<div class="counter-tag counter">
+    <span id="/2019/01/07/java/反射/" class="leancloud_visitors post-title-link"
+          style="font-size: 12px" data-flag-title="Java注解">
+         &nbsp;
+        view
+    </span>
+</div>
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Java反射机制<br><a id="more"></a></p>
+<h2 id="Java反射机制"><a href="#Java反射机制" class="headerlink" title="Java反射机制"></a>Java反射机制</h2><h3 id="一、什么是反射机制"><a href="#一、什么是反射机制" class="headerlink" title="一、什么是反射机制"></a>一、什么是反射机制</h3><blockquote>
+<p>JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性；这种动态获取的信息以及动态调用对象的方法的功能称为<strong>java语言的反射机制</strong>。</p>
+</blockquote>
+<p>“程序运行时，允许改变程序结构或变量类型，这种语言称为动态语言”。Java不是动态语言。但是Java有着一个非常突出的动态相关机制：<font color="red">Reflection</font>，用在Java身上指的是我们可以于运行时加载、探知、使用编译期间完全未知的class。</p>
+<h3 id="二、理解Java反射"><a href="#二、理解Java反射" class="headerlink" title="二、理解Java反射"></a>二、理解Java反射</h3><p><img src="/img/imgs/4.jpg" alt=""><br>要想理解反，必须得从“正”开始理解，一般而言，先有类再去实例化对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">package com.wz.reflectdemo;</span><br><span class="line"></span><br><span class="line">import java.util.Date;//先有类</span><br><span class="line"></span><br><span class="line">public class ReflectTest &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Date date = new Date();//再产对象</span><br><span class="line">        System.out.println(date);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>而“反”就是通过对象找到类。在Object类中提供一个方法得到class对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public final Class &lt;?&gt;getClass()</span><br></pre></td></tr></table></figure></p>
+<p><strong>注：反射之中的所有泛型都定义为？，返回值为Object</strong></p>
+<h3 id="三、Class类对象的实例化"><a href="#三、Class类对象的实例化" class="headerlink" title="三、Class类对象的实例化"></a>三、Class类对象的实例化</h3><p>java.lang.Class是一个类，它与一般类一样继承Object。这个类是反射操作的源头，即所有的反射都从此类开始进行，下面介绍获取的三种方式。</p>
+<p><strong>方式一：调用Object的getClass()方法</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">package com.wz.reflectdemo;</span><br><span class="line">import java.util.Date;</span><br><span class="line">public class ReflectTest &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Date date = new Date();</span><br><span class="line">        Class&lt;?&gt; cls = date.getClass();</span><br><span class="line">        System.out.println(cls);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class java.until.Date</span><br></pre></td></tr></table></figure></p>
+<p>说明：这种方式相当于通过实例对象反向得到Class对象。</p>
+<p><strong>方式二、使用“类.class”获得</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">package com.wz.reflectdemo;</span><br><span class="line"></span><br><span class="line">import java.util.Date;</span><br><span class="line"></span><br><span class="line">public class ReflectTest &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        //Date date = new Date();</span><br><span class="line">        Class&lt;?&gt; cls = Date.class;</span><br><span class="line">        System.out.println(cls);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class java.until.Date</span><br></pre></td></tr></table></figure></p>
+<p>说明：方法一中取得Class对象之前需要实例化，但是直接<strong>通过类名.Class没有实例化。</strong></p>
+<p><strong>方法三、forName(String className)</strong></p>
+<p>注意：<strong>注意此字符串必须是真实路径，就是带包名的类路径，包名.类名</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public static Class&lt;?&gt;forName(String className) throws ClassNotFoundException</span><br></pre></td></tr></table></figure></p>
+<p>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">package com.wz.reflectdemo;</span><br><span class="line"></span><br><span class="line">//import java.util.Date;</span><br><span class="line"></span><br><span class="line">public class ReflectTest &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws Exception &#123;</span><br><span class="line">        Class&lt;?&gt; cls = Class.forName(&quot;java.util.Date&quot;);//注意此字符串必须是真实路径，就是带包名的类路径，包名.类名</span><br><span class="line">        System.out.println(cls);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class java.until.Date</span><br></pre></td></tr></table></figure></p>
+<p><strong><font color="red">注意：<font></font></font></strong>三种方式常用第三种，第一种对象都有了还要反射干什么。第二种需要导入类的包，依赖太强，不导包就抛编译错误。一般都第三种，一个字符串可以传入也可写在配置文件中等多种方法。</p>
+<h3 id="四、反射实例化对象"><a href="#四、反射实例化对象" class="headerlink" title="四、反射实例化对象"></a>四、反射实例化对象</h3><p>通过前面的步骤得到了Class对象，接下来利用反射实例化得到对象，得到方法和属性。</p>
+<h4 id="1、获取实例对象"><a href="#1、获取实例对象" class="headerlink" title="1、获取实例对象"></a>1、获取实例对象</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public T newInstance() throws InstantiationException,IllegalAccessException</span><br></pre></td></tr></table></figure>
+<p>eg:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">package com.wz.reflectdemo;</span><br><span class="line"></span><br><span class="line">class Book&#123;</span><br><span class="line"></span><br><span class="line">    public Book()&#123;</span><br><span class="line">        System.out.println(&quot;Book类的无参构造方法&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line"></span><br><span class="line">        return &quot;This a book !&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class TestDemo &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">        Class&lt;?&gt; cls = Class.forName(&quot;com.wz.reflectdemo.Book&quot;);</span><br><span class="line">        Object obj = cls.newInstance();//相当于使用new调用无参构造实例化对象</span><br><span class="line"></span><br><span class="line">        Book book = (Book)obj;</span><br><span class="line">        System.out.println(book);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Book类的无参构造方法</span><br><span class="line">This a book !</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意</strong>：newInstance()只能调用默认无参构造方法。<br><br><em>当我们所实例化的类中没有提供无参的构造方法时，会报错。此时我们需要获取有参的构造方法。</em></p>
+<p>在Class类中，提供了方法来获取构造函数：<br>（1）获取所有的构造函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public Constructor&lt;?&gt;[] getConstructors() throws SecurityException</span><br></pre></td></tr></table></figure></p>
+<p>（2）获取指定参数顺序的构造函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public Constructor&lt;T&gt; getConstructor(Class&lt;?&gt;... parameterTypes) throws NoSuchMethodException, SecurityExceptio</span><br></pre></td></tr></table></figure></p>
+<p>说明：以上两个类都返回“java.lang.reflect.Constructor”类的对象。该类中提供明确传递有参构造的方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public T newInstance(Object... initargs) throws InstantiationException, IllegalAccessException,</span><br><span class="line">IllegalArgumentException, InvocationTargetException</span><br></pre></td></tr></table></figure></p>
+<p>实例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">package com.wz.reflectdemo;</span><br><span class="line"></span><br><span class="line">import java.lang.reflect.Constructor;</span><br><span class="line"></span><br><span class="line">public class ReflectTest &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">        Class&lt;?&gt; cls = Class.forName(&quot;com.wz.reflectdemo.Book&quot;);</span><br><span class="line">        /*Object obj = cls.newInstance();//相当于使用new调用无参构造实例化对象</span><br><span class="line">        Book book = (Book)obj;</span><br><span class="line">        System.out.println(book);*/</span><br><span class="line"></span><br><span class="line">        Constructor&lt;?&gt; con = cls.getConstructor(String.class,double.class);</span><br><span class="line">        Object obj = con.newInstance(&quot;Java开发&quot;,79.8);//实例化对象</span><br><span class="line"></span><br><span class="line">        System.out.println(obj);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>执行结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">图书名称：Java开发 ,价格：79.8</span><br></pre></td></tr></table></figure></p>
+<h4 id="2、调用方法和属性"><a href="#2、调用方法和属性" class="headerlink" title="2、调用方法和属性"></a>2、调用方法和属性</h4><p>在Class类中获取方法有以下方式：</p>
+<p>（1）取得一个类中的全部方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public Method[] getMethods() throws SecurityException</span><br></pre></td></tr></table></figure></p>
+<p>（2）得到指定方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public Method getMethod(String name, Class&lt;?&gt;... parameterTypes) throws</span><br><span class="line">NoSuchMethodException, SecurityException</span><br></pre></td></tr></table></figure></p>
+<p>以上方法返回都是“java.lang.reflect.Method”对象，在这个类中有一个调用方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public Object invoke(Object obj, Object... args) throws IllegalAccessException,</span><br><span class="line">IllegalArgumentException, InvocationTargetException</span><br></pre></td></tr></table></figure></p>
+<p>eg:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">package com.wz.reflectdemo;</span><br><span class="line"></span><br><span class="line">import java.lang.reflect.Constructor;</span><br><span class="line">import java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line">public class ReflectTest &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">        Class&lt;?&gt; cls = Class.forName(&quot;com.wz.reflectdemo.Book&quot;);</span><br><span class="line">        Object obj = cls.newInstance();</span><br><span class="line"></span><br><span class="line">        Method setMet = cls.getMethod(&quot;setTitle&quot;, String.class);</span><br><span class="line">        setMet.invoke(obj, &quot;Java开发&quot;);//等价于Book类的setTitle(&quot;Java开发&quot;)</span><br><span class="line"></span><br><span class="line">        Method getMet = cls.getMethod(&quot;getTitle&quot;);</span><br><span class="line">        System.out.println(getMet.invoke(obj));//等价于Book类的getTitle()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java 开发</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/01/05/java/注解/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java注解</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="java/反射" data-title="Java注解" data-url="http://SlectRxz.github.io/2019/01/07/java/反射/"  data-images="img/1.jpg" data-content="Java注解">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 Rong
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>
