@@ -18,7 +18,8 @@
 <meta property="og:description" content="Web开发模式">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://slectrxz.github.io/img/imgs/5.png">
-<meta property="og:updated_time" content="2019-01-17T08:35:59.848Z">
+<meta property="og:image" content="http://slectrxz.github.io/img/imgs/6.png">
+<meta property="og:updated_time" content="2019-01-17T08:42:48.269Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MVC+三层架构开发模式">
 <meta name="twitter:description" content="Web开发模式">
@@ -265,7 +266,7 @@
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 直接用EL表达式从域对象中获取数据--&gt;</span><br><span class="line">&lt;c:forEach items=&quot;$&#123;contacts&#125;&quot; var=&quot;con&quot; varStatus=&quot;varsta&quot;&gt;</span><br><span class="line">		&lt;tr&gt;</span><br><span class="line">			&lt;th&gt;$&#123;varsta.count&#125;&lt;/th&gt;</span><br><span class="line">			&lt;th&gt;$&#123;con.name&#125;&lt;/th&gt;</span><br><span class="line">			&lt;th&gt;$&#123;con.gender&#125; &lt;/th&gt;</span><br><span class="line">			&lt;th&gt;$&#123;con.email &#125;&lt;/th&gt;</span><br><span class="line">			&lt;th&gt;$&#123;con.qq&#125;&lt;/th&gt;</span><br><span class="line">		   &lt;td colspan=&quot;2&quot; align=&quot;center&quot;&gt;</span><br><span class="line">		   &lt;a href=&quot;$&#123;pageContext.request.contextPath &#125;/QueryContactServlet?id=$&#123;con.id&#125;&quot;&gt;修改&lt;/a&gt;</span><br><span class="line">		   &lt;a href=&quot;$&#123;pageContext.request.contextPath &#125;/DeleteContactServlet?id=$&#123;con.id&#125;&quot;&gt;删除&lt;/a&gt;</span><br><span class="line">		   &lt;/td&gt;</span><br><span class="line">		&lt;/tr&gt;</span><br><span class="line">		&lt;/c:forEach&gt;</span><br></pre></td></tr></table></figure>
 <p>form表单形式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;$&#123;pageContext.request.contextPath &#125;/AddContactServlet&quot; method=&quot;post&quot;&gt;</span><br></pre></td></tr></table></figure></p>
-<p>注意：不管是获取数据还是发送数据，都是以对象为基本单位，即JavaBean。</p>
+<p>项目结构：<br><img src="/img/imgs/6.png" alt=""><br>注意：不管是获取数据还是发送数据，都是以对象为基本单位，即JavaBean。</p>
 
       
     </div>
