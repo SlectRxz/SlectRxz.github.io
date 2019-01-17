@@ -3,19 +3,26 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2019 | 荣先森</title>
+  <title>MVC+三层架构开发模式 | 荣先森</title>
 
   <!-- keywords -->
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="荣先森">
-<meta property="og:url" content="http://SlectRxz.github.io/archives/2019/index.html">
+  <meta name="description" content="Web开发模式">
+<meta name="keywords" content="学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MVC+三层架构开发模式">
+<meta property="og:url" content="http://SlectRxz.github.io/2019/01/17/java/MVC开发模式/index.html">
 <meta property="og:site_name" content="荣先森">
+<meta property="og:description" content="Web开发模式">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://slectrxz.github.io/img/imgs/5.png">
+<meta property="og:updated_time" content="2019-01-17T07:12:33.039Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="荣先森">
+<meta name="twitter:title" content="MVC+三层架构开发模式">
+<meta name="twitter:description" content="Web开发模式">
+<meta name="twitter:image" content="http://slectrxz.github.io/img/imgs/5.png">
   
     <link rel="alternative" href="/atom.xml" title="荣先森" type="application/atom+xml">
   
@@ -180,51 +187,44 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-java/MVC开发模式" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/17/java/MVC开发模式/" class="archive-article-date">
-  	<time datetime="2019-01-16T16:00:00.000Z" itemprop="datePublished">Jan 17</time>
+    <div class="article-meta">
+      <a href="/2019/01/17/java/MVC开发模式/" class="article-date">
+  	<time datetime="2019-01-16T16:00:00.000Z" itemprop="datePublished">2019-01-17</time>
 </a>
-        </div>
-    	 
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/17/java/MVC开发模式/">
-        MVC+三层架构开发模式
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
         
-      </a>
+  
+    <h1 class="article-title" itemprop="name">
+      MVC+三层架构开发模式
+      
     </h1>
   
 
-        <div class="article-info info-on-left">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
 	</div>
 
-          
+        
 	<div class="article-category tagcloud">
 	<a class="article-category-link" href="/categories/Java/">Java</a>
 	</div>
 
 
+        
           
-            
 <div class="counter-tag counter">
     <span id="/2019/01/17/java/MVC开发模式/" class="leancloud_visitors post-title-link"
           style="font-size: 12px" data-flag-title="MVC+三层架构开发模式">
@@ -233,116 +233,64 @@
     </span>
 </div>
 
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/07/java/反射/" class="archive-article-date">
-  	<time datetime="2019-01-06T16:00:00.000Z" itemprop="datePublished">Jan 7</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/07/java/反射/">
-        Java反射
         
-      </a>
-    </h1>
-  
-
-        <div class="article-info info-on-left">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Java/">Java</a>
-	</div>
-
-
-          
-            
-<div class="counter-tag counter">
-    <span id="/2019/01/07/java/反射/" class="leancloud_visitors post-title-link"
-          style="font-size: 12px" data-flag-title="Java反射">
-         &nbsp;
-        view
-    </span>
-</div>
-
-          
-        </div>
         <div class="clearfix"></div>
-    </header>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Web开发模式<br><a id="more"></a></p>
+<h3 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h3><ul>
+<li>Model:<strong>javabean</strong>:封装业务数据，模型</li>
+<li>View：<strong>jsp</strong>：显示数据，视图</li>
+<li>Controller:<strong>servlet</strong>:调度jsp和javabean资源，控制器</li>
+</ul>
+<h3 id="三层结构："><a href="#三层结构：" class="headerlink" title="三层结构："></a>三层结构：</h3><ul>
+<li>dao层： 和数据访问相关的操作</li>
+<li>service层： 和业务逻辑相关的操作</li>
+<li>web层： 和用户直接交互相关的操作（传接参数，跳转页面）</li>
+</ul>
+<h3 id="MVC-三层架构"><a href="#MVC-三层架构" class="headerlink" title="MVC+三层架构"></a>MVC+三层架构</h3><p><img src="/img/imgs/5.png" alt=""></p>
+
+      
+    </div>
+    
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/01/07/java/反射/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java反射</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/05/java/注解/" class="archive-article-date">
-  	<time datetime="2019-01-04T16:00:00.000Z" itemprop="datePublished">Jan 5</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/05/java/注解/">
-        Java注解
-        
-      </a>
-    </h1>
-  
-
-        <div class="article-info info-on-left">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Java/">Java</a>
-	</div>
 
 
-          
-            
-<div class="counter-tag counter">
-    <span id="/2019/01/05/java/注解/" class="leancloud_visitors post-title-link"
-          style="font-size: 12px" data-flag-title="Java注解">
-         &nbsp;
-        view
-    </span>
-</div>
+<div class="ds-share share" data-thread-key="java/MVC开发模式" data-title="MVC+三层架构开发模式" data-url="http://SlectRxz.github.io/2019/01/17/java/MVC开发模式/"  data-images="img/1.jpg" data-content="MVC+三层架构开发模式">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
 
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+
+
 
 </div>
       <footer id="footer">
@@ -368,8 +316,8 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false
