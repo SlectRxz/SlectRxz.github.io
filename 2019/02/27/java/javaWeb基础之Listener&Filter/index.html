@@ -13,7 +13,7 @@
 <meta name="keywords" content="javaWeb基础">
 <meta property="og:type" content="article">
 <meta property="og:title" content="监听器与过滤器">
-<meta property="og:url" content="http://SlectRxz.github.io/2019/02/27/java/Listener&Filter/index.html">
+<meta property="og:url" content="http://SlectRxz.github.io/2019/02/27/java/javaWeb基础之Listener&Filter/index.html">
 <meta property="og:site_name" content="荣先森">
 <meta property="og:description" content="Spring框架的IOC开发的两种模式，包括XML开发与注解开发的比较">
 <meta property="og:locale" content="default">
@@ -21,8 +21,8 @@
 <meta property="og:image" content="http://slectrxz.github.io/img/imgs/listener/3.png">
 <meta property="og:image" content="http://slectrxz.github.io/img/imgs/listener/4.png">
 <meta property="og:image" content="http://slectrxz.github.io/img/imgs/listener/2.png">
-<meta property="og:image" content="http://slectrxz.github.io/2019/02/27/java/Listener&Filter/img/img05.png">
-<meta property="og:updated_time" content="2019-02-27T02:07:24.886Z">
+<meta property="og:image" content="http://slectrxz.github.io/2019/02/27/java/javaWeb基础之Listener&Filter/img/img05.png">
+<meta property="og:updated_time" content="2019-02-27T13:15:33.427Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="监听器与过滤器">
 <meta name="twitter:description" content="Spring框架的IOC开发的两种模式，包括XML开发与注解开发的比较">
@@ -128,7 +128,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/blog记录/" style="font-size: 10px;">blog记录</a> <a href="/tags/javaWeb基础/" style="font-size: 10px;">javaWeb基础</a> <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/框架学习/" style="font-size: 10px;">框架学习</a> <a href="/tags/注解开发/" style="font-size: 10px;">注解开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+						<a href="/tags/blog记录/" style="font-size: 10px;">blog记录</a> <a href="/tags/javaWeb基础/" style="font-size: 15px;">javaWeb基础</a> <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/框架学习/" style="font-size: 10px;">框架学习</a> <a href="/tags/注解开发/" style="font-size: 10px;">注解开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
 					</div>
 				</section>
 				
@@ -197,10 +197,10 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-java/Listener&amp;Filter" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-java/javaWeb基础之Listener&amp;Filter" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/02/27/java/Listener&Filter/" class="article-date">
+      <a href="/2019/02/27/java/javaWeb基础之Listener&Filter/" class="article-date">
   	<time datetime="2019-02-26T16:00:00.000Z" itemprop="datePublished">2019-02-27</time>
 </a>
     </div>
@@ -236,7 +236,7 @@
         
           
 <div class="counter-tag counter">
-    <span id="/2019/02/27/java/Listener&Filter/" class="leancloud_visitors post-title-link"
+    <span id="/2019/02/27/java/javaWeb基础之Listener&Filter/" class="leancloud_visitors post-title-link"
           style="font-size: 12px" data-flag-title="监听器与过滤器">
          &nbsp;
         view
@@ -277,21 +277,21 @@
 </blockquote>
 <p><img src="/img/imgs/listener/1.png" alt=""></p>
 <h3 id="Web监听器"><a href="#Web监听器" class="headerlink" title="Web监听器"></a>Web监听器</h3><blockquote>
-<p>总共有8个 划分成三种类型</p>
+<p>总共有8个 划分成<font color="red">三种类型</font></p>
 </blockquote>
+<p><strong>监听器使用：</strong></p>
 <ol>
 <li><p>定义一个类，实现接口</p>
 </li>
 <li><p>注册 | 配置监听器</p>
 </li>
 </ol>
-<h3 id="监听三个作用域创建和销毁"><a href="#监听三个作用域创建和销毁" class="headerlink" title="监听三个作用域创建和销毁"></a>监听三个作用域创建和销毁</h3><pre><code> request  ---httpServletRequest
-session  ---httpSession
-aapplication  --- ServletContext
+<h4 id="1-监听三个作用域创建和销毁"><a href="#1-监听三个作用域创建和销毁" class="headerlink" title="1.监听三个作用域创建和销毁"></a>1.监听三个作用域创建和销毁</h4><p>request  —httpServletRequest</p>
+<p>session  —httpSession</p>
+<p>application  — ServletContext</p>
+<pre><code>1. ServletContextListener
 
-1. ServletContextListener
-
-    servletcontext创建：
+    servletcontext在什么时候创建？
 
         1. 启动服务器的时候
 
@@ -363,7 +363,7 @@ aapplication  --- ServletContext
                 System.out.println(&quot;销毁session了&quot;);
             }
         }
-</code></pre><p>作用：</p>
+</code></pre><p><strong>作用：</strong></p>
 <pre><code>ServletContextListener
 
     利用它来，在servletcontext创建的时候，
@@ -374,7 +374,7 @@ aapplication  --- ServletContext
 HttpSessionListener
 
     统计在线人数.
-</code></pre><h3 id="监听三个作用域属性状态变更"><a href="#监听三个作用域属性状态变更" class="headerlink" title="监听三个作用域属性状态变更"></a>监听三个作用域属性状态变更</h3><blockquote>
+</code></pre><h2 id="2-监听三个作用域属性状态变更"><a href="#2-监听三个作用域属性状态变更" class="headerlink" title="2.监听三个作用域属性状态变更"></a>2.监听三个作用域属性状态变更</h2><blockquote>
 <p>可以监听在作用域中值 添加  | 替换  | 移除的动作。</p>
 </blockquote>
 <ul>
@@ -392,7 +392,7 @@ HttpSessionListener
 <li>HttpSessionBindingListener</li>
 </ul>
 <blockquote>
-<p>监听对象与session 绑定和解除绑定 的动作</p>
+<p>监听对象与session 绑定和解除绑定 的动作    （就是监听这个值在不在session中）</p>
 </blockquote>
 <pre><code>1. 让javaBean 实现该接口即可
 
@@ -409,7 +409,7 @@ HttpSessionListener
 <li>HttpSessionActivationListener</li>
 </ul>
 <blockquote>
-<p>用于监听现在session的值 是 钝化 （序列化）还是活化 （反序列化）的动作</p>
+<p>用于监听<font color="red">检测</font>现在session的值 是 钝化 （序列化）还是活化 （反序列化）的动作<br><strong>注意：serializable接口，标志着该类可以实现序列化与反序列化，要想该类能够实现序列化与反序列化，必须继承该类</strong></p>
 </blockquote>
 <ul>
 <li>钝化 （序列化）</li>
@@ -735,6 +735,15 @@ BeanUtils.populate(bean, map);
     
 <nav id="article-nav">
   
+    <a href="/2019/02/28/java/javaWeb基础之域对象/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          四大域对象
+        
+      </div>
+    </a>
+  
   
     <a href="/2019/02/25/java/Spring学习(1)/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">Spring学习日志（1）</div>
@@ -747,7 +756,7 @@ BeanUtils.populate(bean, map);
 </article>
 
 
-<div class="ds-share share" data-thread-key="java/Listener&amp;Filter" data-title="监听器与过滤器" data-url="http://SlectRxz.github.io/2019/02/27/java/Listener&amp;Filter/"  data-images="img/1.jpg" data-content="监听器与过滤器">
+<div class="ds-share share" data-thread-key="java/javaWeb基础之Listener&amp;Filter" data-title="监听器与过滤器" data-url="http://SlectRxz.github.io/2019/02/27/java/javaWeb基础之Listener&amp;Filter/"  data-images="img/1.jpg" data-content="监听器与过滤器">
     <div class="ds-share-inline">
       <ul  class="ds-share-icons-16">
       	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>

@@ -19,7 +19,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://slectrxz.github.io/img/imgs/5.png">
 <meta property="og:image" content="http://slectrxz.github.io/img/imgs/6.png">
-<meta property="og:updated_time" content="2019-01-17T08:42:48.269Z">
+<meta property="og:updated_time" content="2019-02-27T11:39:49.056Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MVC+三层架构开发模式">
 <meta name="twitter:description" content="Web开发模式">
@@ -125,7 +125,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/blog记录/" style="font-size: 10px;">blog记录</a> <a href="/tags/javaWeb基础/" style="font-size: 10px;">javaWeb基础</a> <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/框架学习/" style="font-size: 10px;">框架学习</a> <a href="/tags/注解开发/" style="font-size: 10px;">注解开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+						<a href="/tags/blog记录/" style="font-size: 10px;">blog记录</a> <a href="/tags/javaWeb基础/" style="font-size: 15px;">javaWeb基础</a> <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/框架学习/" style="font-size: 10px;">框架学习</a> <a href="/tags/注解开发/" style="font-size: 10px;">注解开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
 					</div>
 				</section>
 				
@@ -270,7 +270,11 @@
 <blockquote>
 <p><strong>从jsp-&gt;servlet<br></strong>一般我们用<strong>${pageContext.request.contextPath }</strong>来获取当前路径<br><strong>/QueryContactServlet?id=${con.id}</strong>是页面跳转的同时将id作为参数传递过去</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 直接用EL表达式从域对象中获取数据--&gt;</span><br><span class="line">&lt;c:forEach items=&quot;$&#123;contacts&#125;&quot; var=&quot;con&quot; varStatus=&quot;varsta&quot;&gt;</span><br><span class="line">		&lt;tr&gt;</span><br><span class="line">			&lt;th&gt;$&#123;varsta.count&#125;&lt;/th&gt;</span><br><span class="line">			&lt;th&gt;$&#123;con.name&#125;&lt;/th&gt;</span><br><span class="line">			&lt;th&gt;$&#123;con.gender&#125; &lt;/th&gt;</span><br><span class="line">			&lt;th&gt;$&#123;con.email &#125;&lt;/th&gt;</span><br><span class="line">			&lt;th&gt;$&#123;con.qq&#125;&lt;/th&gt;</span><br><span class="line">		   &lt;td colspan=&quot;2&quot; align=&quot;center&quot;&gt;</span><br><span class="line">		   &lt;a href=&quot;$&#123;pageContext.request.contextPath &#125;/QueryContactServlet?id=$&#123;con.id&#125;&quot;&gt;修改&lt;/a&gt;</span><br><span class="line">		   &lt;a href=&quot;$&#123;pageContext.request.contextPath &#125;/DeleteContactServlet?id=$&#123;con.id&#125;&quot;&gt;删除&lt;/a&gt;</span><br><span class="line">		   &lt;/td&gt;</span><br><span class="line">		&lt;/tr&gt;</span><br><span class="line">		&lt;/c:forEach&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 直接用EL表达式从域对象中获取数据--&gt;</span><br><span class="line">&lt;c:forEach items=&quot;$&#123;contacts&#125;&quot; var=&quot;con&quot; varStatus=&quot;varsta&quot;&gt;</span><br><span class="line">		&lt;tr&gt;</span><br><span class="line">			&lt;th&gt;$&#123;varsta.count&#125;&lt;/th&gt;</span><br><span class="line">			&lt;th&gt;$&#123;con.name&#125;&lt;/th&gt;</span><br><span class="line">			&lt;th&gt;$&#123;con.gender&#125; &lt;/th&gt;</span><br><span class="line">			&lt;th&gt;$&#123;con.email &#125;&lt;/th&gt;</span><br><span class="line">			&lt;th&gt;$&#123;con.qq&#125;&lt;/th&gt;</span><br><span class="line">		   &lt;td colspan=&quot;2&quot; align=&quot;center&quot;&gt;</span><br><span class="line">		   &lt;a href=&quot;$&#123;pageContext.request.contextPath &#125;/QueryContactServlet?id=$&#123;con.id&#125;&quot;&gt;修改&lt;/a&gt;</span><br><span class="line">		   &lt;a href=&quot;$&#123;pageContext.request.contextPath &#125;/DeleteContactServlet?id=$&#123;con.id&#125;&quot;&gt;删除&lt;/a&gt;</span><br><span class="line">       //说明，此处的pageContext.request相当于pageContext.getRequest()方法，其在于先得到request对象，再调用request的方法。</span><br><span class="line">		   &lt;/td&gt;</span><br><span class="line">		&lt;/tr&gt;</span><br><span class="line">		&lt;/c:forEach&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>注意：此处设计到EL表达式</strong></p>
+<blockquote>
+<p>语法：${表达式或变量}<br><font color="red">表达式/变量是从域对象中得到的，也就是说，我们必须先往域对象中存储</font><br><strong>输出对象的某个成员：</strong>${student.name},其中student的对象必须有方法getName()</p>
+</blockquote>
 <p>form表单形式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;$&#123;pageContext.request.contextPath &#125;/AddContactServlet&quot; method=&quot;post&quot;&gt;</span><br></pre></td></tr></table></figure></p>
 <p>项目结构：<br><img src="/img/imgs/6.png" alt=""><br>注意：不管是获取数据还是发送数据，都是以对象为基本单位，即JavaBean。</p>
 
