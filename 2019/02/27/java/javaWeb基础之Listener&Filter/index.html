@@ -21,8 +21,8 @@
 <meta property="og:image" content="http://slectrxz.github.io/img/imgs/listener/3.png">
 <meta property="og:image" content="http://slectrxz.github.io/img/imgs/listener/4.png">
 <meta property="og:image" content="http://slectrxz.github.io/img/imgs/listener/2.png">
-<meta property="og:image" content="http://slectrxz.github.io/2019/02/27/java/javaWeb基础之Listener&Filter/img/img05.png">
-<meta property="og:updated_time" content="2019-02-27T13:15:33.427Z">
+<meta property="og:image" content="http://slectrxz.github.io/img/imgs/listener/5.png">
+<meta property="og:updated_time" content="2019-02-28T12:50:04.903Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="监听器与过滤器">
 <meta name="twitter:description" content="Spring框架的IOC开发的两种模式，包括XML开发与注解开发的比较">
@@ -494,7 +494,7 @@ HttpSessionListener
 <blockquote>
 <p>在web.xml里面注册，注册的手法与servlet基本一样。</p>
 </blockquote>
-<pre><code>    &lt;filter&gt;
+<pre><code>&lt;filter&gt;
   &lt;display-name&gt;FilterDemo&lt;/display-name&gt;
   &lt;filter-name&gt;FilterDemo&lt;/filter-name&gt;
   &lt;filter-class&gt;com.itheima.filter.FilterDemo&lt;/filter-class&gt;
@@ -519,24 +519,24 @@ HttpSessionListener
 <ol>
 <li><p>客户端发出请求，先经过过滤器， 如果过滤器放行，那么才能到servlet</p>
 </li>
-<li><p>如果有多个过滤器， 那么他们会按照注册的映射顺序 来 排队。 只要有一个过滤器， 不放行，那么后面排队的过滤器以及咱们的servlet都不会收到请求。</p>
+<li><p>如果有多个过滤器， 那么他们会按照注册的映射顺序 <filter-mapping> 来 排队。 只要有一个过滤器， 不放行，那么后面排队的过滤器以及咱们的servlet都不会收到请求。</filter-mapping></p>
 </li>
 </ol>
 <h2 id="Filter细节："><a href="#Filter细节：" class="headerlink" title="Filter细节："></a>Filter细节：</h2><ol>
 <li><p>init方法的参数 FilterConfig , 可以用于获取filter在注册的名字 以及初始化参数。  其实这里的设计的初衷与ServletConfig是一样的。</p>
 </li>
-<li><p>如果想放行，那么在doFilter 方法里面操作，使用参数 chain</p>
+<li><p>如果想放行，那么在doFilter 方法里面操作，使用参数 chain  </p>
 </li>
 </ol>
 <pre><code>chain.doFilter(request, response); 放行， 让请求到达下一个目标。
 </code></pre><ol start="3">
-<li><p><url-pattern>/*</url-pattern> 写法格式与servlet一样。</p>
+<li><p><code>&lt;url-pattern&gt;/*&lt;/url-pattern&gt;</code>写法格式与servlet一样。<br><br><strong>/*代表着你过滤谁</strong></p>
 <ol>
 <li><p>全路径匹配  以 /  开始</p>
-<pre><code>/LoginServlet
-</code></pre></li>
+<p> /LoginServlet      只有访问这个servlet时才拦截</p>
+</li>
 <li><p>以目录匹配 以 / 开始  以 * 结束</p>
-<p> /demo01/*  </p>
+<p>  /demo01/*          只有访问demo01目录下的文件才会拦截</p>
 </li>
 <li><p>以后缀名匹配  以 * 开始 以后缀名结束</p>
 <p> <em>.jsp  </em>.html *.do</p>
@@ -544,16 +544,13 @@ HttpSessionListener
 </ol>
 </li>
 <li><p>针对 dispatcher 设置</p>
-<pre><code>REQUEST ： 只要是请求过来，都拦截，默认就是REQUEST
-FORWARD : 只要是转发都拦截。
-ERROR ： 页面出错发生跳转
-INCLUDE ： 包含页面的时候就拦截。
-</code></pre></li>
+<p> REQUEST ： 只要是请求过来，都拦截，<font color="red">默认就是REQUEST</font><br><br> FORWARD : 只要是转发都拦截。<br><br> ERROR ： 页面出错发生跳转<br><br> INCLUDE ： 包含页面的时候就拦截。</p>
+</li>
 </ol>
 <h3 id="自动登录"><a href="#自动登录" class="headerlink" title="自动登录"></a>自动登录</h3><ul>
 <li>需求分析</li>
 </ul>
-<p><img src="img/img05.png" alt="icon"></p>
+<p><img src="/img/imgs/listener/5.png" alt=""></p>
 <h4 id="1-搭建环境"><a href="#1-搭建环境" class="headerlink" title="1. 搭建环境"></a>1. 搭建环境</h4><ol>
 <li><p>搭建数据库</p>
 </li>
