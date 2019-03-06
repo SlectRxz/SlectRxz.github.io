@@ -18,7 +18,11 @@
 <meta property="og:description" content="数据库连接池，包括DBCP以及C3P0，DBUtils工具的使用">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://slectrxz.github.io/img/imgs/JDBC/img11.png">
-<meta property="og:updated_time" content="2019-03-06T03:27:51.173Z">
+<meta property="og:image" content="http://slectrxz.github.io/img/imgs/JDBC/img13.png">
+<meta property="og:image" content="http://slectrxz.github.io/img/imgs/JDBC/img14.png">
+<meta property="og:image" content="http://slectrxz.github.io/img/imgs/JDBC/img15.png">
+<meta property="og:image" content="http://slectrxz.github.io/img/imgs/JDBC/img16.png">
+<meta property="og:updated_time" content="2019-03-06T08:03:20.144Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库连接池以及JDBUtils使用">
 <meta name="twitter:description" content="数据库连接池，包括DBCP以及C3P0，DBUtils工具的使用">
@@ -146,7 +150,7 @@
 		<object type="application/x-shockwave-flash" style="outline:none;" data="http://cdn.abowman.com/widgets/treefrog/treefrog.swf?up_bodyColor=84BF84&up_pattern=1&up_flyColor=F0E80C&up_tongueColor=2BA029&up_patternColor=CFBCBC&up_releaseFly=0&up_frogName=Tree Frog&up_backgroundImage=http://&up_bellySize=.5&up_footColor=2BA029&up_eyeColor=2BA029&up_backgroundColor=261109&" width="250" height="150"><param name="movie" value="http://cdn.abowman.com/widgets/treefrog/treefrog.swf?up_bodyColor=84BF84&up_pattern=1&up_flyColor=F0E80C&up_tongueColor=2BA029&up_patternColor=CFBCBC&up_releaseFly=0&up_frogName=Tree Frog&up_backgroundImage=http://&up_bellySize=.5&up_footColor=2BA029&up_eyeColor=2BA029&up_backgroundColor=261109&"></param><param name="AllowScriptAccess" value="always"></param><param name="wmode" value="opaque"></param><param name="scale" value="noscale"/><param name="salign" value="tl"/></object>
 		</div>
 		<div style="position:absolute;bottom:80px;left:auto;width:60%;opacity:0.6">
-		<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=250 height=86 src="//music.163.com/outchain/player?type=2&id=543681750&auto=1&height=66"></iframe>
+		<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=250 height=86 src="//music.163.com/outchain/player?type=2&id=543681750&auto=0&height=66"></iframe>
 		</div>
 		
 	
@@ -256,6 +260,18 @@
 <p>2.一开始现在内存中开辟一块空间（集合） ， 一开先往池子里面放置 多个连接对象。  后面需要连接的话，直接从池子里面去。不要去自己创建连接了。  使用完毕， 要记得归还连接。确保连接对象能循环利用。</p>
 </blockquote>
 <p><img src="/img/imgs/JDBC/img11.png" alt="icon"></p>
+<blockquote>
+<p>下面内容是我搬运别人写的比较好的内容</p>
+</blockquote>
+<ol>
+<li>没有池的情况<br><img src="/img/imgs/JDBC/img13.png" alt="icon"></li>
+<li>认识池<br><img src="/img/imgs/JDBC/img14.png" alt="icon"><br>说明：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、 池就是一种容纳对象的容器</span><br><span class="line">2、 连接池就是保存数据库连接对象的容器</span><br><span class="line">3、 在连接池中我们会预先创建一定数量的连接对象，当需要数据库连接的时候，只要从数据库连接池中取出一个，使用完毕之后就再放回去，这些连接对象是以一种循环队列来存放的，取的时候从头开始，放回的时候放在尾部。</span><br><span class="line">4、 通过设置最大连接数量来防止系统无止尽的与数据库连接</span><br><span class="line">5、 连接池中可以设置监听机制，用来测试连接的数量</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>连接池中的属性</strong><br><img src="/img/imgs/JDBC/img15.png" alt="icon"></p>
+<ol start="3">
+<li>连接池的使用<br><img src="/img/imgs/JDBC/img16.png" alt="icon"></li>
+</ol>
 <h3 id="自定义数据库连接池"><a href="#自定义数据库连接池" class="headerlink" title="自定义数据库连接池"></a>自定义数据库连接池</h3><ul>
 <li>代码实现</li>
 </ul>
