@@ -13,7 +13,7 @@
 <meta name="keywords" content="javaWeb基础">
 <meta property="og:type" content="article">
 <meta property="og:title" content="监听器与过滤器">
-<meta property="og:url" content="http://SlectRxz.github.io/2019/02/27/java/javaWeb基础之Listener&Filter/index.html">
+<meta property="og:url" content="http://SlectRxz.github.io/2019/02/27/java/Listener&Filter/index.html">
 <meta property="og:site_name" content="荣先森">
 <meta property="og:description" content="Spring框架的IOC开发的两种模式，包括XML开发与注解开发的比较">
 <meta property="og:locale" content="default">
@@ -22,7 +22,8 @@
 <meta property="og:image" content="http://slectrxz.github.io/img/imgs/listener/4.png">
 <meta property="og:image" content="http://slectrxz.github.io/img/imgs/listener/2.png">
 <meta property="og:image" content="http://slectrxz.github.io/img/imgs/listener/5.png">
-<meta property="og:updated_time" content="2019-02-28T12:50:04.903Z">
+<meta property="og:image" content="http://slectrxz.github.io/img/imgs/listener/6.png">
+<meta property="og:updated_time" content="2019-03-07T08:43:07.629Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="监听器与过滤器">
 <meta name="twitter:description" content="Spring框架的IOC开发的两种模式，包括XML开发与注解开发的比较">
@@ -128,7 +129,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/blog记录/" style="font-size: 10px;">blog记录</a> <a href="/tags/javaWeb基础/" style="font-size: 15px;">javaWeb基础</a> <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/框架学习/" style="font-size: 10px;">框架学习</a> <a href="/tags/注解开发/" style="font-size: 10px;">注解开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+						<a href="/tags/blog记录/" style="font-size: 10px;">blog记录</a> <a href="/tags/javaWeb基础/" style="font-size: 16.67px;">javaWeb基础</a> <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/框架学习/" style="font-size: 13.33px;">框架学习</a> <a href="/tags/注解开发/" style="font-size: 10px;">注解开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
 					</div>
 				</section>
 				
@@ -197,10 +198,10 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-java/javaWeb基础之Listener&amp;Filter" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-java/Listener&amp;Filter" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/02/27/java/javaWeb基础之Listener&Filter/" class="article-date">
+      <a href="/2019/02/27/java/Listener&Filter/" class="article-date">
   	<time datetime="2019-02-26T16:00:00.000Z" itemprop="datePublished">2019-02-27</time>
 </a>
     </div>
@@ -236,7 +237,7 @@
         
           
 <div class="counter-tag counter">
-    <span id="/2019/02/27/java/javaWeb基础之Listener&Filter/" class="leancloud_visitors post-title-link"
+    <span id="/2019/02/27/java/Listener&Filter/" class="leancloud_visitors post-title-link"
           style="font-size: 12px" data-flag-title="监听器与过滤器">
          &nbsp;
         view
@@ -583,7 +584,7 @@ HttpSessionListener
         e.printStackTrace();
     }
 }
-</code></pre><h2 id="过滤器代码"><a href="#过滤器代码" class="headerlink" title="过滤器代码"></a>过滤器代码</h2><blockquote>
+</code></pre><h2 id="过滤器代码-见AutoLogin代码"><a href="#过滤器代码-见AutoLogin代码" class="headerlink" title="过滤器代码(见AutoLogin代码)"></a>过滤器代码(见AutoLogin代码)</h2><blockquote>
 <p> 过滤器的核心不是完成拦截不给 ， 还是放行显示。 它的核心是在放行之前，帮用户完成登录的功能。</p>
 </blockquote>
 <ul>
@@ -606,9 +607,13 @@ HttpSessionListener
  * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
  */
 public void doFilter(ServletRequest req, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-
 try {
+
     HttpServletRequest request = (HttpServletRequest) req;
+    //设置编码格式
+    response.setContentType(&quot;text/html;charset=utf-8&quot;);
+    request.setCharacterEncoding(&quot;utf-8&quot;);
+    response.setCharacterEncoding(&quot;utf-8&quot;);
 
     //先判断，现在session中还有没有那个userBean.
     UserBean userBean = (UserBean) request.getSession().getAttribute(&quot;userBean&quot;);
@@ -661,14 +666,21 @@ try {
 </ol>
 </li>
 </ol>
-<h3 id="BeanUtils的使用"><a href="#BeanUtils的使用" class="headerlink" title="BeanUtils的使用"></a>BeanUtils的使用</h3><blockquote>
+<h3 id="BeanUtils的使用"><a href="#BeanUtils的使用" class="headerlink" title="BeanUtils的使用"></a>BeanUtils的使用</h3><ol>
+<li>导包<br>注意：BeanUtils可以帮我们转换int，String等类型，但是日期类型转换不了<br><img src="/img/imgs/listener/6.png" alt="ico"><br>总结如下：</li>
+</ol>
+<ul>
+<li>如果form参数是String类型，javabean属性String类型 —- 调用BeanUtils.populate 将form数据封装 javabean</li>
+<li>如果JavaBean属性类型不是String —- 将form数据封装javabean 需要转换器 —– 在BeanUtils API 提供很多默认转换器（完成常见转换）</li>
+<li><p>如果需要转换类型非常特殊，可以通过自定义转换器完成 定义类实现Converter接口，实现convert方法 ，在populate调用之前通过ConvertUtils.register注册转换器</p>
+<blockquote>
 <p>BeanUtils.populate(bean, map);</p>
 </blockquote>
 <pre><code>//注册自己的日期转换器
 ConvertUtils.register(new MyDateConverter(), Date.class);
-
-
-//转化数据
+</code></pre></li>
+</ul>
+<pre><code>//转化数据
 Map map = request.getParameterMap();
 UserBean bean = new UserBean();
 
@@ -753,7 +765,7 @@ BeanUtils.populate(bean, map);
 </article>
 
 
-<div class="ds-share share" data-thread-key="java/javaWeb基础之Listener&amp;Filter" data-title="监听器与过滤器" data-url="http://SlectRxz.github.io/2019/02/27/java/javaWeb基础之Listener&amp;Filter/"  data-images="img/1.jpg" data-content="监听器与过滤器">
+<div class="ds-share share" data-thread-key="java/Listener&amp;Filter" data-title="监听器与过滤器" data-url="http://SlectRxz.github.io/2019/02/27/java/Listener&amp;Filter/"  data-images="img/1.jpg" data-content="监听器与过滤器">
     <div class="ds-share-inline">
       <ul  class="ds-share-icons-16">
       	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>

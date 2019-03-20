@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Spring学习日志（2） | 荣先森</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Spring框架的AOP的注解开发，SpringJDBC模板的使用">
+<meta name="keywords" content="框架学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring学习日志（2）">
+<meta property="og:url" content="http://SlectRxz.github.io/2019/03/20/java/Spring学习(2)/index.html">
+<meta property="og:site_name" content="荣先森">
+<meta property="og:description" content="Spring框架的AOP的注解开发，SpringJDBC模板的使用">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://slectrxz.github.io/img/imgs/Spring/7.png">
+<meta property="og:image" content="http://slectrxz.github.io/img/imgs/Spring/8.png">
+<meta property="og:image" content="http://slectrxz.github.io/img/imgs/Spring/9.png">
+<meta property="og:image" content="http://slectrxz.github.io/img/imgs/Spring/10.png">
+<meta property="og:image" content="http://slectrxz.github.io/img/imgs/Spring/11.png">
+<meta property="og:updated_time" content="2019-03-20T08:25:07.750Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring学习日志（2）">
+<meta name="twitter:description" content="Spring框架的AOP的注解开发，SpringJDBC模板的使用">
+<meta name="twitter:image" content="http://slectrxz.github.io/img/imgs/Spring/7.png">
+  
+    <link rel="alternative" href="/atom.xml" title="荣先森" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="img/1.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+      <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("bpxE8dkqS0IAdFxTbcqm4IiX-gzGzoHsz", "VRnKkxnTxbDSQtPbl1TiWyLw");</script>
+<script src="/js/Counter.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="img/1.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Rong</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/SlectRxz" title="github">github</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/rselect/activities" title="zhihu">zhihu</a>
+					        
+								<a class="qq" target="_blank" href="/2215857051" title="qq">qq</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/blog记录/" style="font-size: 10px;">blog记录</a> <a href="/tags/javaWeb基础/" style="font-size: 16.67px;">javaWeb基础</a> <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/框架学习/" style="font-size: 13.33px;">框架学习</a> <a href="/tags/注解开发/" style="font-size: 10px;">注解开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+		<div style="position:absolute;bottom:170px;opacity:0.6">
+		<object type="application/x-shockwave-flash" style="outline:none;" data="http://cdn.abowman.com/widgets/treefrog/treefrog.swf?up_bodyColor=84BF84&up_pattern=1&up_flyColor=F0E80C&up_tongueColor=2BA029&up_patternColor=CFBCBC&up_releaseFly=0&up_frogName=Tree Frog&up_backgroundImage=http://&up_bellySize=.5&up_footColor=2BA029&up_eyeColor=2BA029&up_backgroundColor=261109&" width="250" height="150"><param name="movie" value="http://cdn.abowman.com/widgets/treefrog/treefrog.swf?up_bodyColor=84BF84&up_pattern=1&up_flyColor=F0E80C&up_tongueColor=2BA029&up_patternColor=CFBCBC&up_releaseFly=0&up_frogName=Tree Frog&up_backgroundImage=http://&up_bellySize=.5&up_footColor=2BA029&up_eyeColor=2BA029&up_backgroundColor=261109&"></param><param name="AllowScriptAccess" value="always"></param><param name="wmode" value="opaque"></param><param name="scale" value="noscale"/><param name="salign" value="tl"/></object>
+		</div>
+		<div style="position:absolute;bottom:80px;left:auto;width:60%;opacity:0.6">
+		<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=250 height=86 src="//music.163.com/outchain/player?type=2&id=543681750&auto=0&height=66"></iframe>
+		</div>
+		
+	
+		
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Rong</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="img/1.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Rong</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/SlectRxz" title="github">github</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/rselect/activities" title="zhihu">zhihu</a>
+			        
+						<a class="qq" target="_blank" href="/2215857051" title="qq">qq</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-java/Spring学习(2)" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/03/20/java/Spring学习(2)/" class="article-date">
+  	<time datetime="2019-03-19T16:00:00.000Z" itemprop="datePublished">2019-03-20</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Spring学习日志（2）
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/框架学习/">框架学习</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/JavaWeb/">JavaWeb</a>
+	</div>
+
+
+        
+          
+<div class="counter-tag counter">
+    <span id="/2019/03/20/java/Spring学习(2)/" class="leancloud_visitors post-title-link"
+          style="font-size: 12px" data-flag-title="Spring学习日志（2）">
+         &nbsp;
+        view
+    </span>
+</div>
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Spring框架的AOP的注解开发，SpringJDBC模板的使用<br><a id="more"></a></p>
+<h3 id="Spring（1）回顾"><a href="#Spring（1）回顾" class="headerlink" title="Spring（1）回顾"></a>Spring（1）回顾</h3><ul>
+<li>Spring的IOC的注解开发<ul>
+<li>注解的入门<ul>
+<li>引入aop的包</li>
+<li>引入context约束<ul>
+<li>开启扫描类上的注解&lt;context:component-scan /&gt;    </li>
+<li>开启扫描方法、成员上的注解&lt;<a href="context:annotation-config/" target="_blank" rel="noopener">context:annotation-config/</a>&gt;</li>
+</ul>
+<ul>
+<li>使用注解开发</li>
+</ul>
+<ul>
+<li>@Component        ：定义Bean</li>
+<li>@Controller    ：WEB层</li>
+<li>@Service        ：Service层</li>
+<li>@Repository    ：DAO层</li>
+</ul>
+</li>
+<li>属性注入：<ul>
+<li>普通属性    ：@Value</li>
+<li>对象属性    ：@Resource  不是Spring中的<ul>
+<li>@Autowired    ：按类型注入属性，按名称@Qulifier</li>
+</ul>
+</li>
+<li>XML方式和注解方式比较</li>
+<li>XML方式    ：适用性更广，结构更加清晰。</li>
+<li>注解方式    ：适用类是自己定义，开发更方便。</li>
+<li>XML和注解的整合开发（重点）</li>
+<li>XML定义类</li>
+<li>注解属性注入</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>Spring的AOP的基于AspectJ的XML的开发</p>
+<ul>
+<li><p>AOP的概述</p>
+<ul>
+<li>AOP：面向切面编程，是OOP的扩展和延伸，是用来解决OOP遇到问题。<ul>
+<li>Spring的AOP</li>
+</ul>
+</li>
+<li>底层的实现<ul>
+<li>JDK的动态代理<ul>
+<li>Cglib的动态代理</li>
+</ul>
+</li>
+<li>AOP的相关术语</li>
+<li>连接点：可以被拦截的点。</li>
+<li>切入点：真正被拦截的点。</li>
+<li>通知：增强方法</li>
+<li>引介：类的增强</li>
+<li>目标：被增强的对象</li>
+<li>织入：将增强应用到目标的过程。</li>
+<li>代理：织入增强后产生的对象</li>
+<li>切面：切入点和通知的组合</li>
+<li>AOP的入门开发</li>
+</ul>
+</li>
+<li>引入jar包</li>
+<li>编写目标类并配置</li>
+<li>编写切面类并配置</li>
+<li>进行aop的配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;aop:config&gt;</span><br><span class="line">    &lt;aop:pointcut expression=”execution(表达式)” id=”pc1”/&gt;</span><br><span class="line">    &lt;aop:aspect &gt;</span><br><span class="line">    	&lt;aop:before method=”” pointcut-ref=”pc1”/&gt;</span><br><span class="line">    &lt;/aop:aspect&gt;</span><br><span class="line">&lt;/aop:config&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>通知类型</p>
+<ul>
+<li>前置通知<ul>
+<li>后置通知</li>
+<li>环绕通知</li>
+<li>异常抛出通知</li>
+<li>最终通知</li>
+<li>切入点表达式写法<h2 id="Spring的基于ApspectJ的注解的AOP开发"><a href="#Spring的基于ApspectJ的注解的AOP开发" class="headerlink" title="Spring的基于ApspectJ的注解的AOP开发"></a>Spring的基于ApspectJ的注解的AOP开发</h2>###1. 实现步骤<h4 id="1-1创建项目，导入jar包"><a href="#1-1创建项目，导入jar包" class="headerlink" title="1.1创建项目，导入jar包"></a>1.1创建项目，导入jar包</h4><img src="/img/imgs/Spring/7.png" alt="引入的四个jar包"><h4 id="1-2引入配置文件"><a href="#1-2引入配置文件" class="headerlink" title="1.2引入配置文件"></a>1.2引入配置文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">	xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">	xmlns:context=&quot;http://www.springframework.org/schema/context&quot;</span><br><span class="line">	xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;</span><br><span class="line">	xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;</span><br><span class="line">	xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans</span><br><span class="line">	http://www.springframework.org/schema/beans/spring-beans.xsd</span><br><span class="line">	http://www.springframework.org/schema/context</span><br><span class="line">	http://www.springframework.org/schema/context/spring-context.xsd</span><br><span class="line">	http://www.springframework.org/schema/aop</span><br><span class="line">	http://www.springframework.org/schema/aop/spring-aop.xsd</span><br><span class="line">	http://www.springframework.org/schema/tx</span><br><span class="line">	http://www.springframework.org/schema/tx/spring-tx.xsd&quot;&gt;事务管理</span><br><span class="line"></span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-3编写目标类并配置"><a href="#1-3编写目标类并配置" class="headerlink" title="1.3编写目标类并配置"></a>1.3编写目标类并配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;orderDao&quot; class=&quot;Spring.demo2.OrderDao&quot;&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p>也可以直接使用类上注解的方式，此时开启类上注解扫描</p>
+<blockquote>
+<p>&lt;context:component-scan base-package=”Spring.demo2”&gt;&lt;/context:component-scan&gt;</p>
+</blockquote>
+<h4 id="1-4编写切面类并配置"><a href="#1-4编写切面类并配置" class="headerlink" title="1.4编写切面类并配置"></a>1.4编写切面类并配置</h4><blockquote>
+<p>说明：<br>1.需要在类上配置@Aspect，说明这是一个切面类<br>2.在方法上配置如何增强，中的属性会告诉你Spring在哪个方法上的哪个类上应用增强。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">package Spring.demo2;</span><br><span class="line"></span><br><span class="line">import org.aspectj.lang.ProceedingJoinPoint;</span><br><span class="line">import org.aspectj.lang.annotation.AfterReturning;</span><br><span class="line">import org.aspectj.lang.annotation.Around;</span><br><span class="line">import org.aspectj.lang.annotation.Aspect;</span><br><span class="line">import org.aspectj.lang.annotation.Before;</span><br><span class="line">import org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line">@Component(value=&quot;myAspect&quot;)</span><br><span class="line">@Aspect</span><br><span class="line">public class MyAspect &#123;</span><br><span class="line">	@Before(value=&quot;execution(* Spring.demo2.OrderDao.add(..))&quot;)</span><br><span class="line">	public void befor()&#123;</span><br><span class="line">		System.out.println(&quot;----------前置增强-----&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	//可以获取被增强方法的返回值，注意两个result必须相同</span><br><span class="line">	@AfterReturning(value=&quot;execution(* Spring.demo2.OrderDao.delete(..))&quot;,returning=&quot;result&quot;)</span><br><span class="line">	public void after(Object result)&#123;</span><br><span class="line">		System.out.println(&quot;-------后置增强-----&quot;+result);</span><br><span class="line">	&#125;</span><br><span class="line">	@Around(value=&quot;execution(* Spring.demo2.OrderDao.update(..))&quot;)</span><br><span class="line">	public Object around(ProceedingJoinPoint joinPoint) throws Throwable&#123;</span><br><span class="line">		System.out.println(&quot;-------环绕前增强------&quot;);</span><br><span class="line">		Object proceed = joinPoint.proceed();</span><br><span class="line">		System.out.println(&quot;----环绕后增强-------&quot;);</span><br><span class="line">		return proceed;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="1-5编写测试类"><a href="#1-5编写测试类" class="headerlink" title="1.5编写测试类"></a>1.5编写测试类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">package Spring.demo2;</span><br><span class="line"></span><br><span class="line">import javax.annotation.Resource;</span><br><span class="line"></span><br><span class="line">import org.junit.runner.RunWith;</span><br><span class="line">import org.springframework.test.context.ContextConfiguration;</span><br><span class="line">import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;</span><br><span class="line">/**</span><br><span class="line"> * Spring的AOP的基于AspectJ注解开发</span><br><span class="line"> * 注意事项：</span><br><span class="line"> * 	1.导包</span><br><span class="line"> * 	2.导入XML中的配置文件</span><br><span class="line"> * 	3.在XML中开启AOP注解开发&lt;aop:aspectj-autoproxy/&gt;</span><br><span class="line"> * 	4.扫描类上的注解&lt;context:component-scan base-package=&quot;Spring.demo2&quot;&gt;&lt;/context:component-scan&gt;</span><br><span class="line"> * 		或者 &lt;context:annotation-config/&gt;</span><br><span class="line">		在没有扫描的情况下，使用注解  @Resource @value、@Autowired、@Qulifier</span><br><span class="line"> * @author rong</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">@RunWith(SpringJUnit4ClassRunner.class)//固定写法</span><br><span class="line">@ContextConfiguration(&quot;classpath:applicationContextAop.xml&quot;)</span><br><span class="line">public class Test &#123;</span><br><span class="line">	@Resource(name=&quot;OrderDao&quot;)</span><br><span class="line">	private OrderDao orderDao;</span><br><span class="line">	@org.junit.Test</span><br><span class="line">	public void test1()&#123;</span><br><span class="line">		orderDao.find();</span><br><span class="line">		orderDao.add();</span><br><span class="line">		orderDao.delete();</span><br><span class="line">		orderDao.update();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-Spring的注解的AOP通知类型"><a href="#2-Spring的注解的AOP通知类型" class="headerlink" title="2.Spring的注解的AOP通知类型"></a>2.Spring的注解的AOP通知类型</h3><h4 id="2-1-Befor前置通知"><a href="#2-1-Befor前置通知" class="headerlink" title="2.1@Befor前置通知"></a>2.1@Befor前置通知</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Before(value=&quot;execution(* Spring.demo2.OrderDao.add(..))&quot;)</span><br><span class="line">	public void befor()&#123;</span><br><span class="line">		System.out.println(&quot;----------前置增强-----&quot;);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-2-AfterReturning后置通知"><a href="#2-2-AfterReturning后置通知" class="headerlink" title="2.2@AfterReturning后置通知"></a>2.2@AfterReturning后置通知</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//可以获取被增强方法的返回值，注意两个result必须相同</span><br><span class="line">	@AfterReturning(value=&quot;execution(* Spring.demo2.OrderDao.delete(..))&quot;,returning=&quot;result&quot;)</span><br><span class="line">	public void after(Object result)&#123;</span><br><span class="line">		System.out.println(&quot;-------后置增强-----&quot;+result);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-3-Around环绕通知"><a href="#2-3-Around环绕通知" class="headerlink" title="2.3@Around环绕通知"></a>2.3@Around环绕通知</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//注意：写方法的时候需要返回一个Object,返回的是被增强的方法</span><br><span class="line">@Around(value=&quot;execution(* Spring.demo2.OrderDao.update(..))&quot;)</span><br><span class="line">	public Object around(ProceedingJoinPoint joinPoint) throws Throwable&#123;</span><br><span class="line">		System.out.println(&quot;-------环绕前增强------&quot;);</span><br><span class="line">		Object proceed = joinPoint.proceed();</span><br><span class="line">		System.out.println(&quot;----环绕后增强-------&quot;);</span><br><span class="line">		return proceed;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-4-AfterThrowing：异常抛出通知"><a href="#2-4-AfterThrowing：异常抛出通知" class="headerlink" title="2.4@AfterThrowing：异常抛出通知"></a>2.4@AfterThrowing：异常抛出通知</h4><p><img src="/img/imgs/Spring/8.png" alt="异常抛出通知"></p>
+<h4 id="2-5-After最终通知"><a href="#2-5-After最终通知" class="headerlink" title="2.5@After最终通知"></a>2.5@After最终通知</h4><p><img src="/img/imgs/Spring/9.png" alt="最终通知"></p>
+<h3 id="3-Spring的注解AOP切入点的配置"><a href="#3-Spring的注解AOP切入点的配置" class="headerlink" title="3.Spring的注解AOP切入点的配置"></a>3.Spring的注解AOP切入点的配置</h3><blockquote>
+<p>使用情景：假设在同一个方法上我需要进行多个通知，那么比较麻烦的是我需要在每个方法上都配置，但是如果有一天我增强的方法改了，导致我 需要在每个方法上都进行修改配置</p>
+</blockquote>
+<h4 id="3-1Spring的AOP的注解切入点的配置"><a href="#3-1Spring的AOP的注解切入点的配置" class="headerlink" title="3.1Spring的AOP的注解切入点的配置"></a>3.1Spring的AOP的注解切入点的配置</h4><p><img src="/img/imgs/Spring/10.png" alt="切入点注解"></p>
+<h2 id="4-Spring的JDBC模板的使用"><a href="#4-Spring的JDBC模板的使用" class="headerlink" title="4.Spring的JDBC模板的使用"></a>4.Spring的JDBC模板的使用</h2><blockquote>
+<p>Spring是EE开发的一站式的框架，有EE开发的每层的解决方案。Spring对持久层也提供了解决方案：ORM模块和JDBC的模板。<br>Spring提供了很多的模板用于简化开发</p>
+</blockquote>
+<h3 id="4-1如何使用"><a href="#4-1如何使用" class="headerlink" title="4.1如何使用"></a>4.1如何使用</h3><blockquote>
+<p>以下使用分为以下几步：<br>1.导入jar包<br>2.准备数据库。<br>3.使用JDBC模板保存数据<br>4.将连接池和模板类交给Spring管理<br>5.编写测试类</p>
+</blockquote>
+<h4 id="4-1-1-导入jar包"><a href="#4-1-1-导入jar包" class="headerlink" title="4.1.1 导入jar包"></a>4.1.1 导入jar包</h4><p><img src="/img/imgs/Spring/11.png" alt="Spring中JDBC模板的jar包"></p>
+<h4 id="4-1-2-使用Spring提供的JDBC模板"><a href="#4-1-2-使用Spring提供的JDBC模板" class="headerlink" title="4.1.2 使用Spring提供的JDBC模板"></a>4.1.2 使用Spring提供的JDBC模板</h4><blockquote>
+<p>核心类：JdbcTemplate jdbc=new JdbcTemplate(dataSource);<br><strong>注意：</strong> 需要传入的是一个连接池对象，也支持无参的构造方法，可以使用jdbc.setDataSource(dataSource)配置。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//1.不使用Spring管理</span><br><span class="line">	@Test</span><br><span class="line">	public void test1()&#123;</span><br><span class="line">		//获取连接池（Spring自带的一个）</span><br><span class="line">		DriverManagerDataSource dataSource = new DriverManagerDataSource();</span><br><span class="line">		dataSource.setDriverClassName(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">		dataSource.setUrl(&quot;jdbc:mysql://localhost:3306/student&quot;);</span><br><span class="line">		dataSource.setUsername(&quot;root&quot;);</span><br><span class="line">		dataSource.setPassword(&quot;root&quot;);</span><br><span class="line">		//创建JDBC模板</span><br><span class="line">		JdbcTemplate jdbc=new JdbcTemplate(dataSource);</span><br><span class="line">		jdbc.update(&quot;insert into stu values (?,?,?,?)&quot;,101,&quot;张大胖1&quot;,&quot;男&quot;,25);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="4-1-3-把连接池和模板交给Spring管理"><a href="#4-1-3-把连接池和模板交给Spring管理" class="headerlink" title="4.1.3 把连接池和模板交给Spring管理"></a>4.1.3 把连接池和模板交给Spring管理</h4><blockquote>
+<p><strong>说明：</strong> 一直我都在想，所谓的交给Spring管理，意思就是把那些需要我们new的对象用注解去代替new的过程。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">	xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">	xmlns:context=&quot;http://www.springframework.org/schema/context&quot;</span><br><span class="line">	xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;</span><br><span class="line">	xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;</span><br><span class="line">	xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans</span><br><span class="line">	http://www.springframework.org/schema/beans/spring-beans.xsd</span><br><span class="line">	http://www.springframework.org/schema/context</span><br><span class="line">	http://www.springframework.org/schema/context/spring-context.xsd</span><br><span class="line">	http://www.springframework.org/schema/aop</span><br><span class="line">	http://www.springframework.org/schema/aop/spring-aop.xsd</span><br><span class="line">	http://www.springframework.org/schema/tx</span><br><span class="line">	http://www.springframework.org/schema/tx/spring-tx.xsd&quot;&gt;</span><br><span class="line">	 &lt;bean id=&quot;dataSource&quot; class=&quot;org.springframework.jdbc.datasource.DriverManagerDataSource&quot;&gt;</span><br><span class="line">		&lt;property name=&quot;driverClassName&quot; value=&quot;com.mysql.jdbc.Driver&quot;&gt;&lt;/property&gt;</span><br><span class="line">		&lt;property name=&quot;url&quot; value=&quot;jdbc:mysql://localhost:3306/student&quot;&gt;&lt;/property&gt;</span><br><span class="line">		&lt;property name=&quot;username&quot; value=&quot;root&quot;&gt;&lt;/property&gt;</span><br><span class="line">		&lt;property name=&quot;password&quot; value=&quot;root&quot;&gt;&lt;/property&gt;</span><br><span class="line">	&lt;/bean&gt;	 </span><br><span class="line">	&lt;bean id=&quot;jdbcTemplate&quot; class=&quot;org.springframework.jdbc.core.JdbcTemplate&quot;&gt;</span><br><span class="line">		&lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;&gt;&lt;/property&gt;</span><br><span class="line">	&lt;/bean&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="4-1-4编写测试类"><a href="#4-1-4编写测试类" class="headerlink" title="4.1.4编写测试类"></a>4.1.4编写测试类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">package SpringJDBC.demo3;</span><br><span class="line"></span><br><span class="line">import javax.annotation.Resource;</span><br><span class="line"></span><br><span class="line">import org.junit.Test;</span><br><span class="line">import org.junit.runner.RunWith;</span><br><span class="line">import org.springframework.jdbc.core.JdbcTemplate;</span><br><span class="line">import org.springframework.jdbc.datasource.DriverManagerDataSource;</span><br><span class="line">import org.springframework.test.context.ContextConfiguration;</span><br><span class="line">import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;</span><br><span class="line"></span><br><span class="line">import com.mchange.v2.c3p0.ComboPooledDataSource;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 使用Spring提供的JDBC模板</span><br><span class="line"> * Spring提供的JDBC模板核心类：</span><br><span class="line"> *	JdbcTemplate jdbc=new JdbcTemplate(dataSource);</span><br><span class="line"> * 其中连接池的核心类：</span><br><span class="line"> * 1.Spring提供的连接池</span><br><span class="line"> * DriverManagerDataSource dataSource = new DriverManagerDataSource();</span><br><span class="line"> * 2.c3p0连接池</span><br><span class="line"> * ComboPooledDataSource dataSource2 = new ComboPooledDataSource();</span><br><span class="line"> * 3.DBCP连接池</span><br><span class="line"> * new BasicDataSource();</span><br><span class="line"> * @author rong</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">@RunWith(SpringJUnit4ClassRunner.class)</span><br><span class="line">@ContextConfiguration(&quot;classpath:applicationContextJDBC.xml&quot;)</span><br><span class="line">public class JDBCTest &#123;</span><br><span class="line">	//1.不使用Spring管理</span><br><span class="line">	@Test</span><br><span class="line">	public void test1()&#123;</span><br><span class="line">		//获取连接池（Spring自带的一个）</span><br><span class="line">		DriverManagerDataSource dataSource = new DriverManagerDataSource();</span><br><span class="line">		dataSource.setDriverClassName(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">		dataSource.setUrl(&quot;jdbc:mysql://localhost:3306/student&quot;);</span><br><span class="line">		dataSource.setUsername(&quot;root&quot;);</span><br><span class="line">		dataSource.setPassword(&quot;root&quot;);</span><br><span class="line"></span><br><span class="line">		//创建JDBC模板</span><br><span class="line">		JdbcTemplate jdbc=new JdbcTemplate(dataSource);</span><br><span class="line">		jdbc.update(&quot;insert into stu values (?,?,?,?)&quot;,101,&quot;张大胖1&quot;,&quot;男&quot;,25);</span><br><span class="line">	&#125;</span><br><span class="line">	//2.将其交给Spring管理</span><br><span class="line">	//说明：那个类需要new的时候，就可以把这个类交给Spring管理，不需要自己去new</span><br><span class="line">	@Resource(name=&quot;jdbcTemplate&quot;)</span><br><span class="line">	private JdbcTemplate jdbcTemplate;</span><br><span class="line">	@Test</span><br><span class="line">	public void test2()&#123;</span><br><span class="line">		jdbcTemplate.update(&quot;insert into stu values (?,?,?,?)&quot;,103,&quot;张大胖3&quot;,&quot;男&quot;,25);</span><br><span class="line">	&#125;</span><br><span class="line">	//3.使用c3p0连接池</span><br><span class="line">	/**</span><br><span class="line">	 * 导包</span><br><span class="line">	 * 有使用配置文件和不使用配置文件两种方式</span><br><span class="line">	 */</span><br><span class="line">	@Test</span><br><span class="line">	public void test3()&#123;</span><br><span class="line">		jdbcTemplate.update(&quot;insert into stu values (?,?,?,?)&quot;,105,&quot;张大胖5&quot;,&quot;男&quot;,25);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-2抽取配置信息到属性文件"><a href="#4-2抽取配置信息到属性文件" class="headerlink" title="4.2抽取配置信息到属性文件"></a>4.2抽取配置信息到属性文件</h3><blockquote>
+<p><strong>使用场景：</strong> 在实际开发中，将配置文件的参数单独放在一个配置文件，在XML文件中再将其引入进来 ，username，password</p>
+</blockquote>
+<h4 id="4-2-1-定义一个属性文件"><a href="#4-2-1-定义一个属性文件" class="headerlink" title="4.2.1 定义一个属性文件"></a>4.2.1 定义一个属性文件</h4><blockquote>
+<p>创建一个properties的文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jdbc.driverClass=com.mysql.jdbc.Driver</span><br><span class="line">jdbc.url=jdbc:mysql://localhost:3306/student</span><br><span class="line">jdbc.username=root</span><br><span class="line">jdbc.password=root</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="4-2-2-如何在Spring的配追文件（XML）中引入属性文件"><a href="#4-2-2-如何在Spring的配追文件（XML）中引入属性文件" class="headerlink" title="4.2.2 如何在Spring的配追文件（XML）中引入属性文件"></a>4.2.2 如何在Spring的配追文件（XML）中引入属性文件</h4><blockquote>
+<p>有两种方式<br>1.(用的少)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean class=&quot;org.springframework.beans.factory.config.PropertyPlaceholderConfigurer&quot;&gt;</span><br><span class="line">    &lt;property name=&quot;location&quot; value=&quot;classpath:properties&quot;/&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>2.(常用)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;context:property-placeholder location=&quot;classpath:db.properties&quot;/&gt;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>就会去加载类路径下的属性文件了，我猜测是放在域对象中，后面直接${key}取出。</p>
+</blockquote>
+<h4 id="4-2-3-对应在配置文件中的写法"><a href="#4-2-3-对应在配置文件中的写法" class="headerlink" title="4.2.3 对应在配置文件中的写法"></a>4.2.3 对应在配置文件中的写法</h4><blockquote>
+<p>注意property中的value的写法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">	xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">	xmlns:context=&quot;http://www.springframework.org/schema/context&quot;</span><br><span class="line">	xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;</span><br><span class="line">	xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;</span><br><span class="line">	xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans</span><br><span class="line">	http://www.springframework.org/schema/beans/spring-beans.xsd</span><br><span class="line">	http://www.springframework.org/schema/context</span><br><span class="line">	http://www.springframework.org/schema/context/spring-context.xsd</span><br><span class="line">	http://www.springframework.org/schema/aop</span><br><span class="line">	http://www.springframework.org/schema/aop/spring-aop.xsd</span><br><span class="line">	http://www.springframework.org/schema/tx</span><br><span class="line">	http://www.springframework.org/schema/tx/spring-tx.xsd&quot;&gt;</span><br><span class="line">	&lt;context:property-placeholder location=&quot;classpath:db.properties&quot;/&gt;</span><br><span class="line">	&lt;bean id=&quot;dataSource&quot; class=&quot;com.mchange.v2.c3p0.ComboPooledDataSource&quot;&gt;</span><br><span class="line">		&lt;property name=&quot;driverClass&quot; value=&quot;$&#123;jdbc.driverClass&#125;&quot;&gt;&lt;/property&gt;</span><br><span class="line">		&lt;property name=&quot;jdbcUrl&quot; value=&quot;$&#123;jdbc.url&#125;&quot;&gt;&lt;/property&gt;</span><br><span class="line">		&lt;property name=&quot;user&quot; value=&quot;$&#123;jdbc.username&#125;&quot;&gt;&lt;/property&gt;</span><br><span class="line">		&lt;property name=&quot;password&quot; value=&quot;$&#123;jdbc.password&#125;&quot;&gt;&lt;/property&gt;</span><br><span class="line">	&lt;/bean&gt;</span><br><span class="line">	&lt;bean id=&quot;jdbcTemplate&quot; class=&quot;org.springframework.jdbc.core.JdbcTemplate&quot;&gt;</span><br><span class="line">		&lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;&gt;&lt;/property&gt;</span><br><span class="line">	&lt;/bean&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/06/java基础/JDBC/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数据库连接池以及JDBUtils使用</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="java/Spring学习(2)" data-title="Spring学习日志（2）" data-url="http://SlectRxz.github.io/2019/03/20/java/Spring学习(2)/"  data-images="img/1.jpg" data-content="Spring学习日志（2）">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 Rong
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>

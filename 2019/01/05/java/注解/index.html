@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="荣先森">
 <meta property="og:description" content="有关java注解">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-05T12:37:55.948Z">
+<meta property="og:updated_time" content="2019-03-08T02:18:48.571Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java注解">
 <meta name="twitter:description" content="有关java注解">
@@ -122,7 +122,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/blog记录/" style="font-size: 10px;">blog记录</a> <a href="/tags/javaWeb基础/" style="font-size: 15px;">javaWeb基础</a> <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/框架学习/" style="font-size: 10px;">框架学习</a> <a href="/tags/注解开发/" style="font-size: 10px;">注解开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+						<a href="/tags/blog记录/" style="font-size: 10px;">blog记录</a> <a href="/tags/javaWeb基础/" style="font-size: 16.67px;">javaWeb基础</a> <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/框架学习/" style="font-size: 13.33px;">框架学习</a> <a href="/tags/注解开发/" style="font-size: 10px;">注解开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
 					</div>
 				</section>
 				
@@ -249,14 +249,18 @@
 <p>出处：<a href="https://blog.csdn.net/briblue/article/details/73824058" target="_blank" rel="noopener">https://blog.csdn.net/briblue/article/details/73824058</a></p>
 </blockquote>
 <h3 id="注解的定义："><a href="#注解的定义：" class="headerlink" title="注解的定义："></a>注解的定义：</h3><blockquote>
-<p>官方定义：Java 注解用于为 Java 代码提供元数据。作为元数据，注解不直接影响你的代码执行，但也有一些类型的注解实际上可以用于这一目的。Java 注解是从 Java5 开始添加到 Java 的 <font color="red">（看不懂）<font></font></font></p>
+<p>官方定义：Java 注解用于为 Java 代码提供元数据。作为元数据，注解不直接影响你的代码执行，但也有一些类型的注解实际上可以用于这一目的。Java 注解是从 Java5 开始添加到 Java 的 <font color="red">（看不懂）</font></p>
 </blockquote>
-<p><strong>容易理解的：</strong>注解就是一个标签，标签上有着各种各样的含义，不同的标签可以贴在不同的代码上</p>
+<p><strong>注意</strong>：<br>=<br>注解要求：<br>在开发中地位，类似于dom4j解析XML文件，XML文件的解析程序员不会去解析，配置XML文件。</p>
+<p><strong>容易理解的：</strong> 注解就是一个标签，标签上有着各种各样的含义，不同的标签可以贴在不同的代码上</p>
 <hr>
-<p><strong>自定义注解格式：</strong><br> <font color="red">注解通过 @interface 关键字进行定义。<font></font></font></p>
+<p><strong>自定义注解格式：</strong><br> <font color="red">注解通过 @interface 关键字进行定义。</font></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Public @interface TestAnnotation&#123;</span><br><span class="line">&#125;</span><br><span class="line">@TestAnnotation</span><br><span class="line">Public void Test()&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>创建一个类 Test,然后在类定义的地方加上 @TestAnnotation 就可以用 TestAnnotation 注解这个类了。<br><br>你可以简单理解为将 TestAnnotation 这张标签贴到 Test 这个类上面。<br>不过，要想注解能够正常工作，还需要介绍一下一个新的概念那就是元注解。</p>
-<h3 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h3><p>元注解是可以注解到注解上的注解，它的目的是给普通的注解进行说明的，说明某一注解的存活期、范围等等。<br>元标签有@Retention、@Documented、@Target、@Inherited、@Repeatable</p>
+<h3 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h3><p>元注解是可以注解到注解上的注解，它的目的是给普通的注解进行说明的，说明某一注解的存活期、范围等等。</p>
+<blockquote>
+<p>格式:<br>  public @interface 注解名称{<br>     public  属性类型  属性名称1();<br>     public  属性类型  属性名称2()  default  默认值;<br>  }<br>支持类型：基础类型，String，annotation，枚举类型，字节码class类型<br><strong>注意：不支持自定义类型</strong><br>元标签有@Retention、@Documented、@Target、@Inherited、@Repeatable</p>
+</blockquote>
 <h4 id="Retention"><a href="#Retention" class="headerlink" title="@Retention"></a>@Retention</h4><p>Retention的英文为保留期的意思，当其应用到某一个注解上时，表达了这个注解的存活时间<br><br>它的取值如下：</p>
 <blockquote>
 <ul>
@@ -285,7 +289,7 @@
 <p>老子非常有钱，所以人们给他贴了一张标签叫做富豪。<br>老子的儿子长大后，只要没有和老子断绝父子关系，虽然别人没有给他贴标签，但是他自然也是富豪。<br>老子的孙子长大了，自然也是富豪。<br>这就是人们口中戏称的富一代，富二代，富三代。虽然叫法不同，好像好多个标签，但其实事情的本质也就是他们有一张共同的标签，也就是老子身上的那张富豪的标签。</p>
 </blockquote>
 <h3 id="Repeatable"><a href="#Repeatable" class="headerlink" title="@Repeatable"></a>@Repeatable</h3><p>Repeatable 自然是可重复的意思。@Repeatable 是 Java 1.8 才加进来的，所以算是一个新的特性。<br><br>什么样的注解会多次应用呢？通常是注解的值可以同时取多个。<br>举个例子，一个人他既是程序员又是产品经理(注：好的产品经理一般都是懂技术的，更容易沟通)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@interface Persons&#123;</span><br><span class="line">  Person[] value();</span><br><span class="line">&#125;</span><br><span class="line">@Repeatable(Persons.class)</span><br><span class="line">@interface Person&#123;</span><br><span class="line">  String role default &quot;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">@Person(role=&quot;coder&quot;)</span><br><span class="line">@person(role=&quot;PM&quot;)</span><br><span class="line">public class CM&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>注意上面的代码，Repeatable注解了Person，而@Repeatable后面括号里的类相当于一个<font color="blue">容器注解<font></font></font></p>
+<p>注意上面的代码，Repeatable注解了Person，而@Repeatable后面括号里的类相当于一个<font color="blue">容器注解</font></p>
 <h4 id="容器注解"><a href="#容器注解" class="headerlink" title="容器注解"></a>容器注解</h4><p>就是用来存放其他注解的地方，本身也是一个注解<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@interface Persons&#123;</span><br><span class="line">  Person[] value();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>按照规定，它里面必须要有一个 value 的属性，属性类型是一个被 @Repeatable 注解过的注解数组，注意它是数组。<br><br>如果不好理解的话，可以这样理解。Persons 是一张总的标签，上面贴满了 Person 这种同类型但内容不一样的标签。把 Persons 给一个 CM 贴上，相当于同时给他贴了程序员、产品经理的标签。<br><br>我们可能对于 @Person(role=”PM”) 括号里面的内容感兴趣，它其实就是给 Person 这个注解的 role 属性赋值为 PM ，大家不明白正常，马上就讲到注解的属性这一块。</p>
 
