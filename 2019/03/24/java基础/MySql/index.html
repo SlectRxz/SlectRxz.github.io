@@ -17,22 +17,22 @@
 <meta property="og:site_name" content="荣先森">
 <meta property="og:description" content="关于服务器启动MySql服务失败，以及密码错误如何修改">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://slectrxz.github.io/img/imgs/BiaoQingBao/15.png">
+<meta property="og:image" content="http://slectrxz.github.io/img/imgs/BiaoQingBao/15.jpg">
 <meta property="og:image" content="http://slectrxz.github.io/img/imgs/JDBC/17.png">
 <meta property="og:image" content="http://slectrxz.github.io/img/imgs/JDBC/18.png">
 <meta property="og:image" content="http://slectrxz.github.io/img/imgs/JDBC/19.png">
-<meta property="og:image" content="http://slectrxz.github.io/img/imgs/BiaoQingBao/24.png">
+<meta property="og:image" content="http://slectrxz.github.io/img/imgs/BiaoQingBao/24.jpg">
 <meta property="og:image" content="http://slectrxz.github.io/img/imgs/BiaoQingBao/21.gif">
 <meta property="og:image" content="http://slectrxz.github.io/img/imgs/JDBC/18.png">
 <meta property="og:image" content="http://slectrxz.github.io/img/imgs/JDBC/20.png">
 <meta property="og:image" content="http://slectrxz.github.io/img/imgs/JDBC/21.png">
 <meta property="og:image" content="http://slectrxz.github.io/img/imgs/JDBC/22.png">
 <meta property="og:image" content="http://slectrxz.github.io/img/imgs/JDBC/23.png">
-<meta property="og:updated_time" content="2019-03-24T13:00:27.380Z">
+<meta property="og:updated_time" content="2019-03-24T13:04:40.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySql连接异常解决">
 <meta name="twitter:description" content="关于服务器启动MySql服务失败，以及密码错误如何修改">
-<meta name="twitter:image" content="http://slectrxz.github.io/img/imgs/BiaoQingBao/15.png">
+<meta name="twitter:image" content="http://slectrxz.github.io/img/imgs/BiaoQingBao/15.jpg">
   
     <link rel="alternative" href="/atom.xml" title="荣先森" type="application/atom+xml">
   
@@ -258,9 +258,9 @@
       
         <p>关于服务器启动MySql服务失败，以及密码错误如何修改<br><a id="more"></a></p>
 <h2 id="MYSQL修复日志"><a href="#MYSQL修复日志" class="headerlink" title="MYSQL修复日志"></a>MYSQL修复日志</h2><blockquote>
-<p>最近很手残的把MYSQL中的mysql数据库中的user表给删掉了，然后在服务中MYSQL就无法启动，<strong>windows无法启动MySQL服务报错1067</strong>的解决办法。**</p>
+<p>最近很手残的把MYSQL中的mysql数据库中的user表给删掉了，然后在服务中MYSQL就无法启动，<strong>windows无法启动MySQL服务报错1067</strong> 的解决办法。</p>
 </blockquote>
-<p><img src="/img/imgs/BiaoQingBao/15.png" alt="从删库到跑路"></p>
+<p><img src="/img/imgs/BiaoQingBao/15.jpg" alt="从删库到跑路"></p>
 <blockquote>
 <p>在网上找了许多资料，其中大概都是卸载重装，作为程序员永不放弃的精神，终于让我找到了一篇大佬的博客，不用重新安装。</p>
 </blockquote>
@@ -273,7 +273,7 @@
 <p>2.缺啥补啥，两个对应的</p>
 </blockquote>
 <p><img src="/img/imgs/JDBC/18.png" alt="MYSQL安装目录"><br><img src="/img/imgs/JDBC/19.png" alt="MYSQL安装目录"></p>
-<h5 id="然后此时此刻，发现服务中MYSQL服务可以正常启动了，但是！！！"><a href="#然后此时此刻，发现服务中MYSQL服务可以正常启动了，但是！！！" class="headerlink" title="然后此时此刻，发现服务中MYSQL服务可以正常启动了，但是！！！"></a>然后此时此刻，发现服务中MYSQL服务可以正常启动了，但是！！！</h5><p><img src="/img/imgs/BiaoQingBao/24.png" alt="BUG"><br><strong>数据库链接错误1045Access denied for user ‘root‘@’localhost’ (using password:YES)</strong> 这就是密码错误嘛。<br>我估计是由于我换了那三个user文件导致的，此时此刻，只想说一句MMP<br><img src="/img/imgs/BiaoQingBao/21.gif" alt="BUG"></p>
+<h5 id="然后此时此刻，发现服务中MYSQL服务可以正常启动了，但是！！！"><a href="#然后此时此刻，发现服务中MYSQL服务可以正常启动了，但是！！！" class="headerlink" title="然后此时此刻，发现服务中MYSQL服务可以正常启动了，但是！！！"></a>然后此时此刻，发现服务中MYSQL服务可以正常启动了，但是！！！</h5><p><img src="/img/imgs/BiaoQingBao/24.jpg" alt="BUG"><br><strong>数据库链接错误1045Access denied for user ‘root‘@’localhost’ (using password:YES)</strong> 这就是密码错误嘛。<br>我估计是由于我换了那三个user文件导致的，此时此刻，只想说一句MMP<br><img src="/img/imgs/BiaoQingBao/21.gif" alt="BUG"></p>
 <h3 id="MySQL修改登录密码解决方法"><a href="#MySQL修改登录密码解决方法" class="headerlink" title="MySQL修改登录密码解决方法"></a>MySQL修改登录密码解决方法</h3><p>经过不懈努力，终于找到了修改密码的方法。<br>1.找到MYSQL安装路径下的my.ini文件，用记事本打开<br><img src="/img/imgs/JDBC/18.png" alt="MYSQL安装目录"><br>2.添加语句<strong>skip-grant-tables</strong><br>在如下位置添加：（图片来自网络）<br><img src="/img/imgs/JDBC/20.png" alt="my.ini文件"><br><img src="/img/imgs/JDBC/21.png" alt="my.ini文件"><br>大佬的解释skip-grant-tables的作用是：</p>
 <blockquote>
 <p>skip-grant-tables作为启动参数的作用：MYSQL服务器不加载权限判断，任何用户都能访问数据库。也就是说，添加后数据库的安全性将会降低。</p>
@@ -284,8 +284,9 @@
 </blockquote>
 <p><img src="/img/imgs/JDBC/22.png" alt="cmd连接数据库"><br>4.进入mysql数据库，修改密码<br><img src="/img/imgs/JDBC/23.png" alt="cmd连接数据库"></p>
 <blockquote>
-<p>use mysql//使用这个数据库<br>update user set password=password(“123456”) where user=”root”//修改数据库密码<br>flush privileges//刷新数据库<br>此时修改密码已经完成，再将my.ini中添加的语句删掉，再重启MySQL服务即可。</p>
+<p>use mysql//使用这个数据库<br>update user set password=password(“123456”) where user=”root”//修改数据库密码<br>flush privileges//刷新数据库</p>
 </blockquote>
+<p>此时修改密码已经完成，再将my.ini中添加的语句删掉，再重启MySQL服务即可。</p>
 
       
     </div>
