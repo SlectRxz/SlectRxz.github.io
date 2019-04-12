@@ -3,24 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>JSP基础语法 | 荣先森</title>
+  <title>四大域对象 | 荣先森</title>
 
   <!-- keywords -->
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JSP基础语法">
-<meta name="keywords" content="学习">
+  <meta name="description" content="四大域对象的生命周期、作用范围、作用的总结。">
+<meta name="keywords" content="javaWeb基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JSP基础语法">
-<meta property="og:url" content="http://SlectRxz.github.io/2018/11/12/java/JSP基础(一)/index.html">
+<meta property="og:title" content="四大域对象">
+<meta property="og:url" content="http://SlectRxz.github.io/2019/02/28/java基础/javaWeb基础之域对象/index.html">
 <meta property="og:site_name" content="荣先森">
-<meta property="og:description" content="JSP基础语法">
+<meta property="og:description" content="四大域对象的生命周期、作用范围、作用的总结。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-03T08:37:26.813Z">
+<meta property="og:updated_time" content="2019-04-10T09:53:47.427Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JSP基础语法">
-<meta name="twitter:description" content="JSP基础语法">
+<meta name="twitter:title" content="四大域对象">
+<meta name="twitter:description" content="四大域对象的生命周期、作用范围、作用的总结。">
   
     <link rel="alternative" href="/atom.xml" title="荣先森" type="application/atom+xml">
   
@@ -122,7 +122,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/blog记录/" style="font-size: 10px;">blog记录</a> <a href="/tags/javaWeb基础/" style="font-size: 16.67px;">javaWeb基础</a> <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/框架学习/" style="font-size: 13.33px;">框架学习</a> <a href="/tags/注解开发/" style="font-size: 10px;">注解开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+						<a href="/tags/blog记录/" style="font-size: 10px;">blog记录</a> <a href="/tags/javaWeb基础/" style="font-size: 13.33px;">javaWeb基础</a> <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/框架学习/" style="font-size: 16.67px;">框架学习</a> <a href="/tags/注解开发/" style="font-size: 10px;">注解开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
 					</div>
 				</section>
 				
@@ -191,11 +191,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-java/JSP基础(一)" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-java基础/javaWeb基础之域对象" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/11/12/java/JSP基础(一)/" class="article-date">
-  	<time datetime="2018-11-12T02:01:44.000Z" itemprop="datePublished">2018-11-12</time>
+      <a href="/2019/02/28/java基础/javaWeb基础之域对象/" class="article-date">
+  	<time datetime="2019-02-27T16:00:00.000Z" itemprop="datePublished">2019-02-28</time>
 </a>
     </div>
   
@@ -208,7 +208,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      JSP基础语法
+      四大域对象
       
     </h1>
   
@@ -218,7 +218,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javaWeb基础/">javaWeb基础</a></li></ul>
 	</div>
 
         
@@ -230,8 +230,8 @@
         
           
 <div class="counter-tag counter">
-    <span id="/2018/11/12/java/JSP基础(一)/" class="leancloud_visitors post-title-link"
-          style="font-size: 12px" data-flag-title="JSP基础语法">
+    <span id="/2019/02/28/java基础/javaWeb基础之域对象/" class="leancloud_visitors post-title-link"
+          style="font-size: 12px" data-flag-title="四大域对象">
          &nbsp;
         view
     </span>
@@ -244,59 +244,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>JSP基础语法<br><a id="more"></a></p>
-<p> ##Jsp基础##<br>  4.1 Jsp引入</p>
-<p>Servlet的作用： 用java语言开发动态资源的技术！！！<br>Jsp的作用：用java语言（+html语言）开发动态资源的技术！！！<br><br>                    Jsp就是servlet！！！<br>            4.2 Jsp的特点<br>                1）jsp的运行必须交给tomcat服务器！！！！<br>                        tomcat的work目录： tomcat服务器存放jsp运行时的临时文件<br>                2）jsp页面既可以写html代码，也可以写java代码。<br>                    （html页面不能写java代码 。而jsp页面可以写java代码）<br>            4.3 体验jsp页面作用<br>                需求：显示当前时间到浏览器上  </p>
-<p>可以把jsp页面当做html页面在tomcat中访问！！！<br>            4.4 Jsp的执行过程<br>            问题： 访问<a href="http://localhost:8080/day12/01.hello.jsp" target="_blank" rel="noopener">http://localhost:8080/day12/01.hello.jsp</a>  如何显示效果？      </p>
-<blockquote>
-</blockquote>
-<pre><code>1）访问到01.hello.jsp页面，tomcat扫描到jsp文件，在%tomcat%/work把jsp文件翻译成java源文件
-            (01.hello.jsp-&gt; _01_hello_jsp.java) （翻译）
-2）tomcat服务器把java源文件编译成class字节码文件 （编译）
-        （_01_hello_jsp.java  -&gt;  _01_hello_jsp.class）
-3）tomcat服务器构造_01_hello_jsp类对象
-4）tomcat服务器调用_01_hello_jsp类里面方法，返回内容显示到浏览器。
-</code></pre><hr>
-<p>1.第一次访问jsp：<br>2.走（1）（2）（3）（4）<br>3.第n次访问jsp：<br>4.走（4）<br>注意：<br>  1）jsp文件修改了或jsp的临时文件被删除了，要重新走翻译（1）和编译（2）的过程</p>
-<pre><code>        4.5 疑问
-    问题： 为什么Jsp就是servlet！！！
-        jsp翻译的java文件：
-            public final class _01_hello_jsp extends org.apache.jasper.runtime.HttpJspBase
-implements org.apache.jasper.runtime.JspSourceDependent {
+        <p>四大域对象的生命周期、作用范围、作用的总结。<br><a id="more"></a></p>
+<p>根据有作用范围由小到大：<br>page(jsp有效)——》page域指的是pageContext.<br>request(一次请求)—》request域request HttpServletContext<br>session(一次会话)—》session域session HttpSession<br>application(当前web应用)—》application域指的是application  ServletContext；<br>之所以他们是域对象，原因是他们都内置了map集合，都有setAttribute和getAttribute方法。</p>
+<p>一、 PageContext域<br>1.生命周期：当对JSP的请求开始，当相应结束时销毁。<br>           jsp页面被执行，声明周期开始；<br>           jsp页面执行完毕，声明周期结束；<br>2.作用范围：整个JSP页面，是四大作用域中最小的一个。<br>3.作用：</p>
+<ul>
+<li>获取其它八大隐式对象，可以认为是一个入口对象。  </li>
+<li>获取其所有域中的数据  </li>
+</ul>
+<p>pageContext　　操作所有域中属性的方法<br>public java.lang.Object getAttribute(java.lang.String name,int scope)      　　　　　　　　　　　　　<br>public void setAttribute(java.lang.String name, java.lang.Object value,int scope)<br>public void removeAttribute(java.lang.String name,int scope)</p>
+<p>pageContext 中代表域的常量<br>　　　PageContext.APPLICATION_SCOPE<br>　　　PageContext.SESSION_SCOPE<br>　　　PageContext.REQUEST_SCOPE<br>　　　PageContext.PAGE_SCOPE<br>findAttribute方法,在四大域中搜寻属性，搜寻的顺序是page域、request域、session域、application域，从小域到大域开始搜索，如果搜索到就直接获取该值，如果所有域中都找不到，返回一个null(与el表达式不同，此处返回null，对网页是不友好的)<br>　　　（3）跳转到其他资源      其身上提供了forward和include方法，简化重定向和转发的操作<br>二、Request域<br>1.生命周期：<br>    在Service方法调用前由服务器创建，传入service方法。整个请求结束，request生命结束。<br>    用户发送一个请求，开始，服务器返回响应，请求结束，生命周期结束；<br>2.作用范围：整个请求链（请求转发也存在）<br>3.作用：在整个请求链中共享数据，经常用到：在servlet中处理好的数据交给JSP显示，此时参数就可以放在Request域中。<br>三、HttpSession 域<br>1.生命周期：<br>    在第一次调用request.getSession()方法时，服务器会检查是否已经有对应的session，如果没有就在内存中创建一个session并返回。<br>（1）当一段时间内session没有被使用（默认为30分钟），则服务器会销毁该session。<br>（2）如果服务器非正常关闭，没有到期的session也会跟着销毁。<br>（3）如果调用session提供的invalidate()，可以立即销毁session。<br>用户打开浏览器访问，创建session（开始），session超时或者被声明失效，该对象生命周期结束；<br>2.作用范围：一次会话。<br>HttpSession 在服务器中，为浏览器创建独一无二的内存空间，在其中保存会话相关的信息<br>注意：服务器正常关闭，再启动，Session对象会进行钝化和活化操作。同时如果服务器钝化的时间在session 默认销毁时间之内， 则活化后session还是存在的。否则Session不存在。  如果JavaBean 数据在session钝化时，没有实现Serializable 则当Session活化时，会消失。</p>
+<p>四、ServletContext<br>1.生命周期：<br>    当WEB应用被加载进容器创建代表整个WEB应用的ServletContext对象；<br>    当服务器关闭或WEB应用被移除时，ServletContext对象跟着被销毁。<br>2.作用范围：整个WEB应用。<br>3、作用：<br>a)在不同Servlet 之间转发<br>this.getServletContext().getRequestDispatcher(“/servlet/Demo10Servlet”).forward(request,response);<br>方法执行结束，service就会返回到服务器，再有服务器去调用目标servlet，其中request会重新创建，并将之前的request的数据拷贝进去。<br>b)读取资源文件。<br>1、由于相对路径默认相对的是java虚拟机启动的目录，所以我们直接写相对路径将会是相对于tomcat/bin目录，所以是拿不到资源的。如果写成绝对路径，当项目发布到其他环境时，绝对路径就错了。<br>为了解决这个问题ServletContext提供了：<br>this.getServletContext().getRealPath(“/1.properties”)，给进一个资源的虚拟路径，将会返回该资源在当前环境下的真实路径。　　　　　　　　<br>this.getServletContext().getResourceAsStream(“/1.properties”)，给一个资源的虚拟路径返回到该资源真实路径的流。<br>2、当在非servlet下获取资源文件时，就没有ServletContext对象用了，此时只能用类加载器<br>classLoader.getResourceAsStream(“../../1.properties”)，此方法利用类加载器直接将资源加载到内存中，有更新延迟的问题，以及如果文件太大，占用内存过大。<br>classLoader.getResource(“../1.properties”).getPath()，直接返回资源的真实路径，没有更新延迟的问题。</p>
 
-            HttpJspBase类：
-        public abstract class org.apache.jasper.runtime.HttpJspBase extends javax.servlet.http.HttpServlet implements javax.servlet.jsp.HttpJspPage {
-
-        结论： Jsp就是一个servlet程序！！！
-            servlet的技术可以用在jsp程序中
-            jsp的技术并不是全部适用于servlet程序！
-
-
-        Servlet的生命周期：
-                1）构造方法（第1次访问）
-                2）init方法（第1次访问）
-                3）service方法
-                4）destroy方法        
-        Jsp的生命周期
-                1）翻译： jsp-&gt;java文件
-                2）编译： java文件-&gt;class文件（servlet程序）
-                3）构造方法（第1次访问）
-                4）init方法（第1次访问）：_jspInit()
-                5）service方法：_jspService()
-                6）destroy方法：_jspDestroy()
-</code></pre><p>##Jsp语法##<br>            5.1 Jsp模板<br>                jsp页面中的html代码就是jsp的模板<br>            5.2 Jsp表达式<br>                语法：&lt;%=变量或表达式%&gt;<br>                作用： 向浏览器输出变量的值或表达式计算的结果<br>                注意：<br>                    1）表达式的原理就是翻译成out.print(“变量” );通过该方法向浏览器写出内容<br>                    2）表达式后面不需要带分号结束。<br>            5.3 Jsp的脚本<br>                语法：&lt;%java代码 %&gt;<br>                作用： 执行java代码<br>                注意：<br>                 原理把脚本中java代码原封不动拷贝到_jspService方法中执行。<br>                 就是在service方法中执行了一段java代码<br>            5.4 Jsp的声明<br>                语法：&lt;%! 变量或方法 %&gt;<br>                作用： 声明jsp的变量或方法<br>                注意:<br>                    1）变量翻译成成员变量，方法翻译成成员方法。<br>            5.5 Jsp的注释<br>                语法： &lt;%–  jsp注释  –%&gt;<br>                注意;<br>                    1)html的注释会被翻译和执行。而jsp的注释不能被翻译和执行。</p>
-<p>##Jsp的三大指令##<br>        6.1 include指令<br>                作用： 在当前页面用于包含其他页面<br>                语法： &lt;%@include file=”common/header.jsp”%&gt;<br>                注意：<br>                    1）原理是把被包含的页面（header.jsp）的内容翻译到包含页面(index.jsp)中,合并成翻译成一                    个java源文件，再编译运行！！，这种包含叫静态包含（源码包含）<br>                    2）如果使用静态包含，被包含页面中不需要出现全局的html标签了！！！（如html、head、                        body）<br>        6.2 page指令<br>                作用： 告诉tomcat服务器如何翻译jsp文件<br>                &lt;%@ page<br>                    language=”java”   –告诉服务器使用什么动态语言来翻译jsp文件<br>                    import=”java.util.*” –告诉服务器java文件使用什么包<br>                                                导入包，多个包之间用逗号分割<br>                    pageEncoding=”utf-8”  –告诉服务器使用什么编码翻译jsp文件（成java文件）<br>                 contentType=”text/html; charset=utf-8” 服务器发送浏览器的数据类型和内容编码<br>                        注意：在开发工具中，以后只需要设置pageEncoding即可解决中文乱码问题<br>                    errorPage=”error.jsp”<br>                    isErrorPage=”false”<br>                    buffer=”8kb”<br>                    session=”true”<br>                    isELIgnored=”false”<br>    %&gt;<br>        6.3 taglib指令</p>
-<pre><code>总结：
-    1）编码实战：
-        1.1 servlet应用
-        1.2 初步了解软件开发流程
-    2）Jsp基础
-        2.1 Jsp的执行原理（翻译-》编译-》servlet的生命周期）
-        2.2 语法（jsp表达式，jsp脚本）
-        2.3 指令
-           include指令
-           page指令
-</code></pre>
       
     </div>
     
@@ -305,18 +263,18 @@ implements org.apache.jasper.runtime.JspSourceDependent {
     
 <nav id="article-nav">
   
-    <a href="/2019/01/05/java/注解/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/03/04/java基础/事务/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">&lt;</strong>
       <div class="article-nav-title">
         
-          Java注解
+          事务
         
       </div>
     </a>
   
   
-    <a href="/2018/11/04/addmusic/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">背景音乐添加步骤</div>
+    <a href="/2019/02/27/java基础/Listener&Filter/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">监听器与过滤器</div>
       <strong class="article-nav-caption">&gt;</strong>
     </a>
   
@@ -326,7 +284,7 @@ implements org.apache.jasper.runtime.JspSourceDependent {
 </article>
 
 
-<div class="ds-share share" data-thread-key="java/JSP基础(一)" data-title="JSP基础语法" data-url="http://SlectRxz.github.io/2018/11/12/java/JSP基础(一)/"  data-images="img/1.jpg" data-content="JSP基础语法">
+<div class="ds-share share" data-thread-key="java基础/javaWeb基础之域对象" data-title="四大域对象" data-url="http://SlectRxz.github.io/2019/02/28/java基础/javaWeb基础之域对象/"  data-images="img/1.jpg" data-content="四大域对象">
     <div class="ds-share-inline">
       <ul  class="ds-share-icons-16">
       	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
