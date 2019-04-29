@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="荣先森">
 <meta property="og:description" content="SpringMVC的参数绑定（get/post请求方式），@RequestMapping,Controller返回值。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-29T13:59:02.752Z">
+<meta property="og:updated_time" content="2019-04-29T14:01:07.215Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringMVC学习日志（3）">
 <meta name="twitter:description" content="SpringMVC的参数绑定（get/post请求方式），@RequestMapping,Controller返回值。">
@@ -291,7 +291,8 @@
 </blockquote>
 <ul>
 <li>@RequestParam</li>
-<li>value:参数名字，需要与表单提交的名字相同<figure class="highlight plain"><figcaption><span>href</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* required:默认true，Request请求中一定要有相应的参数，找不到将报错400</span><br><span class="line">* defaultValue:默认值，如果找不到给其一个默认值</span><br></pre></td></tr></table></figure></li>
+<li>value:参数名字，需要与表单提交的名字相同<figure class="highlight plain"><figcaption><span>href</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">* required:默认true，Request请求中一定要有相应的参数，找不到将报错400</span><br><span class="line">* defaultValue:默认值，如果找不到给其一个默认值</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 <p>@RequestMapping(“itemEdit”)<br>public String queryItemById(@RequestParam(value=”id123”,required=true,defaultValue=”1”)int ids,Model model){<br>        Item item = itemService.queryItemById(ids);<br>        //将商品数据放在模型中<br>        model.addAttribute(“item”, item);<br>        //要返回的视图对象（返回到哪一个jsp页面）<br>        return “itemEdit”;<br>    }<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#### 1.2 POJO类型(对象类型)</span><br><span class="line">&gt;如果我们一次性提交的参数很多，我们可以使用一个对象来接收</span><br><span class="line"></span><br><span class="line">&lt;font color=&quot;red&quot;&gt;要求：pojo对象的属性名与表单中的input的name一致&lt;/font&gt;</span><br><span class="line"></span><br><span class="line">* 需求：将页面修改后的商品保存在数据库中</span><br><span class="line">* 请求url：/updateItem.action</span><br><span class="line">* 响应内容：给一个更新成功的提示</span><br></pre></td></tr></table></figure></p>
 <p>@RequestMapping(“/updateItem.action”)<br>public String queryItemById(Model model,Item item){<br>        itemService.update(item);<br>        //将商品数据放在模型中<br>        model.addAttribute(“item”, item);<br>        //返回一个成功的信息<br>        model.addAttribute(“msg”, “商品信息更新成功”);<br>        //要返回的视图对象（返回到哪一个jsp页面）<br>        return “itemEdit”;<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#### 1.3封装的POJO(自定义实体类)</span><br><span class="line">封装类：</span><br></pre></td></tr></table></figure></p>
