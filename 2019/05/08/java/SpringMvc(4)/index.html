@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>SpringMVC学习日志（3） | 荣先森</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="SpringMVC的异常处理器，拦截器，图片上传的实现(Tomcat的虚拟目录的设置)">
+<meta name="keywords" content="框架学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringMVC学习日志（3）">
+<meta property="og:url" content="http://SlectRxz.github.io/2019/05/08/java/SpringMvc(4)/index.html">
+<meta property="og:site_name" content="荣先森">
+<meta property="og:description" content="SpringMVC的异常处理器，拦截器，图片上传的实现(Tomcat的虚拟目录的设置)">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://slectrxz.github.io/img/imgs/springmvc/8.png">
+<meta property="og:image" content="http://slectrxz.github.io/pic/$%7Bitem.pic%7D">
+<meta property="og:updated_time" content="2019-05-09T11:03:24.111Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringMVC学习日志（3）">
+<meta name="twitter:description" content="SpringMVC的异常处理器，拦截器，图片上传的实现(Tomcat的虚拟目录的设置)">
+<meta name="twitter:image" content="http://slectrxz.github.io/img/imgs/springmvc/8.png">
+  
+    <link rel="alternative" href="/atom.xml" title="荣先森" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="img/1.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+      <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("bpxE8dkqS0IAdFxTbcqm4IiX-gzGzoHsz", "VRnKkxnTxbDSQtPbl1TiWyLw");</script>
+<script src="/js/Counter.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="img/1.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Rong</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/SlectRxz" title="github">github</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/rselect/activities" title="zhihu">zhihu</a>
+					        
+								<a class="qq" target="_blank" href="/2215857051" title="qq">qq</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/blog记录/" style="font-size: 10px;">blog记录</a> <a href="/tags/javaWeb基础/" style="font-size: 13.33px;">javaWeb基础</a> <a href="/tags/学习/" style="font-size: 16.67px;">学习</a> <a href="/tags/框架学习/" style="font-size: 20px;">框架学习</a> <a href="/tags/注解开发/" style="font-size: 10px;">注解开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+		<div style="position:absolute;bottom:170px;opacity:0.6">
+		<object type="application/x-shockwave-flash" style="outline:none;" data="http://cdn.abowman.com/widgets/treefrog/treefrog.swf?up_bodyColor=84BF84&up_pattern=1&up_flyColor=F0E80C&up_tongueColor=2BA029&up_patternColor=CFBCBC&up_releaseFly=0&up_frogName=Tree Frog&up_backgroundImage=http://&up_bellySize=.5&up_footColor=2BA029&up_eyeColor=2BA029&up_backgroundColor=261109&" width="250" height="150"><param name="movie" value="http://cdn.abowman.com/widgets/treefrog/treefrog.swf?up_bodyColor=84BF84&up_pattern=1&up_flyColor=F0E80C&up_tongueColor=2BA029&up_patternColor=CFBCBC&up_releaseFly=0&up_frogName=Tree Frog&up_backgroundImage=http://&up_bellySize=.5&up_footColor=2BA029&up_eyeColor=2BA029&up_backgroundColor=261109&"></param><param name="AllowScriptAccess" value="always"></param><param name="wmode" value="opaque"></param><param name="scale" value="noscale"/><param name="salign" value="tl"/></object>
+		</div>
+		<div style="position:absolute;bottom:80px;left:auto;width:60%;opacity:0.6">
+		<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=250 height=86 src="//music.163.com/outchain/player?type=2&id=543681750&auto=0&height=66"></iframe>
+		</div>
+		
+	
+		
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Rong</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="img/1.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Rong</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/SlectRxz" title="github">github</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/rselect/activities" title="zhihu">zhihu</a>
+			        
+						<a class="qq" target="_blank" href="/2215857051" title="qq">qq</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-java/SpringMvc(4)" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/05/08/java/SpringMvc(4)/" class="article-date">
+  	<time datetime="2019-05-07T16:00:00.000Z" itemprop="datePublished">2019-05-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SpringMVC学习日志（3）
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/框架学习/">框架学习</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/JavaWeb/">JavaWeb</a>
+	</div>
+
+
+        
+          
+<div class="counter-tag counter">
+    <span id="/2019/05/08/java/SpringMvc(4)/" class="leancloud_visitors post-title-link"
+          style="font-size: 12px" data-flag-title="SpringMVC学习日志（3）">
+         &nbsp;
+        view
+    </span>
+</div>
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>SpringMVC的异常处理器，拦截器，图片上传的实现(Tomcat的虚拟目录的设置)<br><a id="more"></a></p>
+<blockquote>
+<p>在三次学习已经简单介绍了springmvc工程的搭建，springmvc的三大组件，参数绑定，@Controller返回值，下面介绍springmvc的功能配置，后续添加…</p>
+</blockquote>
+<h2 id="1-异常处理器"><a href="#1-异常处理器" class="headerlink" title="1.异常处理器"></a>1.异常处理器</h2><blockquote>
+<p>使用场景：在程序运行的时候，可能会出现异常，此时直接返回用户异常页面是及其不友好的，做一个全局异常处理器，处理所有没有处理过的运行时异常用于更友好地提示用户。</p>
+</blockquote>
+<blockquote>
+<p>处理思路：系统中的异常包括两类：预期异常和运行时异常 RuntimeException，前者通过捕获异从而获取异常信息，或者通过测试减少运行时异常的发生。<br>其中dao，service，Controller都用throws Exception向上抛出，最后有sringmvc前端控制器交由异常处理器去处理。HandlerExceptionResolver(异常处理器)</p>
+</blockquote>
+<p>具体实现：</p>
+<ol>
+<li>创建全局异常处理器</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class CustomerExceptionResolve implements HandlerExceptionResolver &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handle,</span><br><span class="line">			Exception e) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">    //响应用户错误提示</span><br><span class="line">		ModelAndView modelAndView = new ModelAndView();</span><br><span class="line">		String message=&quot;页面错误&quot;;    </span><br><span class="line">		//自定义异常，显示自定义信息</span><br><span class="line">		if(e instanceof MyException)&#123;</span><br><span class="line">			 message = ((MyException)e).getMessage();</span><br><span class="line">		&#125;</span><br><span class="line">    //返回错误消息</span><br><span class="line">		modelAndView.addObject(&quot;msg&quot;, message);</span><br><span class="line">    //响应错误提示页面</span><br><span class="line">		modelAndView.setViewName(&quot;error&quot;);</span><br><span class="line">		return modelAndView;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p>配置异常处理器（springmvc.xml）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 配置全局异常处理器 --&gt;</span><br><span class="line">&lt;bean class=&quot;ctgu.utils.CustomerExceptionResolve&quot;/&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">	 * 全局异常处理</span><br><span class="line">	 * 包括自定义异常信息</span><br><span class="line">	 * @throws MyException</span><br><span class="line">	 */</span><br><span class="line">	@RequestMapping(&quot;/error&quot;)</span><br><span class="line">	public void MyError() throws MyException&#123;</span><br><span class="line">//		int a=1/0;</span><br><span class="line">		/**</span><br><span class="line">		 * 模拟商品查询不到的场景</span><br><span class="line">		 * 这样的话，错误页面无需定义多个，而直接抛出exception,然后全局异常处理器接收后处理</span><br><span class="line">		 */</span><br><span class="line">		if(true)&#123;</span><br><span class="line">			throw new MyException(&quot;你查找的商品不存在&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="2-拦截器"><a href="#2-拦截器" class="headerlink" title="2.拦截器"></a>2.拦截器</h2><blockquote>
+<p>应用：springmvc的处理器拦截器类似于servlet中的过滤器Filter，用于处理器进行预处理和后处理</p>
+</blockquote>
+<ul>
+<li>就是一个普通的类去继承HandlerInterceptor接口；</li>
+<li>afterCompletion():只要放行了都会执行<ul>
+<li>用于：处理异常，记录日志</li>
+</ul>
+</li>
+<li>postHandle():在控制器COntroller执行之后，返回ModelAndView视图，之前被执行<ul>
+<li>作用：设置或清理页面共用参数，比如标题栏共用</li>
+</ul>
+</li>
+<li>preHandle():在执行Controller方法之前时执行<ul>
+<li>作用：登录拦截，用户认证</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">public class UserIntercepter implements HandlerInterceptor &#123;</span><br><span class="line">	/**</span><br><span class="line">	 * 只要放行了都会执行</span><br><span class="line">	 * 用于：处理异常，记录日志</span><br><span class="line">	 */</span><br><span class="line">	@Override</span><br><span class="line">	public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)</span><br><span class="line">			throws Exception &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		//System.out.println(&quot;afterCompletion执行...&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	/**</span><br><span class="line">	 * 在控制器COntroller执行之后，返回ModelAndView视图，之前被执行</span><br><span class="line">	 * 作用：设置或清理页面共用参数，比如标题栏共用</span><br><span class="line">	 */</span><br><span class="line">	@Override</span><br><span class="line">	public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, ModelAndView arg3)</span><br><span class="line">			throws Exception &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		//System.out.println(&quot;postHandle执行...&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	/**</span><br><span class="line">	 * 在执行Controller方法之前时执行</span><br><span class="line">	 * 作用：登录拦截，用户认证</span><br><span class="line">	 */</span><br><span class="line">	@Override</span><br><span class="line">	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		//System.out.println(&quot;preHandle执行...&quot;);</span><br><span class="line">		String name = (String) request.getSession().getAttribute(&quot;username&quot;);</span><br><span class="line">		if(name!=null)&#123;</span><br><span class="line">			//放行</span><br><span class="line">			//当我们输入其他URL的时候，必须判断用户是否完成登录，如果没有，必须返回登录页面</span><br><span class="line">			return true;</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			response.sendRedirect(request.getContextPath()+&quot;/user/toLogin.action&quot;);</span><br><span class="line">			return false;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>springmvc.xml的配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 配置拦截器 --&gt;</span><br><span class="line">	&lt;mvc:interceptors&gt;</span><br><span class="line">		&lt;mvc:interceptor&gt;</span><br><span class="line">			&lt;!-- 配置拦截地址 --&gt;</span><br><span class="line">			&lt;mvc:mapping path=&quot;/**/&quot;/&gt;</span><br><span class="line">			&lt;!-- 配置不拦截地址 --&gt;</span><br><span class="line">			&lt;mvc:exclude-mapping path=&quot;/user/*&quot;/&gt;</span><br><span class="line">			&lt;bean class=&quot;ctgu.intercepter.UserIntercepter&quot;/&gt;</span><br><span class="line">		&lt;/mvc:interceptor&gt;</span><br><span class="line">	&lt;/mvc:interceptors&gt;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>说明：拦截器可以配置多个，即配置多个    <a href="mvc:interceptor" target="_blank" rel="noopener">mvc:interceptor</a>，但是如果第一个拦截器preHandler没有放行（返回的是false），那其他的两个方法也不会执行，第二个拦截器的所有方法都不会执行，Controller也不执行了。<br>问：当有两个即两个以上的拦截器存在时，afterCompletion()、postHandle()、preHandle()的执行顺序是如何的？</p>
+</blockquote>
+<ul>
+<li>preHandle()按照拦截器定义的顺序调用</li>
+<li>postHandle()按照拦截器定义逆序调用</li>
+<li>afterCompletion()按照拦截器定义逆序调用</li>
+</ul>
+<ul>
+<li>postHandle()在拦截器链内所有拦截器返回成功调用</li>
+<li>afterCompletion()只有在preHandle返回true才调用</li>
+</ul>
+<h2 id="3-图片上传"><a href="#3-图片上传" class="headerlink" title="3.图片上传"></a>3.图片上传</h2><ol>
+<li>配置虚拟目录<blockquote>
+<p><strong>相当于配置了一个tomcat与本地磁盘的路径映射。</strong></p>
+</blockquote>
+</li>
+</ol>
+<p><img src="/img/imgs/springmvc/8.png" alt="springmvc配置虚拟目录"></p>
+<blockquote>
+<p>相当于在tomcat的server.xml中添加了一行</p>
+</blockquote>
+<p>&lt;Context docBase=”springmvc03-mybatis” path=”/“reloadable=”true” source=”org.eclipse.jst.jee.server:springmvc03-mybatis”/&gt;<context docbase="C:\Users\DELL\Pictures\java" path="/pic" reloadable="true"></context></p>
+<ol start="2">
+<li><p>导jar包<br>commons-fileupload-1.2.2.jar<br>commons-io-2.4.jar</p>
+</li>
+<li><p>jsp页面</p>
+<blockquote>
+<p>注意method一定要为”post”<br>enctype=”multipart/form-data”</p>
+</blockquote>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;form id=&quot;itemForm&quot;	action=&quot;$&#123;pageContext.request.contextPath &#125;/updateItem.action&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">	&lt;td&gt;商品图片&lt;/td&gt;</span><br><span class="line">		&lt;td&gt;</span><br><span class="line">			&lt;c:if test=&quot;$&#123;item.pic !=null&#125;&quot;&gt;</span><br><span class="line">				&lt;img src=&quot;/pic/$&#123;item.pic&#125;&quot; width=100 height=100/&gt;&lt;br/&gt;</span><br><span class="line">			&lt;/c:if&gt;</span><br><span class="line">			&lt;input type=&quot;file&quot;  name=&quot;pictureFile&quot;/&gt;</span><br><span class="line">		&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>图片上传处理代码Controller</li>
+</ol>
+<p>思路：</p>
+<ul>
+<li>拿到图片的名字，根据托图片名拿到其后缀名，再拼接一个图片的新的名字</li>
+<li>将其写入磁盘，把图片的路径+名字（虚拟目录）写入数据库</li>
+<li>在tomcat建立一个虚拟目录，因为前端页面<img src="/pic/${item.pic}">标签显示</li>
+<li>我们上传上去的图片，需要controller层对其做出处理：<ul>
+<li>1.将其保存在虚拟目录对应的目录，否则前端页面找不到；</li>
+<li>2.给其一个新的名字（设计到获取其后缀，给一个唯一标识）并赋值给item.pic<blockquote>
+<p>说明：相当于将上传的图片保存在tomcat能找的到的目录 <strong>(前面映射的虚拟目录）</strong>,但是我们将其保存的时候给其一个新名字（防止重复），<strong>保存在数据库里面的是图片的名字</strong>。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value=&quot;/updateItem.action&quot;)</span><br><span class="line">	public String updateItem(Model model,MultipartFile pictureFile,Item item) throws Exception&#123;</span><br><span class="line">		//生成唯一标识作为图片id,uuid</span><br><span class="line">		String name=UUID.randomUUID().toString();</span><br><span class="line">		//获取上传图片的名字</span><br><span class="line">		String originalFilename = pictureFile.getOriginalFilename();</span><br><span class="line">		//得到图片名后缀</span><br><span class="line">		String newname = originalFilename.substring(originalFilename.lastIndexOf(&quot;.&quot;));</span><br><span class="line">		//保存在磁盘</span><br><span class="line">		File file = new File(&quot;C:\\Users\\DELL\\Pictures\\java\\&quot;+name+newname);</span><br><span class="line">		pictureFile.transferTo(file);</span><br><span class="line">		//把图片名保存到数据库</span><br><span class="line">		item.setPic(name+newname);</span><br><span class="line">		itemService.update(item);</span><br><span class="line">		model.addAttribute(&quot;item&quot;, item);</span><br><span class="line">		model.addAttribute(&quot;msg&quot;, &quot;修改商品成功&quot;);</span><br><span class="line">		return &quot;itemEdit&quot;;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4-json交互"><a href="#4-json交互" class="headerlink" title="4.json交互"></a>4.json交互</h2><h2 id="5-Restful"><a href="#5-Restful" class="headerlink" title="5.Restful"></a>5.Restful</h2>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/29/java/SpringMVC(3)/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SpringMVC学习日志（3）</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="java/SpringMvc(4)" data-title="SpringMVC学习日志（3）" data-url="http://SlectRxz.github.io/2019/05/08/java/SpringMvc(4)/"  data-images="img/1.jpg" data-content="SpringMVC学习日志（3）">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 Rong
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>

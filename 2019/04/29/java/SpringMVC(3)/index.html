@@ -18,7 +18,7 @@
 <meta property="og:description" content="SpringMVC的参数绑定（get/post请求方式），@RequestMapping,Controller返回值。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://slectrxz.github.io/img/imgs/springmvc/7.png">
-<meta property="og:updated_time" content="2019-04-29T14:08:26.758Z">
+<meta property="og:updated_time" content="2019-05-08T07:09:10.521Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringMVC学习日志（3）">
 <meta name="twitter:description" content="SpringMVC的参数绑定（get/post请求方式），@RequestMapping,Controller返回值。">
@@ -124,7 +124,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/blog记录/" style="font-size: 10px;">blog记录</a> <a href="/tags/javaWeb基础/" style="font-size: 15px;">javaWeb基础</a> <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/框架学习/" style="font-size: 20px;">框架学习</a> <a href="/tags/注解开发/" style="font-size: 10px;">注解开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+						<a href="/tags/blog记录/" style="font-size: 10px;">blog记录</a> <a href="/tags/javaWeb基础/" style="font-size: 13.33px;">javaWeb基础</a> <a href="/tags/学习/" style="font-size: 16.67px;">学习</a> <a href="/tags/框架学习/" style="font-size: 20px;">框架学习</a> <a href="/tags/注解开发/" style="font-size: 10px;">注解开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
 					</div>
 				</section>
 				
@@ -402,7 +402,7 @@
 </li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(&quot;/itemReturn2&quot;)</span><br><span class="line">	public String MyReturn2()&#123;</span><br><span class="line">      //相当于走的视图解析器，直接访问jsp页面</span><br><span class="line">      //return &quot;itemList&quot;;</span><br><span class="line">      //相当于走的视图解析器，直接访问jsp页面</span><br><span class="line">      //return &quot;forward:/WEB-INF/jsp/itemList.jsp&quot;;</span><br><span class="line">      /**</span><br><span class="line">      * 这种形式是直接跳转到另外控制器Controller</span><br><span class="line">      */</span><br><span class="line">      return &quot;forward:/itemList2.action&quot;;//请求地址不会变</span><br><span class="line">      //return &quot;redirect:/itemList2.action&quot;;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="4-异常处理器"><a href="#4-异常处理器" class="headerlink" title="4.异常处理器"></a>4.异常处理器</h2><h2 id="5-拦截器"><a href="#5-拦截器" class="headerlink" title="5.拦截器"></a>5.拦截器</h2><h2 id="6-图片上传"><a href="#6-图片上传" class="headerlink" title="6.图片上传"></a>6.图片上传</h2>
+
       
     </div>
     
@@ -410,6 +410,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2019/05/08/java/SpringMvc(4)/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          SpringMVC学习日志（3）
+        
+      </div>
+    </a>
   
   
     <a href="/2019/04/20/java/SpringMVC(2)/" id="article-nav-older" class="article-nav-link-wrap">
