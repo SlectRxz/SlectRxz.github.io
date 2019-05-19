@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Ajax | 荣先森</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Ajax的使用，内部原理的介绍，get/Post提交数据">
+<meta name="keywords" content="javaWeb基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ajax">
+<meta property="og:url" content="http://SlectRxz.github.io/2019/05/19/java基础/Ajax/index.html">
+<meta property="og:site_name" content="荣先森">
+<meta property="og:description" content="Ajax的使用，内部原理的介绍，get/Post提交数据">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://slectrxz.github.io/img/imgs/AjaxAndJQuery/Ajax01.png">
+<meta property="og:image" content="http://slectrxz.github.io/img/imgs/AjaxAndJQuery/Ajax02.png">
+<meta property="og:updated_time" content="2019-05-19T13:31:12.555Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ajax">
+<meta name="twitter:description" content="Ajax的使用，内部原理的介绍，get/Post提交数据">
+<meta name="twitter:image" content="http://slectrxz.github.io/img/imgs/AjaxAndJQuery/Ajax01.png">
+  
+    <link rel="alternative" href="/atom.xml" title="荣先森" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="img/1.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+      <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("bpxE8dkqS0IAdFxTbcqm4IiX-gzGzoHsz", "VRnKkxnTxbDSQtPbl1TiWyLw");</script>
+<script src="/js/Counter.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="img/1.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Rong</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/SlectRxz" title="github">github</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/rselect/activities" title="zhihu">zhihu</a>
+					        
+								<a class="qq" target="_blank" href="/2215857051" title="qq">qq</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/blog记录/" style="font-size: 10px;">blog记录</a> <a href="/tags/javaWeb基础/" style="font-size: 13.33px;">javaWeb基础</a> <a href="/tags/学习/" style="font-size: 16.67px;">学习</a> <a href="/tags/框架学习/" style="font-size: 20px;">框架学习</a> <a href="/tags/注解开发/" style="font-size: 10px;">注解开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+		<div style="position:absolute;bottom:170px;opacity:0.6">
+		<object type="application/x-shockwave-flash" style="outline:none;" data="http://cdn.abowman.com/widgets/treefrog/treefrog.swf?up_bodyColor=84BF84&up_pattern=1&up_flyColor=F0E80C&up_tongueColor=2BA029&up_patternColor=CFBCBC&up_releaseFly=0&up_frogName=Tree Frog&up_backgroundImage=http://&up_bellySize=.5&up_footColor=2BA029&up_eyeColor=2BA029&up_backgroundColor=261109&" width="250" height="150"><param name="movie" value="http://cdn.abowman.com/widgets/treefrog/treefrog.swf?up_bodyColor=84BF84&up_pattern=1&up_flyColor=F0E80C&up_tongueColor=2BA029&up_patternColor=CFBCBC&up_releaseFly=0&up_frogName=Tree Frog&up_backgroundImage=http://&up_bellySize=.5&up_footColor=2BA029&up_eyeColor=2BA029&up_backgroundColor=261109&"></param><param name="AllowScriptAccess" value="always"></param><param name="wmode" value="opaque"></param><param name="scale" value="noscale"/><param name="salign" value="tl"/></object>
+		</div>
+		<div style="position:absolute;bottom:80px;left:auto;width:60%;opacity:0.6">
+		<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=250 height=86 src="//music.163.com/outchain/player?type=2&id=543681750&auto=0&height=66"></iframe>
+		</div>
+		
+	
+		
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Rong</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="img/1.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Rong</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/SlectRxz" title="github">github</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/rselect/activities" title="zhihu">zhihu</a>
+			        
+						<a class="qq" target="_blank" href="/2215857051" title="qq">qq</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-java基础/Ajax" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/05/19/java基础/Ajax/" class="article-date">
+  	<time datetime="2019-05-18T16:00:00.000Z" itemprop="datePublished">2019-05-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Ajax
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javaWeb基础/">javaWeb基础</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/JavaWeb/">JavaWeb</a>
+	</div>
+
+
+        
+          
+<div class="counter-tag counter">
+    <span id="/2019/05/19/java基础/Ajax/" class="leancloud_visitors post-title-link"
+          style="font-size: 12px" data-flag-title="Ajax">
+         &nbsp;
+        view
+    </span>
+</div>
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Ajax的使用，内部原理的介绍，get/Post提交数据<br><a id="more"></a></p>
+<h2 id="1-Ajax是什么"><a href="#1-Ajax是什么" class="headerlink" title="1.Ajax是什么"></a>1.Ajax是什么</h2><blockquote>
+<p>全称：Asynchronous Javascript And XML（异步JavaScript和xml）</p>
+</blockquote>
+<p>并非新的技术，而实把原有的技术整合到一起：</p>
+<ul>
+<li>1.使用CSS和XHTML来表示。</li>
+<li>2.使用DOM模型来交互和动态显示。</li>
+<li>3.使用XMLHttpRequest来和服务器进行异步通信。</li>
+<li>4.使用javascript来绑定和调用。<h2 id="2-Ajax有什么用"><a href="#2-Ajax有什么用" class="headerlink" title="2.Ajax有什么用"></a>2.Ajax有什么用</h2><blockquote>
+<p>网页如果想要刷新局部内容。 那么需要重新载入整个网页。用户体验不是很好(例如：当我们提交form表单的时候)。就是为了解决局部刷新的问题。保持其他部分不动，只刷新某些地方。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="3-内部原理"><a href="#3-内部原理" class="headerlink" title="3.内部原理"></a>3.内部原理</h2><p>诚如我们前面所说的， Ajax 并不是一项新技术。而是包装了现有的技术，然后使用他们来完成工作而已。</p>
+<p>那么现在给大家举个例子， 还是以咱们的判断用户名是否已被注册为例。  </p>
+<p>传统方式：</p>
+<pre><code>1. 输入用户名，
+
+2. 点击一个按钮，校验。
+
+3. 把数据提交给服务器
+
+4. 服务器在后台帮助我们完成校验，并且反馈信息。
+
+5. 我们在浏览器上提示用户，给出结果
+</code></pre><p>Ajax方式：</p>
+<p>ajax方式与前面的方式其实从要做的事情来说，是一样的。 ajax也没有牛到，不用去访问服务器就知道你的用户名是否已被占用。那么它是如何工作的呢?</p>
+<ul>
+<li><ol>
+<li>通过JS 获取咱们的输入框文本内容 document.getElementById(“username”).value</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>通过XmlHttpRequest 去执行请求。 XmlHttpRequest 其实就是 XML + http + Request 的组合。</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>请求结束后，收到结果， 再使用 js 去完成提示。</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>可以在顺便配合 css 样式来增加提示效果。</li>
+</ol>
+</li>
+</ul>
+<h2 id="4-使用"><a href="#4-使用" class="headerlink" title="4.使用"></a>4.使用</h2><p>前面介绍的都是概念性的，只需要知道Ajax是干啥的就欧克了（后面直接用Jquery）<br>且提交数据有两种方式：</p>
+<h4 id="4-1-get方式"><a href="#4-1-get方式" class="headerlink" title="4.1 get方式"></a>4.1 get方式</h4><blockquote>
+<p>总结一下下面的代码内容（注释解释的已经很详细了）：<br>总共分为三步:</p>
+</blockquote>
+<ul>
+<li>1.创建XmlHttpRequest对象<br>这部分创建的对象，由于需要针对不同的浏览器，需要做出判断，所以不用直接写，以后直接拷贝即可。</li>
+<li>2.发送请求<br><strong>注：</strong> request对象通过第一步的XmlHttpRequest得到。<br>request.open(“GET”,”/AjaxAndJQuery/demoServlet01?name=’eric’&amp;password=’123’”,true);<br>request.send();</li>
+<li>3.响应服务器发送过来的数据</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;</span><br><span class="line">	pageEncoding=&quot;UTF-8&quot;%&gt;</span><br><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;</span><br><span class="line">&lt;title&gt;Insert title here&lt;/title&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">	//创建XmlHttpRequest对象</span><br><span class="line">	function  ajaxFunction()&#123;</span><br><span class="line">	   var xmlHttp;</span><br><span class="line">	   try&#123; // Firefox, Opera 8.0+, Safari</span><br><span class="line">	        xmlHttp=new XMLHttpRequest();</span><br><span class="line">	    &#125;</span><br><span class="line">	    catch (e)&#123;</span><br><span class="line">		   try&#123;// Internet Explorer</span><br><span class="line">		         xmlHttp=new ActiveXObject(&quot;Msxml2.XMLHTTP&quot;);</span><br><span class="line">		      &#125;</span><br><span class="line">		    catch (e)&#123;</span><br><span class="line">		      try&#123;</span><br><span class="line">		         xmlHttp=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</span><br><span class="line">		      &#125;</span><br><span class="line">		      catch (e)&#123;&#125;</span><br><span class="line">		      &#125;</span><br><span class="line">	    &#125;</span><br><span class="line">		return xmlHttp;</span><br><span class="line">	 &#125;</span><br><span class="line">	 //在发送请求的同时，获取服务器响应的内容</span><br><span class="line">	function get() &#123;</span><br><span class="line">		//1.创建xmlhttprequest 对象</span><br><span class="line">		var request=ajaxFunction();</span><br><span class="line">		//2.发送请求</span><br><span class="line">		/*</span><br><span class="line">		参数一： 请求类型  GET or  POST</span><br><span class="line">		参数二： 请求的路径</span><br><span class="line">		参数三： 是否异步， true  or false</span><br><span class="line">		*/</span><br><span class="line">		// request.open(&quot;GET&quot;,&quot;/AjaxAndJQuery/demoServlet01&quot;,true);</span><br><span class="line">		//带数据的去请求服务器</span><br><span class="line">		request.open(&quot;GET&quot;,&quot;/AjaxAndJQuery/demoServlet01?name=&apos;eric&apos;&amp;password=&apos;123&apos;&quot;,true);</span><br><span class="line">		request.send();</span><br><span class="line">		//3.响应服务器发送过来的数据</span><br><span class="line">		/*</span><br><span class="line">		注册监听的意思，有点像注册一个监听器，一会准备的状态发生了改变</span><br><span class="line">		那就执行=右边的方法</span><br><span class="line">		*/</span><br><span class="line">		request.onreadystatechange=function() &#123;</span><br><span class="line">			//前半段表示readyState==4求已完成，且响应已就绪</span><br><span class="line">			//status==200</span><br><span class="line">		  if (request.readyState==4 &amp;&amp; request.status==200)</span><br><span class="line">		    &#123;</span><br><span class="line">		   //显示响应的信息</span><br><span class="line">		   alert(request.responseText);</span><br><span class="line">		    &#125;</span><br><span class="line">		  &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;a href=&quot;&quot; onclick=&quot;get()&quot;&gt;Ajax通过Get发送数据&lt;/a&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="4-1-post方式"><a href="#4-1-post方式" class="headerlink" title="4.1 post方式"></a>4.1 post方式</h4><blockquote>
+<p>Post请求 和 Get请求基本相似，区别就在于 数据传输方式不同。 Get方式是直接在地址的后面拼接的。 但是Post的方式是通过send 方法传输过去的。 并且还要设置一个请求头。</p>
+</blockquote>
+<blockquote>
+<p>同上总结一下以下代码：</p>
+</blockquote>
+<ul>
+<li>1.创建XmlHttpRequest对象</li>
+<li>2.发送请求<br><strong>不携带数据：</strong><br>request.open(“POST”,”/AjaxAndJQuery/demoServlet01”,true);<br>request.send();<br><strong>携带数据：</strong><br>request.open(“POST”,”/AjaxAndJQuery/demoServlet01”,true);<br>request.setRequestHeader(“Content-type”,”application/x-www-form-urlencoded”);<br>request.send(“name=eric&amp;password=123456”);</li>
+<li>3.接收数据</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;</span><br><span class="line">    pageEncoding=&quot;UTF-8&quot;%&gt;</span><br><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">//创建XmlHttpRequest对象</span><br><span class="line">function  ajaxFunction()&#123;</span><br><span class="line">   var xmlHttp;</span><br><span class="line">   try&#123; // Firefox, Opera 8.0+, Safari</span><br><span class="line">        xmlHttp=new XMLHttpRequest();</span><br><span class="line">    &#125;</span><br><span class="line">    catch (e)&#123;</span><br><span class="line">	   try&#123;// Internet Explorer</span><br><span class="line">	         xmlHttp=new ActiveXObject(&quot;Msxml2.XMLHTTP&quot;);</span><br><span class="line">	      &#125;</span><br><span class="line">	    catch (e)&#123;</span><br><span class="line">	      try&#123;</span><br><span class="line">	         xmlHttp=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</span><br><span class="line">	      &#125;</span><br><span class="line">	      catch (e)&#123;&#125;</span><br><span class="line">	      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	return xmlHttp;</span><br><span class="line"> &#125;</span><br><span class="line">	function Post() &#123;</span><br><span class="line">		//1.注册XmlHttpRequest对象</span><br><span class="line">		var request=ajaxFunction();</span><br><span class="line">		//2.发送数据</span><br><span class="line">		request.open(&quot;POST&quot;,&quot;/AjaxAndJQuery/demoServlet01&quot;,true);</span><br><span class="line">		//request.send();</span><br><span class="line">	  //注意：如果我需要带参数请求呢？如果需要带参访问，则需要加上这两行</span><br><span class="line">		request.setRequestHeader(&quot;Content-type&quot;,&quot;application/x-www-form-urlencoded&quot;);</span><br><span class="line">	  //解释：如果使用的是POST方式带数据，那么这里要添加请求头，并说明提交的数据类型是一个经过URL编码的form表单数据</span><br><span class="line">		request.send(&quot;name=eric&amp;password=123456&quot;);</span><br><span class="line"></span><br><span class="line">		//3.接收数据</span><br><span class="line">		/*</span><br><span class="line">		注册监听的意思，有点像注册一个监听器，一会准备的状态发生了改变</span><br><span class="line">		那就执行=右边的方法</span><br><span class="line">		*/</span><br><span class="line">		request.onreadystatechange=function() &#123;</span><br><span class="line">			//前半段表示readyState==4求已完成，且响应已就绪</span><br><span class="line">			//status==200</span><br><span class="line">		  if (request.readyState==4 &amp;&amp; request.status==200)</span><br><span class="line">		    &#123;</span><br><span class="line">		   //显示响应的信息</span><br><span class="line">		   alert(request.responseText);</span><br><span class="line">		    &#125;</span><br><span class="line">		  &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;title&gt;Insert title here&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;a href=&quot;&quot; onclick=&quot;Post()&quot;&gt;Ajax通过Post发送数据&lt;/a&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="4-2获取服务器端的响应"><a href="#4-2获取服务器端的响应" class="headerlink" title="4.2获取服务器端的响应"></a>4.2获取服务器端的响应</h3><blockquote>
+<p>数据提交到的两种请求Get 和 Post基本上都会使用后， 就应该想想获取数据的问题了。 前面我们都一直很无私的往服务器提交数据， 那么服务器返回的那些数据，我们又该怎么通过Ajax去拿呢?<br>这里就要靠xmlhttprequest的事件 onreadystatechange ， 这是用来监听我们请求的一些状态， 比如： 成功了还是失败了。 如果成功，想获取数据，得靠xmlhttprequest的responseText 或 responseXML 属性</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">	注册监听的意思，有点像注册一个监听器，一会准备的状态发生了改变</span><br><span class="line">	那就执行=右边的方法</span><br><span class="line">		*/</span><br><span class="line">		request.onreadystatechange=function() &#123;</span><br><span class="line">			//前半段表示readyState==4求已完成，且响应已就绪</span><br><span class="line">			//status==200</span><br><span class="line">		  if (request.readyState==4 &amp;&amp; request.status==200)</span><br><span class="line">		    &#123;</span><br><span class="line">		   //显示响应的信息</span><br><span class="line">		   alert(request.responseText);</span><br><span class="line">		    &#125;</span><br><span class="line">		  &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="案例：校验用户名"><a href="#案例：校验用户名" class="headerlink" title="案例：校验用户名"></a>案例：校验用户名</h1><blockquote>
+<p>需求：在登录页面，当我输入用户名的时候，能够去数据库判断该用户名是否存在。<br><img src="/img/imgs/AjaxAndJQuery/Ajax01.png" alt="icon"><br><img src="/img/imgs/AjaxAndJQuery/Ajax02.png" alt="icon"></p>
+</blockquote>
+<blockquote>
+<p>直接上代码了…<br>Controller类</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException &#123;</span><br><span class="line">  //获取从页面传输过来的name，调用持久层的方法，将返回结果传输到表现层</span><br><span class="line">  request.setCharacterEncoding(&quot;UTF-8&quot;);</span><br><span class="line">  //作用是设置对客户端请求进行重新编码的编码。</span><br><span class="line">  String username = request.getParameter(&quot;username&quot;);</span><br><span class="line">  userDao dao = new userDaoImpl();</span><br><span class="line">  System.out.println(username);</span><br><span class="line">  try &#123;</span><br><span class="line">    Long result = dao.getUserName(username);</span><br><span class="line">    response.getWriter().println(result);</span><br><span class="line">  &#125; catch (SQLException e) &#123;</span><br><span class="line">    // TODO Auto-generated catch block</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>前端页面<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;</span><br><span class="line">    pageEncoding=&quot;UTF-8&quot;%&gt;</span><br><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">//创建XmlHttpRequest对象</span><br><span class="line">	function  ajaxFunction()&#123;</span><br><span class="line">	   var xmlHttp;</span><br><span class="line">	   try&#123; // Firefox, Opera 8.0+, Safari</span><br><span class="line">	        xmlHttp=new XMLHttpRequest();</span><br><span class="line">	    &#125;</span><br><span class="line">	    catch (e)&#123;</span><br><span class="line">		   try&#123;// Internet Explorer</span><br><span class="line">		         xmlHttp=new ActiveXObject(&quot;Msxml2.XMLHTTP&quot;);</span><br><span class="line">		      &#125;</span><br><span class="line">		    catch (e)&#123;</span><br><span class="line">		      try&#123;</span><br><span class="line">		         xmlHttp=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</span><br><span class="line">		      &#125;</span><br><span class="line">		      catch (e)&#123;&#125;</span><br><span class="line">		      &#125;</span><br><span class="line">	    &#125;</span><br><span class="line">		return xmlHttp;</span><br><span class="line">	 &#125;</span><br><span class="line">	function checkUserName() &#123;</span><br><span class="line">		//1.获取XMLHttpRequest对象</span><br><span class="line">		var request=new ajaxFunction();</span><br><span class="line">		//获取文本框的name值</span><br><span class="line">		var name=document.getElementById(&quot;name&quot;).value;</span><br><span class="line">		//2.发送消息</span><br><span class="line">		/*想尝试一下已get方式，但是失败了</span><br><span class="line">		String str=&quot;/AjaxAndJQuery/userServlet?username=&quot;+&quot;&apos;&quot;+name+&quot;&apos;&quot;;</span><br><span class="line">		alert(str);</span><br><span class="line">		request.open(&quot;GET&quot;,str,true);</span><br><span class="line">		request.send(); */</span><br><span class="line">		request.open(&quot;POST&quot;,&quot;/AjaxAndJQuery/userServlet&quot;,true);</span><br><span class="line">	  //注意：如果我需要带参数请求呢？如果需要带参访问，则需要加上这两行</span><br><span class="line">		request.setRequestHeader(&quot;Content-type&quot;,&quot;application/x-www-form-urlencoded&quot;);</span><br><span class="line">	  //解释：如果使用的是POST方式带数据，那么这里要添加请求头，并说明提交的数据类型是一个经过URL编码的form表单数据</span><br><span class="line">		request.send(&quot;username=&quot;+name);</span><br><span class="line">		//3.接收数据</span><br><span class="line">		/*</span><br><span class="line">		注册监听的意思，有点像注册一个监听器，一会准备的状态发生了改变</span><br><span class="line">		那就执行=右边的方法</span><br><span class="line">		*/</span><br><span class="line">		request.onreadystatechange=function() &#123;</span><br><span class="line">			//前半段表示readyState==4求已完成，且响应已就绪</span><br><span class="line">			//status==200</span><br><span class="line">		  if (request.readyState==4 &amp;&amp; request.status==200)</span><br><span class="line">		    &#123;</span><br><span class="line">			   //显示响应的信息</span><br><span class="line">			   //alert(request.responseText);</span><br><span class="line">			   var result=request.responseText;</span><br><span class="line">			   if(result==1)&#123;</span><br><span class="line">				   document.getElementById(&quot;span01&quot;).innerHTML=&quot;&lt;font color=&apos;red&apos;&gt;该用户名已存在&lt;/font&gt;&quot;;</span><br><span class="line">			   &#125;else&#123;</span><br><span class="line">				   document.getElementById(&quot;span01&quot;).innerHTML=&quot;&lt;font color=&apos;green&apos;&gt;合法!&lt;/font&gt;&quot;;</span><br><span class="line">			   &#125;</span><br><span class="line">		    &#125;</span><br><span class="line">		  &#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;title&gt;Insert title here&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;table border=&quot;1&quot; width=&quot;500&quot;&gt;</span><br><span class="line">		&lt;tr&gt;</span><br><span class="line">			&lt;td&gt;用户名:&lt;/td&gt;</span><br><span class="line">			&lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;name&quot;  onblur=&quot;checkUserName()&quot;&gt;&lt;span id=&quot;span01&quot;&gt;&lt;/span&gt;&lt;/td&gt;</span><br><span class="line">		&lt;/tr&gt;</span><br><span class="line">		&lt;tr&gt;</span><br><span class="line">			&lt;td&gt;密码&lt;/td&gt;</span><br><span class="line">			&lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;&quot;&gt;&lt;/td&gt;</span><br><span class="line">		&lt;/tr&gt;</span><br><span class="line">		&lt;tr&gt;</span><br><span class="line">			&lt;td&gt;邮箱&lt;/td&gt;</span><br><span class="line">			&lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;&quot;&gt;&lt;/td&gt;</span><br><span class="line">		&lt;/tr&gt;</span><br><span class="line">		&lt;tr&gt;</span><br><span class="line">			&lt;td&gt;简介&lt;/td&gt;</span><br><span class="line">			&lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;&quot;&gt;&lt;/td&gt;</span><br><span class="line">		&lt;/tr&gt;</span><br><span class="line">		&lt;tr&gt;</span><br><span class="line">			&lt;td colspan=&quot;2&quot;&gt;&lt;input type=&quot;submit&quot; value=&quot;注册&quot;&gt;&lt;/td&gt;</span><br><span class="line">		&lt;/tr&gt;</span><br><span class="line">	&lt;/table&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/05/22/java基础/JQuery/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          Jquery
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/05/08/java/SpringMvc(4)/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SpringMVC学习日志（4）</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="java基础/Ajax" data-title="Ajax" data-url="http://SlectRxz.github.io/2019/05/19/java基础/Ajax/"  data-images="img/1.jpg" data-content="Ajax">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 Rong
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>
