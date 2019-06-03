@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>SPring整合Dubbo+zookeeper | 荣先森</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在SSM框架中整合dubbo，zookeeper的使用以及分页插件pageHelper的使用。">
+<meta name="keywords" content="javaWeb实战">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SPring整合Dubbo+zookeeper">
+<meta property="og:url" content="http://SlectRxz.github.io/2019/06/03/taotao/Dubbo架构的使用/index.html">
+<meta property="og:site_name" content="荣先森">
+<meta property="og:description" content="在SSM框架中整合dubbo，zookeeper的使用以及分页插件pageHelper的使用。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://slectrxz.github.io/img/imgs/taotao/taotao02/1.png">
+<meta property="og:updated_time" content="2019-06-03T13:33:53.594Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SPring整合Dubbo+zookeeper">
+<meta name="twitter:description" content="在SSM框架中整合dubbo，zookeeper的使用以及分页插件pageHelper的使用。">
+<meta name="twitter:image" content="http://slectrxz.github.io/img/imgs/taotao/taotao02/1.png">
+  
+    <link rel="alternative" href="/atom.xml" title="荣先森" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="img/1.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+      <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("bpxE8dkqS0IAdFxTbcqm4IiX-gzGzoHsz", "VRnKkxnTxbDSQtPbl1TiWyLw");</script>
+<script src="/js/Counter.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="img/1.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Rong</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/SlectRxz" title="github">github</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/rselect/activities" title="zhihu">zhihu</a>
+					        
+								<a class="qq" target="_blank" href="/2215857051" title="qq">qq</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/blog记录/" style="font-size: 10px;">blog记录</a> <a href="/tags/javaWeb基础/" style="font-size: 15px;">javaWeb基础</a> <a href="/tags/javaWeb实战/" style="font-size: 12.5px;">javaWeb实战</a> <a href="/tags/学习/" style="font-size: 17.5px;">学习</a> <a href="/tags/框架学习/" style="font-size: 20px;">框架学习</a> <a href="/tags/注解开发/" style="font-size: 10px;">注解开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+		<div style="position:absolute;bottom:170px;opacity:0.6">
+		<object type="application/x-shockwave-flash" style="outline:none;" data="http://cdn.abowman.com/widgets/treefrog/treefrog.swf?up_bodyColor=84BF84&up_pattern=1&up_flyColor=F0E80C&up_tongueColor=2BA029&up_patternColor=CFBCBC&up_releaseFly=0&up_frogName=Tree Frog&up_backgroundImage=http://&up_bellySize=.5&up_footColor=2BA029&up_eyeColor=2BA029&up_backgroundColor=261109&" width="250" height="150"><param name="movie" value="http://cdn.abowman.com/widgets/treefrog/treefrog.swf?up_bodyColor=84BF84&up_pattern=1&up_flyColor=F0E80C&up_tongueColor=2BA029&up_patternColor=CFBCBC&up_releaseFly=0&up_frogName=Tree Frog&up_backgroundImage=http://&up_bellySize=.5&up_footColor=2BA029&up_eyeColor=2BA029&up_backgroundColor=261109&"></param><param name="AllowScriptAccess" value="always"></param><param name="wmode" value="opaque"></param><param name="scale" value="noscale"/><param name="salign" value="tl"/></object>
+		</div>
+		<div style="position:absolute;bottom:80px;left:auto;width:60%;opacity:0.6">
+		<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=250 height=86 src="//music.163.com/outchain/player?type=2&id=543681750&auto=0&height=66"></iframe>
+		</div>
+		
+	
+		
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Rong</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="img/1.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Rong</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/SlectRxz" title="github">github</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/rselect/activities" title="zhihu">zhihu</a>
+			        
+						<a class="qq" target="_blank" href="/2215857051" title="qq">qq</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-taotao/Dubbo架构的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/06/03/taotao/Dubbo架构的使用/" class="article-date">
+  	<time datetime="2019-06-02T16:00:00.000Z" itemprop="datePublished">2019-06-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SPring整合Dubbo+zookeeper
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javaWeb实战/">javaWeb实战</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/JavaWeb/">JavaWeb</a>
+	</div>
+
+
+        
+          
+<div class="counter-tag counter">
+    <span id="/2019/06/03/taotao/Dubbo架构的使用/" class="leancloud_visitors post-title-link"
+          style="font-size: 12px" data-flag-title="SPring整合Dubbo+zookeeper">
+         &nbsp;
+        view
+    </span>
+</div>
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在SSM框架中整合dubbo，zookeeper的使用以及分页插件pageHelper的使用。<br><a id="more"></a></p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><h3 id="dubbo"><a href="#dubbo" class="headerlink" title="dubbo"></a>dubbo</h3><blockquote>
+<p>DUBBO是一个分布式服务框架，致力于提供高性能和透明化的RPC远程服务调用方案，是阿里巴巴SOA服务化治理方案的核心框架，每天为2,000+个服务提供3,000,000,000+次访问量支持，并被广泛应用于阿里巴巴集团的各成员站点</p>
+</blockquote>
+<ul>
+<li>单一应用架构<ul>
+<li>当网站流量很小时，只需一个应用，将所有功能都部署在一起，以减少部署节点和成本。</li>
+<li>此时，用于简化增删改查工作量的 数据访问框架(ORM) 是关键。</li>
+</ul>
+</li>
+<li>垂直应用架构<ul>
+<li>当访问量逐渐增大，单一应用增加机器带来的加速度越来越小，将应用拆成互不相干的几个应用，以提升效率。</li>
+<li>此时，用于加速前端页面开发的 Web框架(MVC) 是关键。</li>
+</ul>
+</li>
+<li>分布式服务架构<ul>
+<li>当垂直应用越来越多，应用之间交互不可避免，将核心业务抽取出来，作为独立的服务，逐渐形成稳定的服务中心，使前端应用能更快速的响应多变的市场需求。</li>
+<li>此时，用于提高业务复用及整合的 分布式服务框架(RPC) 是关键。</li>
+</ul>
+</li>
+<li>流动计算架构<ul>
+<li>当服务越来越多，容量的评估，小服务资源的浪费等问题逐渐显现，此时需增加一个调度中心基于访问压力实时管理集群容量，提高集群利用率。</li>
+<li>此时，用于提高机器利用率的 资源调度和治理中心(SOA) 是关键。</li>
+</ul>
+</li>
+</ul>
+<p>Dubbo就是资源调度和治理中心的管理工具。</p>
+<blockquote>
+<p>Dubbo 就是类似于webservice的关于系统之间通信的框架，并可以统计和管理服务之间的调用情况（包括服务被谁调用了，调用的次数是如何，以及服务的使用状况）。</p>
+</blockquote>
+<p><img src="/img/imgs/taotao/taotao02/1.png" alt="dubbo架构"></p>
+<blockquote>
+<p>架构解释(重要！):上述架构我们可以这样去理解：类比我们去买房子，有供应商，需求用户和中间介绍人，而provider就是供应商(对应的是服务层提供服务)，而consumer就是需求用户(对应表现层的controller)；而中间商就是Registry，用户他们之间的牵线搭桥。Provider先去Registry注册，说我可以提供一个需求；Costomer像中间发出请求说我需要一个请求XXX;Registry再将Provider的信息给Consumer,Consumer再直接调用Provider。其中中间有监管部门监管(Monitor)。</p>
+</blockquote>
+<p>节点角色说明：<br>•    Provider: 暴露服务的服务提供方。 <strong>就是服务提供者service</strong><br>•    Consumer: 调用远程服务的服务消费方。<strong>服务的调用者（Controller）先到注册中心订阅</strong><br>•    Registry: 服务注册与发现的注册中心。   <strong>相当于中介了</strong><br>•    Monitor: 统计服务的调用次调和调用时间的监控中心。（非必须）<br>•    Container: 服务运行容器。   <strong>服务发布需要一个容器，这里使用的是Spring</strong></p>
+<p></p><h3>dubbo环境搭建</h3>(已经搭建完毕的小伙伴可以忽略)<br>在服务层和表现层中添加dubbo依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- dubbo相关 --&gt;</span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;com.alibaba&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;dubbo&lt;/artifactId&gt;</span><br><span class="line">			&lt;!-- 排除依赖 --&gt;</span><br><span class="line">			&lt;exclusions&gt;</span><br><span class="line">				&lt;exclusion&gt;</span><br><span class="line">					&lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">					&lt;artifactId&gt;spring&lt;/artifactId&gt;</span><br><span class="line">				&lt;/exclusion&gt;</span><br><span class="line">				&lt;exclusion&gt;</span><br><span class="line">					&lt;groupId&gt;org.jboss.netty&lt;/groupId&gt;</span><br><span class="line">					&lt;artifactId&gt;netty&lt;/artifactId&gt;</span><br><span class="line">				&lt;/exclusion&gt;</span><br><span class="line">			&lt;/exclusions&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.apache.zookeeper&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;zookeeper&lt;/artifactId&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;com.github.sgroschupf&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;zkclient&lt;/artifactId&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br></pre></td></tr></table></figure><p></p>
+<p>关于服务层的发布和表现层的请求配置在后面给出。</p>
+<h3 id="zookeeper"><a href="#zookeeper" class="headerlink" title="zookeeper"></a>zookeeper</h3><blockquote>
+<p>注册中心负责服务地址的注册与查找，相当于目录服务，服务提供者和消费者只在启动时与注册中心交互，注册中心不转发请求，压力较小。使用dubbo-2.3.3以上版本，官方建议使用zookeeper作为注册中心。<br>Zookeeper是Apacahe Hadoop的子项目，是一个树型的目录服务，支持变更推送，适合作为Dubbo服务的注册中心，工业强度较高(稳定性好)，可用于生产环境，并推荐使用。</p>
+</blockquote>
+<p></p><h3>zookeeper环境搭建（本例运行在Linux环境下）</h3>(已经搭建完毕的小伙伴可以忽略)<p></p>
+<p>第一步：安装jdk<br>第二步：解压缩zookeeper压缩包<br>第三步：将conf文件夹下zoo_sample.cfg复制一份，改名为zoo.cfg<br>第四步：修改配置dataDir属性，指定一个真实目录，存放zook运行时存放的数据文件<br>第五步：<br>启动zookeeper：bin/zkServer.sh start<br>关闭zookeeper：bin/zkServer.sh stop<br>查看zookeeper状态：bin/zkServer.sh status</p>
+<h3 id="分页插件pageHelper"><a href="#分页插件pageHelper" class="headerlink" title="分页插件pageHelper"></a>分页插件pageHelper</h3><blockquote>
+<p>Mybatis分页插件,如果你也在用Mybatis，建议尝试该分页插件，这个一定是最方便使用的分页插件。该插件目前支持Oracle,Mysql,MariaDB,SQLite,Hsqldb,PostgreSQL六种数据库分页。</p>
+</blockquote>
+<p>使用方式：<br>第一步：把PageHelper依赖的jar包添加到工程中。<br>第二步：在Mybatis的全局文件中配置SqlMapConfig.xml中配置拦截器插件:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;plugins&gt;</span><br><span class="line">    &lt;!-- com.github.pagehelper为PageHelper类所在包名 --&gt;</span><br><span class="line">    &lt;plugin interceptor=&quot;com.github.pagehelper.PageHelper&quot;&gt;</span><br><span class="line">        &lt;!-- 设置数据库类型 Oracle,Mysql,MariaDB,SQLite,Hsqldb,PostgreSQL六种数据库--&gt;        </span><br><span class="line">        &lt;property name=&quot;dialect&quot; value=&quot;mysql&quot;/&gt;</span><br><span class="line">    &lt;/plugin&gt;</span><br><span class="line">&lt;/plugins&gt;</span><br></pre></td></tr></table></figure></p>
+<p>第三步：在代码中使用<br>1、设置分页信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//获取第1页，10条内容，默认查询总数count</span><br><span class="line">    PageHelper.startPage(1, 10);</span><br><span class="line">    //紧跟着的第一个select方法会被分页,对后面的</span><br><span class="line">List&lt;Country&gt; list = countryMapper.selectIf(1);</span><br><span class="line">//用PageInfo对结果进行包装</span><br><span class="line">PageInfo page = new PageInfo(list);</span><br><span class="line">//测试PageInfo全部属性</span><br><span class="line">//PageInfo包含了非常全面的分页属性</span><br><span class="line">assertEquals(1, page.getPageNum());</span><br><span class="line">assertEquals(10, page.getPageSize());</span><br><span class="line">assertEquals(1, page.getStartRow());</span><br><span class="line">assertEquals(10, page.getEndRow());</span><br><span class="line">assertEquals(183, page.getTotal());</span><br><span class="line">assertEquals(19, page.getPages());</span><br><span class="line">assertEquals(1, page.getFirstPage());</span><br><span class="line">assertEquals(8, page.getLastPage());</span><br><span class="line">assertEquals(true, page.isFirstPage());</span><br><span class="line">assertEquals(false, page.isLastPage());</span><br><span class="line">assertEquals(false, page.isHasPreviousPage());</span><br><span class="line">assertEquals(true, page.isHasNextPage());</span><br></pre></td></tr></table></figure></p>
+<p>每次前端页面只需要传递第几页查询多少条数据即可。<br>PageInfo page = new PageInfo(list);<br>page.getTotal()<strong>常用</strong></p>
+<h2 id="解决mapper映射文件不发布的问题"><a href="#解决mapper映射文件不发布的问题" class="headerlink" title="解决mapper映射文件不发布的问题"></a>解决mapper映射文件不发布的问题</h2><blockquote>
+<p>由于配置文件一般放在src/main/resource文件夹下，但是mapper.xml的映射文件放在src/main/java的文件夹下，会默认把该路径下的java文件生成的class文件拷贝到  项目名称/target/classes/文件夹下。但是不会去拷贝.xml文件，故需要我们自己去配置。</p>
+</blockquote>
+<p>在dao工程下的pom文件中加入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;build&gt;</span><br><span class="line">		&lt;!-- 如果不配置mybatis的配置文件会漏掉 --&gt;</span><br><span class="line">		&lt;!-- 注意：配置了此方式，原来的默认的资源拷贝行为将无效 --&gt;</span><br><span class="line">		&lt;resources&gt;</span><br><span class="line">			&lt;resource&gt;</span><br><span class="line">				&lt;directory&gt;src/main/java&lt;/directory&gt;</span><br><span class="line">				&lt;includes&gt;</span><br><span class="line">					&lt;include&gt;**/*.properties&lt;/include&gt;</span><br><span class="line">					&lt;include&gt;**/*.xml&lt;/include&gt;</span><br><span class="line">				&lt;/includes&gt;</span><br><span class="line">				&lt;filtering&gt;false&lt;/filtering&gt;</span><br><span class="line">			&lt;/resource&gt;</span><br><span class="line">		&lt;/resources&gt;</span><br><span class="line">	&lt;/build&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="解决静态文件无法加载的问题"><a href="#解决静态文件无法加载的问题" class="headerlink" title="解决静态文件无法加载的问题"></a>解决静态文件无法加载的问题</h2><blockquote>
+<p>为什么静态资源无法加载？<br>因为我们在表现层的web.xml中定义的url拦截形式为“/”表示拦截所有的url请求，包括静态资源例如css、js等（由DispatcherServlet拦截）。所以需要在springmvc.xml中添加资源映射标签：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;mvc:resources location=&quot;/WEB-INF/js/&quot; mapping=&quot;/js/**&quot;/&gt;</span><br><span class="line">&lt;mvc:resources location=&quot;/WEB-INF/css/&quot; mapping=&quot;/css/**&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/06/01/taotao/项目的建立/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">聚合工程项目建立</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="taotao/Dubbo架构的使用" data-title="SPring整合Dubbo+zookeeper" data-url="http://SlectRxz.github.io/2019/06/03/taotao/Dubbo架构的使用/"  data-images="img/1.jpg" data-content="SPring整合Dubbo+zookeeper">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 Rong
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>
