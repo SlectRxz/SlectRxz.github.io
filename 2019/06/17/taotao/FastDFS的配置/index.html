@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://slectrxz.github.io/img/imgs/taotao/taotao02/2.png">
 <meta property="og:image" content="http://slectrxz.github.io/img/imgs/taotao/taotao02/3.png">
 <meta property="og:image" content="http://slectrxz.github.io/img/imgs/taotao/taotao02/4.png">
-<meta property="og:updated_time" content="2019-06-17T14:09:13.200Z">
+<meta property="og:updated_time" content="2019-08-04T06:36:26.772Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FastDFS介绍">
 <meta name="twitter:description" content="FastDFS服务器的介绍与使用（配置过于蛮烦）。">
@@ -250,7 +250,13 @@
       
         <p>FastDFS服务器的介绍与使用（配置过于蛮烦）。<br><a id="more"></a></p>
 <h2 id="什么是FastDFS？"><a href="#什么是FastDFS？" class="headerlink" title="什么是FastDFS？"></a>什么是FastDFS？</h2><p>FastDFS是用c语言编写的一款开源的分布式文件系统。FastDFS为互联网量身定制，充分考虑了冗余备份、负载均衡、线性扩容等机制，并注重高可用、高性能等指标，使用FastDFS很容易搭建一套高性能的文件服务器集群提供文件上传、下载等服务。</p>
-<h3 id="为什么要使用FastDFS？"><a href="#为什么要使用FastDFS？" class="headerlink" title="为什么要使用FastDFS？"></a>为什么要使用FastDFS？</h3><p><img src="/img/imgs/taotao/taotao02/2.png" alt="负载均衡"><br>我们把静态资源文件存储在本地服务器也能正常访问啊，如放在Tomcat项目文件夹下，也能实现正常的访问。但是当我们的系统超过1000并发后，需要使用nginx进行服务器的负载均衡（即使用多个服务器），用户访问就访问的nginx，nginx将求情转发给用于服务器Tomcat，但是有一种情况，张上用户上传图片，nginx分配给服务器A，然后服务器tomcat将图片存在其工程文件夹下，而李四访问这张图片的时候，nginx可能将请求转发给服务器B，但是由于图片存放在服务器A中，故将发生404错误。<br><strong>上述问题出现在我们没有把图片放在同一的一个位置。</strong><br>那么当我们专门使用一台服务器作为图片服务器呢？所有的图片访问都找这个专门的服务器picture。<br>但是我们也可以使用tomcat作为静态资源服务器啊？为什么使用FastDFS服务器呢？<br><strong>原因：这台服务器的存储有上限，其扩容性不强。</strong><br>当这个服务器满容量后，若再加一个服务器其访问的URL将会相应的发生变化，而且如果这个服务器挂了，则相应的数据丢失。<br><strong>使用FastDFS的优点：</strong><br>使用FastDFS可以实现横向扩容，如果你的存储空间不够了，可以加服务器，它会对group进行集中管理。其运行在Linux下。<br>其架构图如下：<br><img src="/img/imgs/taotao/taotao02/3.png" alt="FastDFS架构图"><br>服务端两个角色：<br>Tracker：</p>
+<h3 id="为什么要使用FastDFS？"><a href="#为什么要使用FastDFS？" class="headerlink" title="为什么要使用FastDFS？"></a>为什么要使用FastDFS？</h3><p><img src="/img/imgs/taotao/taotao02/2.png" alt="负载均衡"></p>
+<p>我们把静态资源文件存储在本地服务器也能正常访问啊，如放在Tomcat项目文件夹下，也能实现正常的访问。</p>
+<p></p><p>但是当我们的系统超过1000并发后，需要使用nginx进行服务器的负载均衡（即使用多个服务器），用户访问就访问的nginx，nginx将求情转发给用于服务器Tomcat，但是有一种情况，张上用户上传图片，nginx分配给服务器A，然后服务器tomcat将图片存在其工程文件夹下，而李四访问这张图片的时候，nginx可能将请求转发给服务器B，但是由于图片存放在服务器A中，故将发生404错误。</p><p></p>
+<font color="red">上述问题出现在我们没有把图片放在同一的一个位置。</font>
+
+<p>那么当我们专门使用一台服务器作为图片服务器呢？所有的图片访问都找这个专门的服务器picture。<br>但是我们也可以使用tomcat作为静态资源服务器啊？为什么使用FastDFS服务器呢？<br><strong>原因：这台服务器的存储有上限，其扩容性不强。</strong><br>当这个服务器满容量后，若再加一个服务器其访问的URL将会相应的发生变化，而且如果这个服务器挂了，则相应的数据丢失。<br><strong>使用FastDFS的优点：</strong><br>使用FastDFS可以实现横向扩容，如果你的存储空间不够了，可以加服务器，它会对group进行集中管理。其运行在Linux下。<br>其架构图如下：</p>
+<p><center><img src="/img/imgs/taotao/taotao02/3.png" alt="FastDFS架构图"><center><br>服务端两个角色：<br>Tracker：</center></center></p>
 <ul>
 <li>管理集群， tracker也可以实现集群。每个tracker节点地位平等。</li>
 <li><strong>作用：引导客户端去哪台服务器存储数据，实际上是客户端与存储服务器直接进行通信的，并不需要通过Tracker进行中转。</strong></li>
@@ -260,7 +266,8 @@
 <li>需要连接tracker端，定期报告自己的情况（是否活着，剩余容量，负载情况）</li>
 <li>分为多个组，每个组之间保存的文件是不同的。每个组内部可以有多个成员，组成员内部保存的内容是一样的，组成员的地位是一致的，没有主从的概念。<br>卷1、卷2、卷n是可以实现横向扩容的，向里面添加组服务器，且同一个组里面的文件是一样的，一台服务器挂了，还有别的服务器可以提供访问。（实现高可用）<br>一台服务器很忙，可以将访问分配给其他服务器，实现负载均衡。</li>
 </ul>
-<p>文件上传其时序图：<br><img src="/img/imgs/taotao/taotao02/4.png" alt="FastDFS时序图"><br>客户端上传文件后存储服务器将文件ID返回给客户端，此文件ID用于以后访问该文件的索引信息。文件索引信息包括：组名，虚拟磁盘路径，数据两级目录，文件名。<br><strong>group1/M00/02/44/shaudhuasduasd.jpg</strong></p>
+<p>文件上传其时序图：</p>
+<p><center><img src="/img/imgs/taotao/taotao02/4.png" alt="FastDFS时序图"></center><br>客户端上传文件后存储服务器将文件ID返回给客户端，此文件ID用于以后访问该文件的索引信息。文件索引信息包括：组名，虚拟磁盘路径，数据两级目录，文件名。<br><strong>group1/M00/02/44/shaudhuasduasd.jpg</strong></p>
 <ul>
 <li>组名：文件上传后所在的storage组名称，在文件上传成功后有storage服务器返回，需要客户端自行保存。</li>
 <li>虚拟磁盘路径：storage配置的虚拟路径，与磁盘选项store_path*对应。如果配置了store_path0则是M00，如果配置了store_path1则是M01，以此类推。</li>
@@ -295,7 +302,7 @@
       <strong class="article-nav-caption">&lt;</strong>
       <div class="article-nav-title">
         
-          FastDFS介绍
+          后台商品列表查询
         
       </div>
     </a>
