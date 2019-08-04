@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Lucene就是这么简单-认识篇 | 荣先森</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Lucene的介绍和索引库的组成结构。">
+<meta name="keywords" content="javaWeb实战">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lucene就是这么简单-认识篇">
+<meta property="og:url" content="http://SlectRxz.github.io/2019/08/04/taotao/Lucene-认识篇/index.html">
+<meta property="og:site_name" content="荣先森">
+<meta property="og:description" content="Lucene的介绍和索引库的组成结构。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://slectrxz.github.io/img/imgs/taotao/Lucene/1.png">
+<meta property="og:image" content="http://slectrxz.github.io/img/imgs/taotao/Lucene/3.png">
+<meta property="og:image" content="http://slectrxz.github.io/img/imgs/taotao/Lucene/addDirectory.png">
+<meta property="og:image" content="http://slectrxz.github.io/img/imgs/taotao/Lucene/writeInDirecrory.png">
+<meta property="og:image" content="http://slectrxz.github.io/img/imgs/taotao/Lucene/searchInDirectory.png">
+<meta property="og:updated_time" content="2019-08-04T09:16:33.052Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Lucene就是这么简单-认识篇">
+<meta name="twitter:description" content="Lucene的介绍和索引库的组成结构。">
+<meta name="twitter:image" content="http://slectrxz.github.io/img/imgs/taotao/Lucene/1.png">
+  
+    <link rel="alternative" href="/atom.xml" title="荣先森" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="img/1.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+      <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("bpxE8dkqS0IAdFxTbcqm4IiX-gzGzoHsz", "VRnKkxnTxbDSQtPbl1TiWyLw");</script>
+<script src="/js/Counter.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="img/1.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Rong</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/SlectRxz" title="github">github</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/rselect/activities" title="zhihu">zhihu</a>
+					        
+								<a class="qq" target="_blank" href="/2215857051" title="qq">qq</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/blog记录/" style="font-size: 10px;">blog记录</a> <a href="/tags/javaWeb基础/" style="font-size: 15px;">javaWeb基础</a> <a href="/tags/javaWeb实战/" style="font-size: 12.5px;">javaWeb实战</a> <a href="/tags/学习/" style="font-size: 17.5px;">学习</a> <a href="/tags/框架学习/" style="font-size: 20px;">框架学习</a> <a href="/tags/注解开发/" style="font-size: 10px;">注解开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+		<div style="position:absolute;bottom:170px;opacity:0.6">
+		<object type="application/x-shockwave-flash" style="outline:none;" data="http://cdn.abowman.com/widgets/treefrog/treefrog.swf?up_bodyColor=84BF84&up_pattern=1&up_flyColor=F0E80C&up_tongueColor=2BA029&up_patternColor=CFBCBC&up_releaseFly=0&up_frogName=Tree Frog&up_backgroundImage=http://&up_bellySize=.5&up_footColor=2BA029&up_eyeColor=2BA029&up_backgroundColor=261109&" width="250" height="150"><param name="movie" value="http://cdn.abowman.com/widgets/treefrog/treefrog.swf?up_bodyColor=84BF84&up_pattern=1&up_flyColor=F0E80C&up_tongueColor=2BA029&up_patternColor=CFBCBC&up_releaseFly=0&up_frogName=Tree Frog&up_backgroundImage=http://&up_bellySize=.5&up_footColor=2BA029&up_eyeColor=2BA029&up_backgroundColor=261109&"></param><param name="AllowScriptAccess" value="always"></param><param name="wmode" value="opaque"></param><param name="scale" value="noscale"/><param name="salign" value="tl"/></object>
+		</div>
+		<div style="position:absolute;bottom:80px;left:auto;width:60%;opacity:0.6">
+		<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=250 height=86 src="//music.163.com/outchain/player?type=2&id=543681750&auto=0&height=66"></iframe>
+		</div>
+		
+	
+		
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Rong</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="img/1.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Rong</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/SlectRxz" title="github">github</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/rselect/activities" title="zhihu">zhihu</a>
+			        
+						<a class="qq" target="_blank" href="/2215857051" title="qq">qq</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-taotao/Lucene-认识篇" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/08/04/taotao/Lucene-认识篇/" class="article-date">
+  	<time datetime="2019-08-03T16:00:00.000Z" itemprop="datePublished">2019-08-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Lucene就是这么简单-认识篇
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javaWeb实战/">javaWeb实战</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/JavaWeb/">JavaWeb</a>
+	</div>
+
+
+        
+          
+<div class="counter-tag counter">
+    <span id="/2019/08/04/taotao/Lucene-认识篇/" class="leancloud_visitors post-title-link"
+          style="font-size: 12px" data-flag-title="Lucene就是这么简单-认识篇">
+         &nbsp;
+        view
+    </span>
+</div>
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Lucene的介绍和索引库的组成结构。<br><a id="more"></a></p>
+<h2 id="1-什么是Lucene？？？"><a href="#1-什么是Lucene？？？" class="headerlink" title="1.什么是Lucene？？？"></a>1.什么是Lucene？？？</h2><blockquote>
+<p>Lucene是apache软件基金会发布的一个开放源代码的全文检索引擎工具包，由资深全文检索专家Doug Cutting所撰写,它是一个全文检索引擎的架构，提供了完整的创建索引和查询索引，以及部分文本分析的引擎，Lucene的目的是为软件开发人员提供一个简单易用的工具包，以方便在目标系统中实现全文检索的功能，或者是以此为基础建立起完整的全文检索引擎，Lucene在全文检索领域是一个经典的祖先，现在很多检索引擎都是在其基础上创建的，思想是相通的。</p>
+</blockquote>
+<p>简单来说，Lucene是一个全文搜索引擎。</p>
+<blockquote>
+<p>全文检索是什么？</p>
+</blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1)    从大量的信息中快速、准确地查找出要的信息<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2)    搜索的内容是文本信息(不是多媒体)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3)    搜索的方式：不是根据语句的意思进行处理。如果要搜索的文本为” 2012年的春晚有赵本山吗”，那么含有这些词(2012年、春晚、赵本山)就能搜索出来。每一个词都是关键词。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4)    全面、快速、准确是衡量全文检索系统的关键指标。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5)    概括：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a)    只处理文本<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b)    不处理语义<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c)    搜索时英文不区分大小写<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d)    结果列表有相关度排序</p>
+<h2 id="2-为什么需要使用Lucene？（数据库不好吗）"><a href="#2-为什么需要使用Lucene？（数据库不好吗）" class="headerlink" title="2.为什么需要使用Lucene？（数据库不好吗）"></a>2.为什么需要使用Lucene？（数据库不好吗）</h2><blockquote>
+<p>全文检索与数据库搜索的区别：</p>
+</blockquote>
+<p><strong>1. 数据库的搜索</strong><br>类似：select <em> from  表名 where 字段名 like ‘%关键字%’<br>例如：select </em> from article where content like’%here%’<br>结果:  where   here  shere<br>缺点：<font color="red">（没有将搜索结果相关度排序）</font><br>1)搜索效果比较差<br>2)在搜索的结果中，有大量的数据被搜索出来，有很多数据是没有用的。<br>3)查询速度在大量数据的情况下是很难做到快速的。</p>
+<p><strong>2. 全文检索：</strong><br>1)    搜索结果按相关度排序：意味着只有前几个页面对于用户来说是比较有用的，其他的结果与用户想要的答案很可能相差甚远。数据库搜索是做不到相关度排序的。<br>2)    因为全文检索是采用引索的方式，所以在速度上肯定比数据库方式like要快。</p>
+<h2 id="3-索引库的组成（重要！！）"><a href="#3-索引库的组成（重要！！）" class="headerlink" title="3.索引库的组成（重要！！）"></a>3.索引库的组成（重要！！）</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>在讲解如何具体的使用Lucene进行检索之前，我们首先得弄明白Lucene存放的究竟是啥？在数据库中，我们是将数据作为表为基本单位进行存储，那么Lucene又是如何进行存储的呢？</p>
+<p>Lucene中存的就是一系列的<font color="red">二进制压缩文件和一些控制文件</font>，它们位于计算机的硬盘上，<br>这些内容统称为<font color="red">索引库</font>，索引库有二部份组成：<br>（1）目录</p>
+<ul>
+<li>按照一定的拆分策略（即分词器）将原始记录中的每个字符拆开后，存入一个供将来搜索的表<br>（2）内容</li>
+<li>存入到索引库中的原始文本，例如：Java是世界上最好的语言</li>
+</ul>
+<p>也就是说：Lucene存放数据的地方我们通常称之为索引库，索引库又分为两部分组成：<strong>目录</strong>和<strong>内容</strong>。</p>
+<p><strong>理解：</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>把索引库当作一本书，那么当我们要去查询某一节内容时，需要根据关键句找到对应的页数，再根据页数找到对应的内容。<br>只需记住<font color="red">Lucene是向索引库中进行操作，索引库由目录和内容组成。</font><br>下面将具体介绍目录和内容的组成：</p>
+<h3 id="1）互联网搜索结构框图"><a href="#1）互联网搜索结构框图" class="headerlink" title="1）互联网搜索结构框图"></a>1）互联网搜索结构框图</h3><p><br></p>
+<center><img src="/img/imgs/taotao/Lucene/1.png" alt="互联网搜索流程图"></center>
+
+<p><strong>说明：</strong><br>1)    当用户打开&nbsp;<a href="http://www.baidu.com&nbsp;网页搜索某些数据的时候，不是直接找的网页，而是找的百度的索引库。索引库里包含的内容有索引号和摘要。当我们打开&nbsp;www.baidu.com&nbsp;时，看到的就是摘要的内容。" target="_blank" rel="noopener">www.baidu.com&nbsp;网页搜索某些数据的时候，不是直接找的网页，而是找的百度的索引库。索引库里包含的内容有索引号和摘要。当我们打开&nbsp;www.baidu.com&nbsp;时，看到的就是摘要的内容。</a><br>2)    百度的索引库的索引和互联网的某一个网站对应。<br>3)    当用户数据要查询的关键字，返回的页面首先是从索引库中得到的。<br>4)    点击每一个搜索出来的内容进行相关网页查找，这个时候才找的是互联网中的网页。</p>
+<blockquote>
+<p>Lucene的索引库的结构之后，在数据库中数据是以表为基本单位进行存储的，在索引库中需要存放各种不同类型的数据，是以什么方式存储呢？</p>
+</blockquote>
+<p><br></p>
+<center><img src="/img/imgs/taotao/Lucene/3.png" alt="Lucene的结构框图"></center><br><center>Lucene的结构框图</center>
+
+<p>1)    在数据库中，数据库中的数据文件存储在磁盘上。索引库也是同样，索引库中的索引数据也在磁盘上存在，我们用Directory这个类来描述。<br>2)    我们可以通过API来实现对索引库的增、删、改、查的操作。<br>3)    在数据库中，各种数据形式都可以概括为一种：表。在索引库中，各种数据形式也可以抽象出一种数据格式为Document。（类比数据库中的表结构）<br>4)    Document的结构为：Document(List&#60;Field&#62;)<br>5)    Field里存放一个键值对。键值对都为字符串的形式。<br>6)    对索引库中索引的操作实际上也就是对Document的操作。</p>
+<h2 id="4-第一个Lucene程序"><a href="#4-第一个Lucene程序" class="headerlink" title="4.第一个Lucene程序"></a>4.第一个Lucene程序</h2><h4 id="4-1准备jar包"><a href="#4-1准备jar包" class="headerlink" title="4.1准备jar包"></a>4.1准备jar包</h4><p>搭建lucene的开发环境，要准备lucene的jar包，要加入的jar包至少有：<br>1)    lucene-core-3.1.0.jar     (核心包)<br>2)    lucene-analyzers-3.1.0.jar    (分词器)<br>3)    lucene-highlighter-3.1.0.jar    (高亮器)<br>4)    lucene-memory-3.1.0.jar       (高亮器)</p>
+<h4 id="4-2准备一个pojo"><a href="#4-2准备一个pojo" class="headerlink" title="4.2准备一个pojo"></a>4.2准备一个pojo</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">package com.pojo;</span><br><span class="line">public class article &#123;</span><br><span class="line">	private Long id;</span><br><span class="line">	private String name;</span><br><span class="line">	private String content;</span><br><span class="line">	public Long getId() &#123;</span><br><span class="line">		return id;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setId(Long id) &#123;</span><br><span class="line">		this.id = id;</span><br><span class="line">	&#125;</span><br><span class="line">	public String getName() &#123;</span><br><span class="line">		return name;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setName(String name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	public String getContent() &#123;</span><br><span class="line">		return content;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setContent(String content) &#123;</span><br><span class="line">		this.content = content;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-3建立索引库并向索引库写内容"><a href="#4-3建立索引库并向索引库写内容" class="headerlink" title="4.3建立索引库并向索引库写内容"></a>4.3建立索引库并向索引库写内容</h3><p><br></p>
+<center><img src="/img/imgs/taotao/Lucene/addDirectory.png" alt="建立索引"></center><br><center>向索引库中添加索引</center>
+
+<p><strong>分析：</strong><br>写入索引库使用的类：indexWriter<br>创建IndexWriter构造函数需要三个参数：索引库，分词器，存储的最大长度</p>
+<p>//索引库  需要指定索引库的位置<br>Directory directory = FSDirectory.open(new File(“./indexDir”));//存在当前路径下的indexDir文件下<br>//分词器   需要指定一个分词器版本<br>Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_30);</p>
+<p>得到了indexWriter对象——-&gt;indexWriter需要向索引库写的是什么呢？——–&gt;写的是document对象——–&gt;ducument对象里面存储的是什么？———-&gt;filed对象<br>filed对象有四个参数：<br>1）放在索引库中的name名称<br>2）放在索引库中的value<br>3）是否存储在索引库中（针对内容库）<br>4）是否添加在目录中（针对目录库）</p>
+<p>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">	 * 1、创建一个article对象</span><br><span class="line">	 * 2、把article对象转化成document对象</span><br><span class="line">	 * 3、创建一个IndexWriter对象</span><br><span class="line">	 * 4、把document对象加入到索引库中</span><br><span class="line">	 */</span><br><span class="line">	@Test</span><br><span class="line">	public void createIndex() throws Exception&#123;</span><br><span class="line">		//1.创建IndexWriter对象,参数需要：索引库，分分词器，存储的最大长度</span><br><span class="line">		//索引库</span><br><span class="line">		Directory directory = FSDirectory.open(new File(&quot;./indexDir&quot;));</span><br><span class="line">		//分词器</span><br><span class="line">		Analyzer analyzer=new StandardAnalyzer(Version.LUCENE_30);</span><br><span class="line">		/**</span><br><span class="line">		 * directory指向了索引库的路径  &quot;./indexDir&quot;</span><br><span class="line">		 * analyzer 分词器  把title,content的内容分词后的内容放入到目录中</span><br><span class="line">		 * MaxFieldLength 限制每一个字段往索引库中存放的大小</span><br><span class="line">		 */</span><br><span class="line">		IndexWriter indexWriter = new IndexWriter(directory, analyzer, MaxFieldLength.LIMITED);</span><br><span class="line">		//2.准备需要存储的内容</span><br><span class="line">		article article = new article();</span><br><span class="line">		article.setId(1L);</span><br><span class="line">		article.setName(&quot;lucene可以做搜索引擎&quot;);</span><br><span class="line">		article.setContent(&quot;baidu,google可以快速查询用户所需的内容&quot;);</span><br><span class="line">		//3.准备document对象</span><br><span class="line">		Document document = new Document();</span><br><span class="line">		//4.添加内容</span><br><span class="line">		/**</span><br><span class="line">		 * 第一个参数</span><br><span class="line">		 *    放入到索引库中的name的名称&quot;id&quot;</span><br><span class="line">		 * 第二个参数</span><br><span class="line">		 *    放入到索引库中的value：id的值</span><br><span class="line">		 * 第三个参数</span><br><span class="line">		 *    Store</span><br><span class="line">		 *       YES  该字段向内容库中存储</span><br><span class="line">		 *       no   该字段不向内容库中存储</span><br><span class="line">		 * 第四个字段</span><br><span class="line">		 *    Index</span><br><span class="line">		 *       no   不向目录库中存储</span><br><span class="line">		 *       NOT_ANALYZED  存储，但是不分词</span><br><span class="line">		 *       ANALYZED      存储，分词</span><br><span class="line">		 */</span><br><span class="line">		document.add(new Field(&quot;id&quot;, article.getId().toString(), Store.YES, Index.ANALYZED));</span><br><span class="line">		document.add(new Field(&quot;title&quot;, article.getName(), Store.YES, Index.ANALYZED));</span><br><span class="line">		document.add(new Field(&quot;content&quot;, article.getContent().toString(), Store.YES, Index.ANALYZED));</span><br><span class="line">		//indexwriter调用写方法写</span><br><span class="line">		indexWriter.optimize();</span><br><span class="line">		indexWriter.addDocument(document);</span><br><span class="line">		indexWriter.close();</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+<center><img src="/img/imgs/taotao/Lucene/writeInDirecrory.png" alt="添加内容"></center><br><center>向索引库中添加内容</center>
+
+<h3 id="4-4向索引库中查找内容"><a href="#4-4向索引库中查找内容" class="headerlink" title="4.4向索引库中查找内容"></a>4.4向索引库中查找内容</h3><p><strong>分析：</strong></p>
+<ol>
+<li>查找数据需要IndexSearch类<br>1）<strong>类的初始化</strong><br>IndexSearcher indexSearcher = new IndexSearcher(directory);<br>创建参数需要传入一个索引库（你得告诉别人从哪个库找）<br>2）<strong>查找的方法</strong><br>TopDocs topDocs = indexSearch.search(Query,N),返回一个TopDocs<br><strong>形参的代表的意思：</strong><br><font color="red">Query对象：</font><br>QueryParser queryParser = new QueryParser(Version.LUCENE_30, “title”, analyzer);<br>Query query = queryParser.parse(“lucene”);             <ul>
+<li>参数一：需要一个版本号</li>
+<li>参数二：表示在那个字段进行检索，字段就是上述filed对象的key值</li>
+<li>参数三：分词器，因为还需要对输入的查询信息进行分词<br>queryParser.parse(“lucene”);    表示对那些内容进行查找<br>N:表示查找n条记录<br><strong>返回值TopDocs:</strong></li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>可以把TopDocs这样理解，它就是根据关键词检索出来的  目录记录，后面根据这个目录记录去找对应的内容库中的document（关于目录库和内容库看图）<br>int count = topDocs.totalHits;  // 根据关键词计算出来的总的记录数</p>
+</blockquote>
+<p>现在如何从TopDocs获取到我们想要的内容呢？<br>搜索的过程为：<br>先根据内容在目录库内找到索引值，再根据索引值到内容库里面找，找到对应的document<br>如何获取document呢？<br>ScoreDoc[] scoreDocs = topDocs.scoreDocs;<br>Document document = indexSearcher.doc(scoreDoc.doc);<br>scoreDoc.doc  根据关键词找到的索引<br>得到的就是索引库目录中的索引值，根据这个值去内容库中找内容</p>
+<p><center><img src="/img/imgs/taotao/Lucene/searchInDirectory.png" alt="搜索内容"></center></p>
+<p><center>向索引库中搜索内容</center><br>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">	public void searchIndex() throws Exception&#123;</span><br><span class="line">		//1.创建一个IndexSearch对象   需要一个索引库</span><br><span class="line">		//索引库</span><br><span class="line">		Directory directory = FSDirectory.open(new File(&quot;./indexDir&quot;));</span><br><span class="line">		IndexSearcher indexSearcher = new IndexSearcher(directory);</span><br><span class="line">		//2.创建一个Query对象   首先需要创建一个QueryParse对象</span><br><span class="line">		//分词器</span><br><span class="line">		Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_30);</span><br><span class="line">		QueryParser queryParser = new QueryParser(Version.LUCENE_30, &quot;title&quot;, analyzer);</span><br><span class="line">		/*</span><br><span class="line">		 * 第一个参数</span><br><span class="line">		 *     版本号</span><br><span class="line">		 * 第二个参数</span><br><span class="line">		 *     在哪个字段中进行检索    字段对应前面filed的key有几个</span><br><span class="line">		 * 第三个参数</span><br><span class="line">		 *     为分词器，在调用queryParser的parse方法的时候，需要对查询参数再次进行分词</span><br><span class="line">		 */</span><br><span class="line">		Query query = queryParser.parse(&quot;lucene&quot;);</span><br><span class="line"></span><br><span class="line">		//3.执行搜索</span><br><span class="line">		TopDocs topDocs = indexSearcher.search(query, 2);</span><br><span class="line">		/*</span><br><span class="line">		*可以把TopDocs这样理解，它就是根据关键词检索出来的  目录记录，后面根据这个目录记录去找对应的内容库中的document</span><br><span class="line">		*/</span><br><span class="line">		int count = topDocs.totalHits;  // 根据关键词计算出来的总的记录数</span><br><span class="line">		/**</span><br><span class="line">		 * query参数</span><br><span class="line">		 *     包含了一个分词器</span><br><span class="line">		 *     包含了一个关键词</span><br><span class="line">		 * n 查找前n条记录</span><br><span class="line">		 * TopDocs==Top Documents  前一些Documents</span><br><span class="line">		 */</span><br><span class="line">		//4.得到document对象</span><br><span class="line">		ScoreDoc[] scoreDocs = topDocs.scoreDocs;</span><br><span class="line"></span><br><span class="line">		ArrayList&lt;article&gt; articles = new ArrayList&lt;article&gt;();</span><br><span class="line">		for (ScoreDoc scoreDoc : scoreDocs) &#123;</span><br><span class="line">			//Document document = new Document();</span><br><span class="line">			int doc = scoreDoc.doc;</span><br><span class="line">			//scoreDoc.doc  根据关键词找到的索引     得到的就是索引库目录中的索引值，根据这个值去内容库中找内容</span><br><span class="line">			Document document = indexSearcher.doc(doc);</span><br><span class="line">			article article = new article();</span><br><span class="line">			//Document转化成article的过程</span><br><span class="line">			article.setId(Long.parseLong(document.get(&quot;id&quot;)));</span><br><span class="line">			article.setName(document.get(&quot;title&quot;));</span><br><span class="line">			article.setContent(document.get(&quot;content&quot;));</span><br><span class="line">			articles.add(article);</span><br><span class="line">		&#125;</span><br><span class="line">		for (article aa : articles) &#123;</span><br><span class="line">			System.out.println(aa.getId());</span><br><span class="line">			System.out.println(aa.getName());</span><br><span class="line">			System.out.println(aa.getContent());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+<p>总结步骤：<br>1)    <strong>创建IndexSearch</strong><br>IndexSearcher indexSearcher = new IndexSearcher(directory);<br>//索引库<br>Directory directory = FSDirectory.open(new File(“./indexDir”));<br>//分词器<br>Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_30);<br>2)    <strong>创建Query对象</strong><br>QueryParser queryParser = new QueryParser(Version.LUCENE_30, “title”, analyzer);</p>
+<pre><code>     第一个参数
+         版本号
+     第二个参数
+         在哪个字段中进行检索    字段对应前面filed的key有几个
+     第三个参数
+         为分词器，在调用queryParser的parse方法的时候，需要对查询参数再次进行分词
+
+Query query = queryParser.parse(&quot;lucene&quot;);
+</code></pre><p>3)    <strong>进行搜索</strong><br>TopDocs topDocs = indexSearcher.search(query, 2);<strong>2表示返回的记录条数</strong><br>4)    获得总结果数和前N行记录ID列表<br>int count = topDocs.totalHits;  // 根据关键词计算出来的总的记录数<br>5)    根据目录ID列表把Document转为为pojo并放入集合中。<br>ScoreDoc[] scoreDocs = topDocs.scoreDocs;<br>int doc = scoreDocs[i].doc;<br>Document document = indexSearcher.doc(doc);<br><strong>说明：</strong><br>这个时候 indexSearcher.doc(doc)根据关键词找到的索引     得到的就是索引库目录中的索引值，根据这个值去内容库中找内容<br>6)    循环出要检索的内容<br>document.get(“id”)<br>document.get(“title”)<br>document.get(“content”)</p>
+<h2 id="5-封装重复代码"><a href="#5-封装重复代码" class="headerlink" title="5.封装重复代码"></a>5.封装重复代码</h2><blockquote>
+<p>上述操作其实有许多重复代码，如索引库的创建，分析器的创建，pojo与Document对象之间的转换等都可以提取出公共的代码块，提取工具类。</p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/06/20/taotao/taotao商城之添加商品/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">后台添加商品</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="taotao/Lucene-认识篇" data-title="Lucene就是这么简单-认识篇" data-url="http://SlectRxz.github.io/2019/08/04/taotao/Lucene-认识篇/"  data-images="img/1.jpg" data-content="Lucene就是这么简单-认识篇">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 Rong
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>
