@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>cookie与session说不清的纠缠 | 荣先森</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="关于session与cookie的区别与联系。">
+<meta name="keywords" content="Java基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cookie与session说不清的纠缠">
+<meta property="og:url" content="http://SlectRxz.github.io/2019/08/15/java基础/session与cookie/index.html">
+<meta property="og:site_name" content="荣先森">
+<meta property="og:description" content="关于session与cookie的区别与联系。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://slectrxz.github.io/img/imgs/coder/aotoLogin/2.png">
+<meta property="og:updated_time" content="2019-08-16T02:06:33.485Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="cookie与session说不清的纠缠">
+<meta name="twitter:description" content="关于session与cookie的区别与联系。">
+<meta name="twitter:image" content="http://slectrxz.github.io/img/imgs/coder/aotoLogin/2.png">
+  
+    <link rel="alternative" href="/atom.xml" title="荣先森" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="img/1.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+      <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("bpxE8dkqS0IAdFxTbcqm4IiX-gzGzoHsz", "VRnKkxnTxbDSQtPbl1TiWyLw");</script>
+<script src="/js/Counter.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="img/1.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Rong</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/SlectRxz" title="github">github</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/rselect/activities" title="zhihu">zhihu</a>
+					        
+								<a class="qq" target="_blank" href="/2215857051" title="qq">qq</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Java基础/" style="font-size: 10px;">Java基础</a> <a href="/tags/blog记录/" style="font-size: 10px;">blog记录</a> <a href="/tags/javaWeb基础/" style="font-size: 15px;">javaWeb基础</a> <a href="/tags/javaWeb实战/" style="font-size: 12.5px;">javaWeb实战</a> <a href="/tags/学习/" style="font-size: 17.5px;">学习</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/框架学习/" style="font-size: 20px;">框架学习</a> <a href="/tags/注解开发/" style="font-size: 10px;">注解开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+		<div style="position:absolute;bottom:170px;opacity:0.6">
+		<object type="application/x-shockwave-flash" style="outline:none;" data="http://cdn.abowman.com/widgets/treefrog/treefrog.swf?up_bodyColor=84BF84&up_pattern=1&up_flyColor=F0E80C&up_tongueColor=2BA029&up_patternColor=CFBCBC&up_releaseFly=0&up_frogName=Tree Frog&up_backgroundImage=http://&up_bellySize=.5&up_footColor=2BA029&up_eyeColor=2BA029&up_backgroundColor=261109&" width="250" height="150"><param name="movie" value="http://cdn.abowman.com/widgets/treefrog/treefrog.swf?up_bodyColor=84BF84&up_pattern=1&up_flyColor=F0E80C&up_tongueColor=2BA029&up_patternColor=CFBCBC&up_releaseFly=0&up_frogName=Tree Frog&up_backgroundImage=http://&up_bellySize=.5&up_footColor=2BA029&up_eyeColor=2BA029&up_backgroundColor=261109&"></param><param name="AllowScriptAccess" value="always"></param><param name="wmode" value="opaque"></param><param name="scale" value="noscale"/><param name="salign" value="tl"/></object>
+		</div>
+		<div style="position:absolute;bottom:80px;left:auto;width:60%;opacity:0.6">
+		<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=250 height=86 src="//music.163.com/outchain/player?type=2&id=543681750&auto=0&height=66"></iframe>
+		</div>
+		
+	
+		
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Rong</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="img/1.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Rong</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/SlectRxz" title="github">github</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/rselect/activities" title="zhihu">zhihu</a>
+			        
+						<a class="qq" target="_blank" href="/2215857051" title="qq">qq</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-java基础/session与cookie" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/08/15/java基础/session与cookie/" class="article-date">
+  	<time datetime="2019-08-14T16:00:00.000Z" itemprop="datePublished">2019-08-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      cookie与session说不清的纠缠
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java基础/">Java基础</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/JavaWeb/">JavaWeb</a>
+	</div>
+
+
+        
+          
+<div class="counter-tag counter">
+    <span id="/2019/08/15/java基础/session与cookie/" class="leancloud_visitors post-title-link"
+          style="font-size: 12px" data-flag-title="cookie与session说不清的纠缠">
+         &nbsp;
+        view
+    </span>
+</div>
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>关于session与cookie的区别与联系。<br><a id="more"></a></p>
+<blockquote>
+<p>最近看到了一篇<a href="https://juejin.im/post/5cdd42f9518825693f1ebf8d" target="_blank" rel="noopener">什么是单点登录（SSO）</a>的文章，主要是讲述多个系统之间如何共享用户的登录状态，使之不需要重复登录。其中看见了自动登录，用到了session和cookie，查阅资料后，顺便把以前所学习的内容进行一次总结。</p>
+</blockquote>
+<p>首先从代码使用上对cookie和session进行介绍：</p>
+<hr>
+
+<p><font size="6">cookie:</font><br>什么是cookie：cookie是保存在浏览器的一小块数据（一般浏览器保存cookie的个数的有上限的），它会在浏览器下次向同一服务器再发起请求时被携带并发送到服务器上。 下面首先说cookie的原理及使用：</p>
+<p><strong>核心API</strong><br>1）构造Cookie对象<br>new Cookie(java.lang.String name, java.lang.String value)<br>2）设置cookie<br>void setPath(java.lang.String uri)   ：设置cookie的有效访问路径<br>void setMaxAge(int expiry) ： 设置cookie的有效时间<br>void setValue(java.lang.String newValue) ：设置cookie的值<br>3）发送cookie到浏览器端保存<br>void response.addCookie(Cookie cookie)  : 发送cookie<br>4）服务器接收cookie<br>Cookie[] request.getCookies()  : 接收cookie<br><strong>Cookie原理</strong></p>
+<p>1）服务器创建cookie对象，把会话数据存储到cookie对象中。<br>          new Cookie(“name”,”value”);<br>2）    服务器发送cookie信息到浏览器<br>          response.addCookie(cookie);<br>  <font color="red">举例： set-cookie: name=eric  (隐藏发送了一个set-cookie名称的响应头)</font><br>3）浏览器得到服务器发送的cookie，然后保存在浏览器端。<br>4）浏览器在下次访问服务器时，会带着cookie信息<br>    <font color="red">  举例： cookie: name=eric  (隐藏带着一个叫cookie名称的请求头)</font><br>5）服务器接收到浏览器带来的cookie信息<br>    request.getCookies();<br><strong>Cookie细节</strong></p>
+<pre><code>1）void setPath(java.lang.String uri)   ：设置cookie的有效访问路径。有效路径指的是cookie的有效路径保存在哪里，那么浏览器在有效路径下访问服务器时就会带着cookie信息，否则不带cookie信息。
+2）void setMaxAge(int expiry) ： 设置cookie的有效时间。
+    正整数：表示cookie数据保存浏览器的缓存目录（硬盘中），数值表示保存的时间。
+    负整数：表示cookie数据保存浏览器的内存中。浏览器关闭cookie就丢失了！！
+    零：表示删除同名的cookie数据  （在同一个路径下面）
+3）Cookie数据类型只能保存非中文字符串类型的。可以保存多个cookie，但是浏览器一般只允许存放300个Cookie，每个站点最多存放20个Cookie，每个Cookie的大小限制为4KB。
+</code></pre><hr>
+
+<p><font size="6">session:</font><br>session：session代表服务器与客户端的一次会话的过程。session对象存储用户指定的配置信息（存储在服务器端），这样在程序未结束前将会一直存在。当用户关闭会话或session超时而销毁。<br><strong>核心API</strong><br>  1）创建或得到session对象<br>                HttpSession getSession()<br>                HttpSession getSession(boolean create)<br>    2）设置session对象<br>                void setMaxInactiveInterval(int interval)  ： 设置session的有效时间<br>                void invalidate()     ： 销毁session对象<br>                java.lang.String getId()  ： 得到session编号<br>    3）保存会话数据到session对象<br>                void setAttribute(java.lang.String name, java.lang.Object value)  ： 保存数据<br>                java.lang.Object getAttribute(java.lang.String name)  ： 获取数据<br>                void removeAttribute(java.lang.String name) ： 清除数据<br><strong>session细节</strong><br>1）java.lang.String getId()  ： 得到session编号<br>2）两个getSession方法：<br>  getSession(true) / getSession()  : 创建或得到session对象。没有匹配的session编号，自动创建新的session对象。<br>  getSession(false):              得到session对象。没有匹配的session编号，返回null<br>3）void setMaxInactiveInterval(int interval)  ： 设置session的有效时间<br>    <font color="red">  session对象销毁时间：</font><br>            3.1 默认情况30分服务器自动回收<br>            3.2 修改session回收时间<br>            3.3 全局修改session有效时间</p>
+<hr>
+
+<p>以上API方便快速开发时查询，下面对session和cookie的原理进行深度了解。（在查阅资料和查询dalao的博客总结）<br><strong>问题一：cookie与session的异同</strong></p>
+<ul>
+<li>作用范围不同，Cookie 保存在客户端（浏览器），Session 保存在服务器端。</li>
+<li>存取方式的不同，Cookie 只能保存 字符串（以key-value形式），Session 可以存任意数据类型，一般情况下我们可以在 Session 中存储对象。</li>
+<li>有效期不同，Cookie 可设置为长时间保持，比如我们经常使用的默认登录功能，Session 一般失效时间较短，客户端关闭或者 Session 超时都会失效。</li>
+<li>隐私策略不同，Cookie 存储在客户端，比较容易遭到不法获取，早期有人将用户的登录名和密码存储在 Cookie 中导致信息被窃取；Session 存储在服务端，安全性相对 Cookie 要好一些。</li>
+<li>存储大小不同， 单个 Cookie 保存的数据不能超过 4K，Session 可存储数据远高于 Cookie。</li>
+</ul>
+<p><strong>问题二：下面引入为什么需要Cookie：</strong></p>
+<blockquote>
+<p>为什么需要引入cookie呢？由于浏览器与服务器交互是无状态的（HTTP协议无状态），这就意味着浏览器并不知道我是在和张三还是李四打交道，这时候需要一套标准来表示此次会话的谁和谁而这套标准就将cookie和session(下面介绍)的配合。</p>
+</blockquote>
+<p><strong>那么我们进一步思考，session与cookie是如何配合的呢？</strong></p>
+<center><br><img src="/img/imgs/coder/aotoLogin/2.png" alt="session原理"><br><br><font size="1">图片来自网络，侵删</font><br></center>
+
+<p>用户第一次请求服务器时，服务器创建session，响应客户端，将SessionID（session的唯一标识）返回浏览器。浏览器接收SessionID后，将此信息存储与cookie中。同时cookie记录sessionID属于哪个域名。<br>用户第二次请求服务器时，客户端请求是带着cookie去的，而服务器端从cookie中获取sessionID，查找对应的session信息，这样就可以达到效果—服务器端是在和谁打交道。</p>
+<p>下面咱们从代码的角度去解读session</p>
+<p><font color="red" size="5">HttpSession session=request.getSession()</font></p>
+<ul>
+<li>1 第一次访问创建session对象，给session对象分配一个唯一的ID，叫做JSESSIONID。<br>  new HttpSession()</li>
+<li>2 把JSESSIONID作为cookie的值发送给浏览器。<br>  Cookie cookie=new Cookie(“JSESSIONID”,sessionID)；<br>  response.addCookie(cookie);</li>
+<li>3 当客户端第二次访问服务端时，浏览器带着名字为JSESSIONID的cookie访问浏览器。</li>
+<li>4 服务器根据key为JSESSIONID找到对应的sessionID的值，在服务器内搜索是否存在放对应编号的session对象。<br>  if(找到){<pre><code>return map.get(sessionID);
+</code></pre>  }<br>猜想：底层可能是一个Map&lt;String,HttpSession&gt;存储的。</li>
+<li>5 如果找到对应的session对象，直接返回该对象。</li>
+<li>6 如果找不到对应编号的session对象，则重新创建一个新的session对象（从流程1开始）。<br><strong>注:</strong> JSESSIONID与sessionID的关系是，JSESSIONID是sessionID存放在cookie中的名字（cookie中的key值）<br><strong>结论：通过Cookie的值在服务器中找session对象。</strong></li>
+</ul>
+<p><strong>问题三：如何解决session共享呢？</strong><br>在单系统下session可以在各个业务层获取到，但是在分布式系统下，往往将业务进行水平分割，也许登录功能单独作为一个系统，前端页面显示作为一个系统，广告页又单独作为一个系统等等。那么多系统下就需要解决session共享的问题。<br>下面总结一下dalao的解决办法：</p>
+<ul>
+<li>Session 复制，任何一个服务器上的 Session 发生改变（增删改），该节点会把这个 Session 的所有内容序列化，然后广播给所有其它节点。</li>
+<li>共享 Session，服务端无状态话，将用户的 Session 等信息使用缓存中间件来统一管理，保障分发到每一个服务器的响应结果都一致。</li>
+<li>把session数据放在redis中（使用redis模仿session）</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/11/代码总结/链表反转/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">链表反转</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="java基础/session与cookie" data-title="cookie与session说不清的纠缠" data-url="http://SlectRxz.github.io/2019/08/15/java基础/session与cookie/"  data-images="img/1.jpg" data-content="cookie与session说不清的纠缠">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 Rong
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>
