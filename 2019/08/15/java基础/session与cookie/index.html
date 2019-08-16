@@ -18,7 +18,7 @@
 <meta property="og:description" content="关于session与cookie的区别与联系。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://slectrxz.github.io/img/imgs/coder/aotoLogin/2.png">
-<meta property="og:updated_time" content="2019-08-16T02:35:28.068Z">
+<meta property="og:updated_time" content="2019-08-16T02:38:38.316Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cookie与session说不清的纠缠">
 <meta name="twitter:description" content="关于session与cookie的区别与联系。">
@@ -253,15 +253,15 @@
 <p>首先从代码使用上对cookie和session进行介绍：</p>
 <hr>
 
-<font size="6">cookie:</font><br>什么是cookie：cookie是保存在浏览器的一小块数据（一般浏览器保存cookie的个数的有上限的），它会在浏览器下次向同一服务器再发起请求时被携带并发送到服务器上。 下面首先说cookie的原理及使用：<br><br><strong>核心API</strong><br><br>- 1）构造Cookie对象<br>new Cookie(java.lang.String name, java.lang.String value)<br><br>- 2）设置cookie<br>void setPath(java.lang.String uri)   ：设置cookie的有效访问路径<br>void setMaxAge(int expiry) ： 设置cookie的有效时间<br>void setValue(java.lang.String newValue) ：设置cookie的值<br><br>- 3）发送cookie到浏览器端保存<br>void response.addCookie(Cookie cookie)  : 发送cookie<br><br>- 4）服务器接收cookie<br>Cookie[] request.getCookies()  : 接收cookie<br><br><strong>Cookie原理</strong><br><br>- 1）服务器创建cookie对象，把会话数据存储到cookie对象中。<br>          new Cookie(“name”,”value”);<br><br>- 2）    服务器发送cookie信息到浏览器<br>          response.addCookie(cookie);<br>  <font color="red">举例： set-cookie: name=eric  (隐藏发送了一个set-cookie名称的响应头)</font>
+<font size="6">cookie:</font><br>什么是cookie：cookie是保存在浏览器的一小块数据（一般浏览器保存cookie的个数的有上限的），它会在浏览器下次向同一服务器再发起请求时被携带并发送到服务器上。 下面首先说cookie的原理及使用：<br><br><strong>核心API</strong><br><br> - 1）构造Cookie对象<br>new Cookie(java.lang.String name, java.lang.String value)<br><br> - 2）设置cookie<br>void setPath(java.lang.String uri)   ：设置cookie的有效访问路径<br>void setMaxAge(int expiry) ： 设置cookie的有效时间<br>void setValue(java.lang.String newValue) ：设置cookie的值<br><br> - 3）发送cookie到浏览器端保存<br>void response.addCookie(Cookie cookie)  : 发送cookie<br><br> - 4）服务器接收cookie<br>Cookie[] request.getCookies()  : 接收cookie<br><br><strong>Cookie原理</strong><br><br> - 1）服务器创建cookie对象，把会话数据存储到cookie对象中。<br>          new Cookie(“name”,”value”);<br><br> - 2）    服务器发送cookie信息到浏览器<br>          response.addCookie(cookie);<br>  <font color="red">举例： set-cookie: name=eric  (隐藏发送了一个set-cookie名称的响应头)</font>
 
 <ul>
 <li><p>3）浏览器得到服务器发送的cookie，然后保存在浏览器端。</p>
 </li>
 <li><p>4）浏览器在下次访问服务器时，会带着cookie信息</p>
-  <font color="red">  举例： cookie: name=eric  (隐藏带着一个叫cookie名称的请求头)</font>
+ <font color="red">  举例： cookie: name=eric  (隐藏带着一个叫cookie名称的请求头)</font>
 </li>
-<li><p>5）服务器接收到浏览器带来的cookie信息<br>  request.getCookies();</p>
+<li><p>5）服务器接收到浏览器带来的cookie信息<br> request.getCookies();</p>
 </li>
 </ul>
 <p><strong>Cookie细节</strong></p>
@@ -280,20 +280,12 @@
 <p>session：session代表服务器与客户端的一次会话的过程。session对象存储用户指定的配置信息（存储在服务器端），这样在程序未结束前将会一直存在。当用户关闭会话或session超时而销毁。</p>
 <p><strong>核心API</strong></p>
 <ul>
-<li><p>1）创建或得到session对象</p>
-<pre><code>HttpSession getSession()  
-HttpSession getSession(boolean create)  
-</code></pre></li>
-<li><p>2）设置session对象</p>
-<pre><code>void setMaxInactiveInterval(int interval)  ： 设置session的有效时间
-void invalidate()     ： 销毁session对象
-java.lang.String getId()  ： 得到session编号
-</code></pre></li>
-<li><p>3）保存会话数据到session对象</p>
-<pre><code>void setAttribute(java.lang.String name, java.lang.Object value)  ： 保存数据
-java.lang.Object getAttribute(java.lang.String name)  ： 获取数据
-void removeAttribute(java.lang.String name) ： 清除数据
-</code></pre></li>
+<li><p>1）创建或得到session对象<br>  HttpSession getSession()<br>  HttpSession getSession(boolean create)  </p>
+</li>
+<li><p>2）设置session对象<br>  void setMaxInactiveInterval(int interval)  ： 设置session的有效时间<br>  void invalidate()     ： 销毁session对象<br>  java.lang.String getId()  ： 得到session编号</p>
+</li>
+<li><p>3）保存会话数据到session对象<br>  void setAttribute(java.lang.String name, java.lang.Object value)  ： 保存数据<br>  java.lang.Object getAttribute(java.lang.String name)  ： 获取数据<br>  void removeAttribute(java.lang.String name) ： 清除数据</p>
+</li>
 </ul>
 <p><strong>session细节</strong></p>
 <ul>
