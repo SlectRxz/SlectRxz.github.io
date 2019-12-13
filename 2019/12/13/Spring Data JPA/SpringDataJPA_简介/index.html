@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Spring Data JPA简介 | 荣先森</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="对SpringDataJPA的入门介绍，包括ORM的概述以及对JPA和hibernate的简介，搭建JPA的入门案例、增删查改、复杂查询等操作。">
+<meta name="keywords" content="Java框架">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Data JPA简介">
+<meta property="og:url" content="http://SlectRxz.github.io/2019/12/13/Spring Data JPA/SpringDataJPA_简介/index.html">
+<meta property="og:site_name" content="荣先森">
+<meta property="og:description" content="对SpringDataJPA的入门介绍，包括ORM的概述以及对JPA和hibernate的简介，搭建JPA的入门案例、增删查改、复杂查询等操作。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="f:/Blog/Hexo/CodeRong/themes/smackdown/source/img/imgs/springdatajpa/简介01.png">
+<meta property="og:image" content="f:/Blog/Hexo/CodeRong/themes/smackdown/source/img/imgs/springdatajpa/简介02.png">
+<meta property="og:updated_time" content="2019-12-13T13:12:46.589Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring Data JPA简介">
+<meta name="twitter:description" content="对SpringDataJPA的入门介绍，包括ORM的概述以及对JPA和hibernate的简介，搭建JPA的入门案例、增删查改、复杂查询等操作。">
+<meta name="twitter:image" content="f:/Blog/Hexo/CodeRong/themes/smackdown/source/img/imgs/springdatajpa/简介01.png">
+  
+    <link rel="alternative" href="/atom.xml" title="荣先森" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="img/1.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+      <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("bpxE8dkqS0IAdFxTbcqm4IiX-gzGzoHsz", "VRnKkxnTxbDSQtPbl1TiWyLw");</script>
+<script src="/js/Counter.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="img/1.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Rong</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/SlectRxz" title="github">github</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/rselect/activities" title="zhihu">zhihu</a>
+					        
+								<a class="qq" target="_blank" href="/2215857051" title="qq">qq</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Java基础/" style="font-size: 12.5px;">Java基础</a> <a href="/tags/Java框架/" style="font-size: 10px;">Java框架</a> <a href="/tags/blog记录/" style="font-size: 10px;">blog记录</a> <a href="/tags/javaWeb基础/" style="font-size: 15px;">javaWeb基础</a> <a href="/tags/javaWeb实战/" style="font-size: 15px;">javaWeb实战</a> <a href="/tags/学习/" style="font-size: 17.5px;">学习</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/框架学习/" style="font-size: 20px;">框架学习</a> <a href="/tags/注解开发/" style="font-size: 10px;">注解开发</a> <a href="/tags/瞎扯/" style="font-size: 10px;">瞎扯</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+		<div style="position:absolute;bottom:170px;opacity:0.6">
+		<object type="application/x-shockwave-flash" style="outline:none;" data="http://cdn.abowman.com/widgets/treefrog/treefrog.swf?up_bodyColor=84BF84&up_pattern=1&up_flyColor=F0E80C&up_tongueColor=2BA029&up_patternColor=CFBCBC&up_releaseFly=0&up_frogName=Tree Frog&up_backgroundImage=http://&up_bellySize=.5&up_footColor=2BA029&up_eyeColor=2BA029&up_backgroundColor=261109&" width="250" height="150"><param name="movie" value="http://cdn.abowman.com/widgets/treefrog/treefrog.swf?up_bodyColor=84BF84&up_pattern=1&up_flyColor=F0E80C&up_tongueColor=2BA029&up_patternColor=CFBCBC&up_releaseFly=0&up_frogName=Tree Frog&up_backgroundImage=http://&up_bellySize=.5&up_footColor=2BA029&up_eyeColor=2BA029&up_backgroundColor=261109&"></param><param name="AllowScriptAccess" value="always"></param><param name="wmode" value="opaque"></param><param name="scale" value="noscale"/><param name="salign" value="tl"/></object>
+		</div>
+		<div style="position:absolute;bottom:80px;left:auto;width:60%;opacity:0.6">
+		<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=250 height=86 src="//music.163.com/outchain/player?type=2&id=543681750&auto=0&height=66"></iframe>
+		</div>
+		
+	
+		
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Rong</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="img/1.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Rong</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/SlectRxz" title="github">github</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/rselect/activities" title="zhihu">zhihu</a>
+			        
+						<a class="qq" target="_blank" href="/2215857051" title="qq">qq</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Spring Data JPA/SpringDataJPA_简介" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/12/13/Spring Data JPA/SpringDataJPA_简介/" class="article-date">
+  	<time datetime="2019-12-12T16:00:00.000Z" itemprop="datePublished">2019-12-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Spring Data JPA简介
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java框架/">Java框架</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Spring-Data-JPA/">Spring Data JPA</a>
+	</div>
+
+
+        
+          
+<div class="counter-tag counter">
+    <span id="/2019/12/13/Spring Data JPA/SpringDataJPA_简介/" class="leancloud_visitors post-title-link"
+          style="font-size: 12px" data-flag-title="Spring Data JPA简介">
+         &nbsp;
+        view
+    </span>
+</div>
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>对SpringDataJPA的入门介绍，包括ORM的概述以及对JPA和hibernate的简介，搭建JPA的入门案例、增删查改、复杂查询等操作。<br><a id="more"></a></p>
+<p>[TOC]</p>
+<h2 id="ORM的概述"><a href="#ORM的概述" class="headerlink" title="ORM的概述"></a>ORM的概述</h2><blockquote>
+<p>ORM（Object-Relational Mapping）表示对象关系映射。基于面向对象的思想，将对象与关系型数据库进行映射。简单而言，ORM就是建立实体类和数据库表之间的关系，从而达到操作实体类就相当于操作数据库表的目的。</p>
+</blockquote>
+<p>主要目的：操作实体类就相当于操作数据库表</p>
+<ul>
+<li>建立两个映射关系：<ul>
+<li>实体类和表的映射关系</li>
+<li>实体类中属性和表中字段的映射关系<pre><code>不再重点关注：sql语句
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h2 id="JAP的概述"><a href="#JAP的概述" class="headerlink" title="JAP的概述"></a>JAP的概述</h2><p>常见的ORM框架有Mybatis(半自动)，Hibernate（全自动），JPA。</p>
+<p>JAP（Java Persistence API），即Java持久化API，由SUN公司退出的一套基于ORM的规范，内部由<font color="red">一系列的接口和抽象类组成</font>。</p>
+<p><strong>JPA的优势：</strong></p>
+<p><strong>1.</strong> <strong>标准化</strong></p>
+<p>  JPA 是 JCP 组织发布的 Java EE 标准之一，因此任何声称符合 JPA 标准的框架都遵循同样的架构，提供相同的访问API，这保证了基于JPA开发的企业应用能够经过少量的修改就能够在不同的JPA框架下运行。</p>
+<p> <strong>2.</strong> <strong>容器级特性的支持</strong></p>
+<p>  JPA框架中支持大数据集、事务、并发等容器级事务，这使得 JPA 超越了简单持久化框架的局限，在企业应用发挥更大的作用。</p>
+<p><strong>3.</strong> <strong>简单方便</strong></p>
+<p>  JPA的主要目标之一就是提供更加简单的编程模型：在JPA框架下创建实体和创建Java 类一样简单，没有任何的约束和限制，只需要使用 javax.persistence.Entity进行注释，JPA的框架和接口也都非常简单，没有太多特别的规则和设计模式的要求，开发者可以很容易的掌握。JPA基于非侵入式原则设计，因此可以很容易的和其它框架或者容器集成</p>
+<p> <strong>4.</strong> <strong>查询能力</strong></p>
+<p>  JPA的查询语言是面向对象而非面向数据库的，它以面向对象的自然语法构造查询语句，可以看成是Hibernate HQL的等价物。JPA定义了独特的JPQL（Java Persistence Query Language），JPQL是EJB QL的一种扩展，它是针对实体的一种查询语言，操作对象是实体，而不是关系数据库的表，而且能够支持批量更新和修改、JOIN、GROUP BY、HAVING 等通常只有 SQL 才能够提供的高级查询特性，甚至还能够支持子查询。</p>
+<p> <strong>5.</strong> <strong>高级特性</strong></p>
+<p> JPA 中能够支持面向对象的高级特性，如类之间的继承、多态和类之间的复杂关系，这样的支持能够让开发者最大限度的使用面向对象的模型设计企业应用，而不需要自行处理这些特性在关系数据库的持久化。</p>
+<h3 id="JAP与hibernate的关系"><a href="#JAP与hibernate的关系" class="headerlink" title="JAP与hibernate的关系"></a>JAP与hibernate的关系</h3><blockquote>
+<p>hibernate是一个开放源代码的对象关系映射框架，它对JDBC进行了非常轻量级的对象封装，它将POJO与数据库表建立映射关系，是一个全自动的orm框架，hibernate可以自动生成SQL语句，自动执行，使得Java程序员可以随心所欲的使用对象编程思维来操纵数据库。</p>
+</blockquote>
+<p>总之，hibernate的目的在于程序员忽略SQL语句，以执行对象的形式达到操作数据库表。</p>
+<p><img src="F:\Blog\Hexo\CodeRong\themes\smackdown\source\img\imgs\springdatajpa\简介01.png" alt="JPA与hibernate的关系"></p>
+<p>JPA和Hibernate的关系就像JDBC和JDBC驱动的关系，JPA是规范，Hibernate除了作为ORM框架之外，它也是一种JPA实现。JPA怎么取代Hibernate呢？JDBC规范可以驱动底层数据库吗？答案是否定的，<font color="red">也就是说，如果使用JPA规范进行数据库操作，底层需要hibernate作为其实现类完成数据持久化工作。（可以类比JDBC规范和各个数据库厂商来具体实现这两者的关系）</font></p>
+<h2 id="JPA入门案例的搭建"><a href="#JPA入门案例的搭建" class="headerlink" title="JPA入门案例的搭建"></a>JPA入门案例的搭建</h2><p>基于工程：Maven工程</p>
+<p>坐标：文章结尾处</p>
+<p>数据库表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/*创建客户表*/</span><br><span class="line">   CREATE TABLE cst_customer (</span><br><span class="line">     cust_id bigint(32) NOT NULL AUTO_INCREMENT COMMENT &apos;客户编号(主键)&apos;,</span><br><span class="line">     cust_name varchar(32) NOT NULL COMMENT &apos;客户名称(公司名称)&apos;,</span><br><span class="line">     cust_source varchar(32) DEFAULT NULL COMMENT &apos;客户信息来源&apos;,</span><br><span class="line">     cust_industry varchar(32) DEFAULT NULL COMMENT &apos;客户所属行业&apos;,</span><br><span class="line">     cust_level varchar(32) DEFAULT NULL COMMENT &apos;客户级别&apos;,</span><br><span class="line">     cust_address varchar(128) DEFAULT NULL COMMENT &apos;客户联系地址&apos;,</span><br><span class="line">     cust_phone varchar(64) DEFAULT NULL COMMENT &apos;客户联系电话&apos;,</span><br><span class="line">     PRIMARY KEY (`cust_id`)</span><br><span class="line">   ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;</span><br></pre></td></tr></table></figure>
+<p>实体类POJO：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Customer</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">	<span class="keyword">private</span> Long custId;</span><br><span class="line">	<span class="keyword">private</span> String custName;</span><br><span class="line">	<span class="keyword">private</span> String custSource;</span><br><span class="line">	<span class="keyword">private</span> String custIndustry;</span><br><span class="line">	<span class="keyword">private</span> String custLevel;</span><br><span class="line">	<span class="keyword">private</span> String custAddress;</span><br><span class="line">	<span class="keyword">private</span> String custPhone;</span><br><span class="line">	...get/set方法（略）</span><br></pre></td></tr></table></figure>
+<p>项目目录：</p>
+<p><img src="F:\Blog\Hexo\CodeRong\themes\smackdown\source\img\imgs\springdatajpa\简介02.png" alt="项目目录" style="zoom:67%;"></p>
+<p><strong>案例：对数据库中的客户表（增删查改）</strong></p>
+<ol>
+<li><p>创建maven工程，导入坐标</p>
+</li>
+<li><p>配置JPA的核心配置文件</p>
+<ul>
+<li>位置：配置到类路径下的一个叫做META-INF的文件夹下</li>
+<li>命名：persistent.xml</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">persistence</span> <span class="attr">xmlns</span>=<span class="string">"http://java.sun.com/xml/ns/persistence"</span> <span class="attr">version</span>=<span class="string">"2.0"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    持久化单元</span></span><br><span class="line"><span class="comment">        name：持久化单元名称  可以自定义</span></span><br><span class="line"><span class="comment">        transaction-type：事务管理的方式</span></span><br><span class="line"><span class="comment">                        JTA:分布式事务管理（针对：不同的表分布在不同的数据库中）</span></span><br><span class="line"><span class="comment">                        RESOURCE_LOCAL：本地事务管理</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">persistence-unit</span> <span class="attr">name</span>=<span class="string">"myJpa"</span> <span class="attr">transaction-type</span>=<span class="string">"RESOURCE_LOCAL"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--1.jpa的实现方式--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">provider</span>&gt;</span>org.hibernate.jpa.HibernatePersistenceProvider<span class="tag">&lt;/<span class="name">provider</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 2.配置数据库信息</span></span><br><span class="line"><span class="comment">                  用户名，javax.persistence.jdbc.user</span></span><br><span class="line"><span class="comment">                  密码，  javax.persistence.jdbc.password</span></span><br><span class="line"><span class="comment">                  驱动，  javax.persistence.jdbc.driver</span></span><br><span class="line"><span class="comment">                  数据库地址   javax.persistence.jdbc.url</span></span><br><span class="line"><span class="comment">              --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"javax.persistence.jdbc.user"</span> <span class="attr">value</span>=<span class="string">"root"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"javax.persistence.jdbc.password"</span> <span class="attr">value</span>=<span class="string">"root"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"javax.persistence.jdbc.driver"</span> <span class="attr">value</span>=<span class="string">"com.mysql.jdbc.Driver"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"javax.persistence.jdbc.url"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql://localhost:3306/mybatis?characterEncoding=utf-8"</span>/&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--3.配置jpa实现（hibernate）的配置信息</span></span><br><span class="line"><span class="comment">                显示sql：hibernate.show_sql   false/true</span></span><br><span class="line"><span class="comment">                自动创建数据库表：hibernate.hbm2ddl.auto</span></span><br><span class="line"><span class="comment">                        create：程序运行时创建数据库表（如果表已存在，先删除再创建）</span></span><br><span class="line"><span class="comment">                        update：程序运行时创建（如果有表，不会创建表）</span></span><br><span class="line"><span class="comment">                        none：不会创建表</span></span><br><span class="line"><span class="comment">            --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.show_sql"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.hbm2ddl.auto"</span> <span class="attr">value</span>=<span class="string">"update"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">persistence-unit</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">persistence</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="3">
+<li><p>配置实体类与数据库表的映射关系</p>
+<p>我们需要配置：<br>   1).<strong>实体类与表的映射关系</strong>（此pojo与数据库中的那一张表关系映射）</p>
+<pre><code>@ Entity
+@ Table(name=&quot;cst_customer&quot;)name表示数据库中表的名称
+</code></pre><p>   2).<strong>实体类中属性与表中字段的映射关系</strong></p>
+<pre><code>@ Id声明主键的设置
+@ GeneratedValue配置主键是生成策略（自动增长）
+    strategy=
+              GenerationType.IDENTITY:自增  Mysql（底层数据库支持的自增长方式对id自增）
+              GenerationType.SEQUENCE：序列 Oracle（底层数据库必须支持序列）
+              GenerationType.TABLE：jpa提供的一种机制，通过一张数据库表的形式帮助我们完成自增
+              GenerationType.AUTO:有程序自动的帮助我们选择主键生成策略
+@ Column(name = &quot;cust_id&quot;)数据库中表中字段的名字
+</code></pre></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> ctgu.pojo;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.*;</span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Table</span>(name=<span class="string">"cst_customer"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Customer</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * @ Id声明主键的设置</span></span><br><span class="line"><span class="comment">     * @ GeneratedValue配置主键是生成策略（自动增长）</span></span><br><span class="line"><span class="comment">     *              GenerationType.IDENTITY</span></span><br><span class="line"><span class="comment">     * @ Column(name = "cust_id")数据库中表中字段的名字</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="meta">@GeneratedValue</span>(strategy = GenerationType.IDENTITY)</span><br><span class="line">    <span class="meta">@Column</span>(name = <span class="string">"cust_id"</span>)</span><br><span class="line">    <span class="keyword">private</span> Long custId;</span><br><span class="line">    <span class="meta">@Column</span>(name = <span class="string">"cust_name"</span>)</span><br><span class="line">    <span class="keyword">private</span> String custName;</span><br><span class="line">    <span class="meta">@Column</span>(name = <span class="string">"cust_source"</span>)</span><br><span class="line">    <span class="keyword">private</span> String custSource;</span><br><span class="line">    <span class="meta">@Column</span>(name = <span class="string">"cust_industry"</span>)</span><br><span class="line">    <span class="keyword">private</span> String custIndustry;</span><br><span class="line">    <span class="meta">@Column</span>(name = <span class="string">"cust_level"</span>)</span><br><span class="line">    <span class="keyword">private</span> String custLevel;</span><br><span class="line">    <span class="meta">@Column</span>(name = <span class="string">"cust_address"</span>)</span><br><span class="line">    <span class="keyword">private</span> String custAddress;</span><br><span class="line">    <span class="meta">@Column</span>(name = <span class="string">"cust_phone"</span>)</span><br><span class="line">    <span class="keyword">private</span> String custPhone;</span><br><span class="line">	...set/get方法(略)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><p>测试</p>
+<p> 操作：向数据库中添加一个用户。</p>
+<p> Jpa的操作步骤： </p>
+<ul>
+<li>1.加载配置文件创建工厂（实体管理器工厂）对象</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>2.通过实体管理类工厂获取实体管理器</p>
+<ul>
+<li>3.获取事务对象，开启事务（重要！）</li>
+<li>4.完成增删改查</li>
+<li>5.提交事务（如果抛出异常，回滚事务）</li>
+<li><p>6.释放资源</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">saveCustomer</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="comment">// 1.加载配置文件创建工厂（实体管理器工厂）对象   输入参数：持久化单元名称，在下xml中</span></span><br><span class="line">       EntityManagerFactory factory = Persistence.createEntityManagerFactory(<span class="string">"myJpa"</span>);</span><br><span class="line">       <span class="comment">//2.通过实体管理类工厂获取实体管理器</span></span><br><span class="line">       EntityManager manager = factory.createEntityManager();</span><br><span class="line">       <span class="comment">//3.获取事务对象，开启事务（重要！）</span></span><br><span class="line">       EntityTransaction transaction = manager.getTransaction();</span><br><span class="line">        <span class="comment">//开启事务</span></span><br><span class="line">       transaction.begin();</span><br><span class="line">       <span class="comment">//4.创建对象，完成保存操作</span></span><br><span class="line">       Customer customer = <span class="keyword">new</span> Customer();</span><br><span class="line">       customer.setCustName(<span class="string">"三峡大学"</span>);</span><br><span class="line">       customer.setCustIndustry(<span class="string">"大学"</span>);</span><br><span class="line">       manager.persist(customer);</span><br><span class="line">   <span class="comment">// 5.提交事务</span></span><br><span class="line">       transaction.commit();</span><br><span class="line">       <span class="comment">//6.释放资源</span></span><br><span class="line">       manager.close();</span><br><span class="line">       <span class="comment">//factory.close();</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>我们发现上述步骤中获取实体管理器是可以简化成工具类的。
+
+JpaUtils：
+
+ * 解决实体管理器工厂的浪费资源和耗时的问题
+ *          通过静态代码块的形式，当程序第一次访问此类时，创建一个公共管理器工厂对象
+ * 第一次访问getEntityManager（）方法时，首先会执行静态代码块创建一个factory对象，再创建一个EntityManager对象；
+ * 第二次访问时，由于静态代码块只会在创建时执行一次，直接返回EntityManager对象
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> ctgu.utils;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.EntityManager;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.EntityManagerFactory;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JpaUtils</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> EntityManagerFactory factory;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">         factory = Persistence.createEntityManagerFactory(<span class="string">"myJpa"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取EntityManager对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> EntityManager <span class="title">getEntityManager</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> factory.createEntityManager();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+## JPA中的API介绍
+
+上述已经实现了一个基本的保存用户的案例，下面对于JPA中的一些API进行简单的介绍：
+
+1. Persistence
+
+   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EntityManagerFactory factory = Persistence.createEntityManagerFactory(<span class="string">"myJpa"</span>);</span><br></pre></td></tr></table></figure>
+
+
+   主要是用于获取EntityManageFactory对象，通过调用该类的静态方法，形参为配置文件中持久化单元的名称。
+
+2. EntityManageFactory
+
+   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EntityManager manager = factory.createEntityManager();</span><br></pre></td></tr></table></figure>
+
+
+   EntityManageFactory接口主要用于创建EntityManage实例。
+
+3. EntityManage
+
+   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">manager.persist(customer);<span class="comment">//增</span></span><br><span class="line">manager.find(Customer.class, <span class="number">1L</span>);<span class="comment">//查（立即加载）</span></span><br><span class="line">manager.getReference(Customer.class, <span class="number">1L</span>);<span class="comment">//查（延迟加载）</span></span><br><span class="line">manager.remove(customer);<span class="comment">//删</span></span><br><span class="line">manager.merge(customer);<span class="comment">//改</span></span><br></pre></td></tr></table></figure>
+
+
+   EntityManager是完成持久化操作的核心对象。实体类作为普通 java对象，只有在调用 EntityManager将其持久化后才会变成持久化对象。EntityManager对象在一组实体类与底层数据源之间进行 O/R 映射的管理。它可以用来管理和更新 Entity Bean, 根椐主键查找 Entity Bean, 还可以通过JPQL语句查询实体。
+
+4. EntityTransaction
+
+   EntityTransaction是完成事务操作的核心对象，对于EntityTransaction在我们的java代码中承接的功能比较简单
+
+   begin：开启事务
+   commit：提交事务
+   rollback：回滚事务
+
+## JPA中的增删查改
+
+上述我们已经介绍了向数据库中添加数据，下面介绍JPA中的删除，修改，查询：
+</code></pre><p>  查询：<br>根据id查修客户<br>find()方法：</p>
+<ul>
+<li><p>参数一：class，查询数据的结果需要包装的实体类型的字节码</p>
+</li>
+<li><p>参数二：查询的主键的取值 getRefrence() 参数同上</p>
+</li>
+</ul>
+<p>区别：</p>
+<p>使用find查询：（立即加载）<br>      1.查询的对象就是当前对象本身<br>      2.在调用find方法的时候，就会发送sql语句查询数据库<br>使用getReference查询：（延迟加载）<br>      1.获取的对象是一个动态代理对象<br>      2.调用getReference方法不会立即发送sql语句查询数据库当需要调用查询结果对象的时候，才会发送查询的sql语句。什么时候调用，什么时候发送 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">findCustomer</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//1.获取实体器工厂，获取实体器管理对象</span></span><br><span class="line">        EntityManager manager = JpaUtils.getEntityManager();</span><br><span class="line">        <span class="comment">//2.获取事务对象</span></span><br><span class="line">        EntityTransaction transaction = manager.getTransaction();</span><br><span class="line">        <span class="comment">//开启事务</span></span><br><span class="line">        transaction.begin();</span><br><span class="line">        <span class="comment">//3.执行查询</span></span><br><span class="line">        Customer customer = manager.find(Customer.class, <span class="number">1L</span>);<span class="comment">//记住添加L，id是Long类型的</span></span><br><span class="line">        <span class="comment">//Customer customer = manager.getReference(Customer.class, 1L);</span></span><br><span class="line">        System.out.println(customer);</span><br><span class="line">        <span class="comment">//4.提交事务</span></span><br><span class="line">        transaction.commit();</span><br><span class="line">        manager.close();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>​    删除：</p>
+<p>​    删除操作：注意：删除不是直接传入一个id去删除，而是传入一个对象去完成删除操作。remove(Object)</p>
+<p>​    先find该用户，再执行查询。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteCustomer</span><span class="params">()</span></span>&#123;</span><br><span class="line">        EntityManager manager = JpaUtils.getEntityManager();</span><br><span class="line">        EntityTransaction transaction = manager.getTransaction();</span><br><span class="line">        transaction.begin();</span><br><span class="line">        Customer customer = manager.find(Customer.class, <span class="number">1L</span>);</span><br><span class="line">        manager.remove(customer);</span><br><span class="line">        transaction.commit();</span><br><span class="line">        manager.close();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>更改：</p>
+<p>先将对象查询出来，再调用merge(Object)方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateCustomer</span><span class="params">()</span></span>&#123;</span><br><span class="line">        EntityManager manager = JpaUtils.getEntityManager();</span><br><span class="line">        EntityTransaction transaction = manager.getTransaction();</span><br><span class="line">        transaction.begin();</span><br><span class="line">        Customer customer = manager.find(Customer.class, <span class="number">2L</span>);</span><br><span class="line">        customer.setCustPhone(<span class="string">"123456789"</span>);</span><br><span class="line">        manager.merge(customer);</span><br><span class="line">        transaction.commit();</span><br><span class="line">        manager.close();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="JPA中的复杂查询"><a href="#JPA中的复杂查询" class="headerlink" title="JPA中的复杂查询"></a>JPA中的复杂查询</h2><p>JPQL(Java Persistence Query Language).</p>
+<p>SQL:查询的是数据库中的表和表的字段。</p>
+<p>JPQL：查询的是实体类和类中的属性。</p>
+<blockquote>
+<p>基于首次在EJB2.0中引入的EJB查询语言(EJB QL),Java持久化查询语言(JPQL)是一种可移植的查询语言，旨在以面向对象表达式语言的表达式，将SQL语法和简单查询语义绑定在一起·使用这种语言编写的查询是可移植的，可以被编译成所有主流数据库服务器上的SQL。其特征与原生SQL语句类似，并且完全面向对象，通过类名和属性访问，而不是表名和表的属性。</p>
+</blockquote>
+<ol>
+<li><p>查询所有用户</p>
+<p>查询所有对象：SQL:select * from cst_customer</p>
+<p>​                            JPQL:from ctgu.pojo.Customer   from Customer省略包路径也行</p>
+<p>注意：JPQL中不能写select * （可以写select count(id)）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">findAllCustomer</span><span class="params">()</span></span>&#123;</span><br><span class="line">       <span class="comment">//1.获取EntityManager对象</span></span><br><span class="line">       EntityManager manager = JpaUtils.getEntityManager();</span><br><span class="line">       <span class="comment">//2.开启事务</span></span><br><span class="line">       EntityTransaction transaction = manager.getTransaction();</span><br><span class="line">       transaction.begin();</span><br><span class="line">       <span class="comment">//3.查询全部</span></span><br><span class="line">       String jpql=<span class="string">"from Customer"</span>;</span><br><span class="line">       <span class="comment">//创建Query查询对象，query对象才是执行jpql的对象</span></span><br><span class="line">       Query query = manager.createQuery(jpql);</span><br><span class="line">       List list = query.getResultList();</span><br><span class="line">       <span class="keyword">for</span>(Object customer:list)&#123;</span><br><span class="line">           System.out.println(customer);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">//4.提交事务</span></span><br><span class="line">       transaction.commit();</span><br><span class="line">       <span class="comment">//5.释放资源</span></span><br><span class="line">       manager.close();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>排序查询</p>
+<p>SQL:SELECT * FROM <code>cst_customer</code> ORDER BY cust_id DESC</p>
+<p>JPQL:from Customer ORDER BY custId DESC</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OrderAllCustomer</span><span class="params">()</span></span>&#123;</span><br><span class="line">       <span class="comment">//1.获取EntityManager对象</span></span><br><span class="line">       EntityManager manager = JpaUtils.getEntityManager();</span><br><span class="line">       <span class="comment">//2.开启事务</span></span><br><span class="line">       EntityTransaction transaction = manager.getTransaction();</span><br><span class="line">       transaction.begin();</span><br><span class="line">       <span class="comment">//3.查询全部</span></span><br><span class="line">       String jpql=<span class="string">"from Customer ORDER BY custId DESC"</span>;</span><br><span class="line">       <span class="comment">//创建Query查询对象，query对象才是执行jpql的对象</span></span><br><span class="line">       Query query = manager.createQuery(jpql);</span><br><span class="line">       List list = query.getResultList();</span><br><span class="line">       <span class="keyword">for</span>(Object customer:list)&#123;</span><br><span class="line">           System.out.println(customer);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">//4.提交事务</span></span><br><span class="line">       transaction.commit();</span><br><span class="line">       <span class="comment">//5.释放资源</span></span><br><span class="line">       manager.close();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>统计查询总数</p>
+<p>SQL:SELECT COUNT(cust_id) FROM <code>cst_customer</code></p>
+<p>JPQL:select count(custId) from Customer</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">countCustomer</span><span class="params">()</span></span>&#123;</span><br><span class="line">       <span class="comment">//1.获取EntityManager对象</span></span><br><span class="line">       EntityManager manager = JpaUtils.getEntityManager();</span><br><span class="line">       <span class="comment">//2.开启事务</span></span><br><span class="line">       EntityTransaction transaction = manager.getTransaction();</span><br><span class="line">       transaction.begin();</span><br><span class="line">       <span class="comment">//3.查询全部</span></span><br><span class="line">       String jpql=<span class="string">"select count(custId) from Customer "</span>;</span><br><span class="line">       <span class="comment">//创建Query查询对象，query对象才是执行jpql的对象</span></span><br><span class="line">       Query query = manager.createQuery(jpql);</span><br><span class="line">       <span class="comment">/**</span></span><br><span class="line"><span class="comment">        *  由于返回的是单个值</span></span><br><span class="line"><span class="comment">        *   getSingleResult()得到唯一的结果</span></span><br><span class="line"><span class="comment">        *   getResultList()直接将查询的结果封装在list集合中</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">       Object result = query.getSingleResult();</span><br><span class="line">       System.out.println(<span class="string">"返回的用户总数为："</span>+result);</span><br><span class="line">       <span class="comment">//4.提交事务</span></span><br><span class="line">       transaction.commit();</span><br><span class="line">       <span class="comment">//5.释放资源</span></span><br><span class="line">       manager.close();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>分页查询</p>
+<p>SQL:SELECT * FROM <code>cst_customer</code> LIMIT ?,?</p>
+<p>JPQL:from Customer   再设置分页的参数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">PageCustomer</span><span class="params">()</span></span>&#123;</span><br><span class="line">       <span class="comment">//1.获取EntityManager对象</span></span><br><span class="line">       EntityManager manager = JpaUtils.getEntityManager();</span><br><span class="line">       <span class="comment">//2.开启事务</span></span><br><span class="line">       EntityTransaction transaction = manager.getTransaction();</span><br><span class="line">       transaction.begin();</span><br><span class="line">       <span class="comment">//3.查询全部</span></span><br><span class="line">       String jpql=<span class="string">"from Customer "</span>;</span><br><span class="line">       <span class="comment">//创建Query查询对象，query对象才是执行jpql的对象</span></span><br><span class="line">       Query query = manager.createQuery(jpql);</span><br><span class="line">       <span class="comment">/**</span></span><br><span class="line"><span class="comment">        * 设置分页参数</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">       query.setFirstResult(<span class="number">1</span>);</span><br><span class="line">       query.setMaxResults(<span class="number">3</span>);</span><br><span class="line">       List list = query.getResultList();</span><br><span class="line">       <span class="keyword">for</span> (Object customer:list) &#123;</span><br><span class="line">           System.out.println(customer);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">//4.提交事务</span></span><br><span class="line">       transaction.commit();</span><br><span class="line">       <span class="comment">//5.释放资源</span></span><br><span class="line">       manager.close();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>模糊查询</p>
+<p>SQL:SELECT * FROM <code>cst_customer</code> where cust_name LIKE ‘%大学%’</p>
+<p>JPQL:FORM Customer where custName like ?</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">chooseCustomer</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//1.获取EntityManager对象</span></span><br><span class="line">        EntityManager manager = JpaUtils.getEntityManager();</span><br><span class="line">        <span class="comment">//2.开启事务</span></span><br><span class="line">        EntityTransaction transaction = manager.getTransaction();</span><br><span class="line">        transaction.begin();</span><br><span class="line">        <span class="comment">//3.查询全部</span></span><br><span class="line">        String jpql=<span class="string">" from Customer where custName like ? "</span>;</span><br><span class="line">        <span class="comment">//创建Query查询对象，query对象才是执行jpql的对象</span></span><br><span class="line">        Query query = manager.createQuery(jpql);</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 设置查询条件</span></span><br><span class="line"><span class="comment">         * 第一个参数：占位符的索引位置</span></span><br><span class="line"><span class="comment">         * 第二个参数：取值</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        query.setParameter(<span class="number">1</span>,<span class="string">"%大学%"</span>);</span><br><span class="line">        List list = query.getResultList();</span><br><span class="line">        <span class="keyword">for</span> (Object customer:list) &#123;</span><br><span class="line">            System.out.println(customer);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//4.提交事务</span></span><br><span class="line">        transaction.commit();</span><br><span class="line">        <span class="comment">//5.释放资源</span></span><br><span class="line">        manager.close();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="maven坐标"><a href="#maven坐标" class="headerlink" title="maven坐标"></a>maven坐标</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span><br><span class="line">&lt;project xmlns=<span class="string">"http://maven.apache.org/POM/4.0.0"</span></span><br><span class="line">         xmlns:xsi=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span><br><span class="line">         xsi:schemaLocation=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span><br><span class="line">    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line"></span><br><span class="line">    &lt;groupId&gt;ctgu.rxz&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;jpa-01&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;</span><br><span class="line">    &lt;properties&gt;</span><br><span class="line">        &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</span><br><span class="line">        &lt;project.hibernate.version&gt;5.0.7.Final&lt;/project.hibernate.version&gt;</span><br><span class="line">    &lt;/properties&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line">        &lt;!-- junit --&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;junit&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;junit&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;4.12&lt;/version&gt;</span><br><span class="line">            &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- hibernate对jpa的支持包 --&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.hibernate&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;hibernate-entitymanager&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;$&#123;project.hibernate.version&#125;&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- c3p0 --&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.hibernate&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;hibernate-c3p0&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;$&#123;project.hibernate.version&#125;&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- log日志 --&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;log4j&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;log4j&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;1.2.17&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- Mysql and MariaDB --&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;5.1.6&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">    &lt;/dependencies&gt;</span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/11/04/java基础/基础知识的复习/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java基础知识复习</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="Spring Data JPA/SpringDataJPA_简介" data-title="Spring Data JPA简介" data-url="http://SlectRxz.github.io/2019/12/13/Spring Data JPA/SpringDataJPA_简介/"  data-images="img/1.jpg" data-content="Spring Data JPA简介">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 Rong
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>
