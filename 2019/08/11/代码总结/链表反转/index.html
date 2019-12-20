@@ -1,253 +1,75 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  <title>链表反转 | 荣先森</title>
+<!DOCTYPE html><html data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>链表反转 | 荣先森</title><meta name="description" content="链表反转"><meta name="keywords" content="数据结构"><meta name="author" content="Rong"><meta name="copyright" content="Rong"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/1.jpg"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="链表反转"><meta name="twitter:description" content="链表反转"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png"><meta property="og:type" content="article"><meta property="og:title" content="链表反转"><meta property="og:url" content="http://SlectRxz.github.io/2019/08/11/代码总结/链表反转/"><meta property="og:site_name" content="荣先森"><meta property="og:description" content="链表反转"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
 
-  <!-- keywords -->
-  
-
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="关于链表的创建、遍历、反转的实现（递归和非递归）、对k~n之间的节点进行反转。">
-<meta name="keywords" content="数据结构">
-<meta property="og:type" content="article">
-<meta property="og:title" content="链表反转">
-<meta property="og:url" content="http://SlectRxz.github.io/2019/08/11/代码总结/链表反转/index.html">
-<meta property="og:site_name" content="荣先森">
-<meta property="og:description" content="关于链表的创建、遍历、反转的实现（递归和非递归）、对k~n之间的节点进行反转。">
-<meta property="og:locale" content="default">
-<meta property="og:image" content="http://slectrxz.github.io/img/imgs/BiaoQingBao/01.jpg">
-<meta property="og:image" content="http://slectrxz.github.io/img/imgs/coder/lianbiao/1.png">
-<meta property="og:updated_time" content="2019-08-11T08:55:34.194Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="链表反转">
-<meta name="twitter:description" content="关于链表的创建、遍历、反转的实现（递归和非递归）、对k~n之间的节点进行反转。">
-<meta name="twitter:image" content="http://slectrxz.github.io/img/imgs/BiaoQingBao/01.jpg">
-  
-    <link rel="alternative" href="/atom.xml" title="荣先森" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="img/1.jpg">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  
-  
-
-  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
-  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
-
-  
-      <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-<script>AV.initialize("bpxE8dkqS0IAdFxTbcqm4IiX-gzGzoHsz", "VRnKkxnTxbDSQtPbl1TiWyLw");</script>
-<script src="/js/Counter.js"></script>
-  
-</head>
-<body>
-  <div id="container">
-    <div id="particles-js"></div>
-    <div class="left-col">
-    <div class="overlay"></div>
-<div class="intrude-less">
-	<header id="header" class="inner">
-		<a href="/" class="profilepic">
-			
-			<img lazy-src="img/1.jpg" class="js-avatar">
-			
-		</a>
-
-		<hgroup>
-		  <h1 class="header-author"><a href="/">Rong</a></h1>
-		</hgroup>
-
-		
-
-		
-			<div class="switch-btn">
-				<div class="icon">
-					<div class="icon-ctn">
-						<div class="icon-wrap icon-house" data-idx="0">
-							<div class="birdhouse"></div>
-							<div class="birdhouse_holes"></div>
-						</div>
-						<div class="icon-wrap icon-ribbon hide" data-idx="1">
-							<div class="ribbon"></div>
-						</div>
-						
-						<div class="icon-wrap icon-link hide" data-idx="2">
-							<div class="loopback_l"></div>
-							<div class="loopback_r"></div>
-						</div>
-						
-						
-					</div>
-					
-				</div>
-				<div class="tips-box hide">
-					<div class="tips-arrow"></div>
-					<ul class="tips-inner">
-						<li>菜单</li>
-						<li>标签</li>
-						
-						<li>友情链接</li>
-						
-						
-					</ul>
-				</div>
-			</div>
-		
-
-		<div class="switch-area">
-			<div class="switch-wrap">
-				<section class="switch-part switch-part1">
-					<nav class="header-menu">
-						<ul>
-						
-							<li><a href="/">主页</a></li>
-				        
-							<li><a href="/archives">所有文章</a></li>
-				        
-						</ul>
-					</nav>
-					<nav class="header-nav">
-						<div class="social">
-							
-								<a class="github" target="_blank" href="https://github.com/SlectRxz" title="github">github</a>
-					        
-								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/rselect/activities" title="zhihu">zhihu</a>
-					        
-								<a class="qq" target="_blank" href="/2215857051" title="qq">qq</a>
-					        
-						</div>
-					</nav>
-				</section>
-				
-				
-				<section class="switch-part switch-part2">
-					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Java基础/" style="font-size: 12.5px;">Java基础</a> <a href="/tags/Java框架/" style="font-size: 10px;">Java框架</a> <a href="/tags/blog记录/" style="font-size: 10px;">blog记录</a> <a href="/tags/javaWeb基础/" style="font-size: 15px;">javaWeb基础</a> <a href="/tags/javaWeb实战/" style="font-size: 15px;">javaWeb实战</a> <a href="/tags/学习/" style="font-size: 17.5px;">学习</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/框架学习/" style="font-size: 20px;">框架学习</a> <a href="/tags/注解开发/" style="font-size: 10px;">注解开发</a> <a href="/tags/瞎扯/" style="font-size: 10px;">瞎扯</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
-					</div>
-				</section>
-				
-				
-				
-				<section class="switch-part switch-part3">
-					<div id="js-friends">
-					
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
-			        
-			        </div>
-				</section>
-				
-
-				
-			</div>
-		</div>
-		<div style="position:absolute;bottom:170px;opacity:0.6">
-		<object type="application/x-shockwave-flash" style="outline:none;" data="http://cdn.abowman.com/widgets/treefrog/treefrog.swf?up_bodyColor=84BF84&up_pattern=1&up_flyColor=F0E80C&up_tongueColor=2BA029&up_patternColor=CFBCBC&up_releaseFly=0&up_frogName=Tree Frog&up_backgroundImage=http://&up_bellySize=.5&up_footColor=2BA029&up_eyeColor=2BA029&up_backgroundColor=261109&" width="250" height="150"><param name="movie" value="http://cdn.abowman.com/widgets/treefrog/treefrog.swf?up_bodyColor=84BF84&up_pattern=1&up_flyColor=F0E80C&up_tongueColor=2BA029&up_patternColor=CFBCBC&up_releaseFly=0&up_frogName=Tree Frog&up_backgroundImage=http://&up_bellySize=.5&up_footColor=2BA029&up_eyeColor=2BA029&up_backgroundColor=261109&"></param><param name="AllowScriptAccess" value="always"></param><param name="wmode" value="opaque"></param><param name="scale" value="noscale"/><param name="salign" value="tl"/></object>
-		</div>
-		<div style="position:absolute;bottom:80px;left:auto;width:60%;opacity:0.6">
-		<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=250 height=86 src="//music.163.com/outchain/player?type=2&id=543681750&auto=0&height=66"></iframe>
-		</div>
-		
-	
-		
-	</header>				
-</div>
-    </div>
-    <div class="mid-col">
-      <nav id="mobile-nav">
-  	<div class="overlay">
-  		<div class="slider-trigger"></div>
-  		<h1 class="header-author js-mobile-header hide">Rong</h1>
-  	</div>
-	<div class="intrude-less">
-		<header id="header" class="inner">
-			<div class="profilepic">
-				<img lazy-src="img/1.jpg" class="js-avatar">
-			</div>
-			<hgroup>
-			  <h1 class="header-author">Rong</h1>
-			</hgroup>
-			
-			<nav class="header-menu">
-				<ul>
-				
-					<li><a href="/">主页</a></li>
-		        
-					<li><a href="/archives">所有文章</a></li>
-		        
-		        <div class="clearfix"></div>
-				</ul>
-			</nav>
-			<nav class="header-nav">
-				<div class="social">
-					
-						<a class="github" target="_blank" href="https://github.com/SlectRxz" title="github">github</a>
-			        
-						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/rselect/activities" title="zhihu">zhihu</a>
-			        
-						<a class="qq" target="_blank" href="/2215857051" title="qq">qq</a>
-			        
-				</div>
-			</nav>
-		</header>				
-	</div>
-</nav>
-      <div class="body-wrap"><article id="post-代码总结/链表反转" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/08/11/代码总结/链表反转/" class="article-date">
-  	<time datetime="2019-08-10T16:00:00.000Z" itemprop="datePublished">2019-08-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      链表反转
-      
-    </h1>
-  
-
-      </header>
-      
-      <div class="article-info article-info-post">
-        
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
-	</div>
-
-        
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/代码总结/">代码总结</a>
-	</div>
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
 
 
-        
-          
-<div class="counter-tag counter">
-    <span id="/2019/08/11/代码总结/链表反转/" class="leancloud_visitors post-title-link"
-          style="font-size: 12px" data-flag-title="链表反转">
-         &nbsp;
-        view
-    </span>
-</div>
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
 
-        
-        <div class="clearfix"></div>
-      </div>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>关于链表的创建、遍历、反转的实现（递归和非递归）、对k~n之间的节点进行反转。<br><a id="more"></a></p>
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="http://SlectRxz.github.io/2019/08/11/代码总结/链表反转/"><link rel="prev" title="cookie与session说不清的纠缠" href="http://SlectRxz.github.io/2019/08/15/java基础/session与cookie/"><link rel="next" title="链表反转" href="http://SlectRxz.github.io/2019/08/11/代码总结/用户自动登录/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: false,
+  isHome: false,
+  isPost: true
+  
+}</script></head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">荣先森</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 清单</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/Gallery/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">43</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">11</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">12</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 清单</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/Gallery/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">Catalog</div><div class="sidebar-toc__content"></div></div></div><div id="body-wrap"><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png)"><div id="post-info"><div id="post-title"><div class="posttitle">链表反转</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> Created 2019-08-11<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> Updated 2019-08-11</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/代码总结/">代码总结</a></span><div class="post-meta-wordcount"><div class="post-meta-pv-cv"><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>Post View:</span><span id="busuanzi_value_page_pv"></span></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><p>关于链表的创建、遍历、反转的实现（递归和非递归）、对k~n之间的节点进行反转。<br><a id="more"></a></p>
 <blockquote>
 <p>最近回顾了一下数据结构，起因是看见了一提字节跳动的面试题，关于链表反转的，然后将思路总结了一下。(dalao勿喷)</p>
 </blockquote>
@@ -255,117 +77,11 @@
 <p>给定一个单链表的头节点 head,实现一个调整单链表的函数，使得每K个节点之间为一组进行逆序，并且从链表的尾部开始组起，头部剩余节点数量不够一组的不需要逆序。（不能使用队列或者栈作为辅助）</p>
 <p>例如：<br>链表:1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;6-&gt;7-&gt;8-&gt;null, K = 3。那么 6-&gt;7-&gt;8，3-&gt;4-&gt;5，1-&gt;2各位一组。调整后：1-&gt;2-&gt;5-&gt;4-&gt;3-&gt;8-&gt;7-&gt;6-&gt;null。其中 1，2不调整，因为不够一组。</p>
 <p>思路：<br>如果是从链表头开始，隔k个进行逆序，尾部多余的不管，还是比较容易。<br>但是其是从后往前逆序，咋算？？</p>
-<p><img src="/img/imgs/BiaoQingBao/01.jpg" alt=""></p>
+<p><a href="/img/imgs/BiaoQingBao/01.jpg" data-fancybox="group" data-caption="" class="fancybox"><img src="/img/imgs/BiaoQingBao/01.jpg" alt="" title=""></a></p>
 <p>dalao是这样处理的，将原先链表A先整体进行一次逆序，再隔k个进行一次逆序，尾部剩下的节点不管得到链表B,再将链表B整体逆序得到结果C,由于进行了两次逆序，相当于没有逆序。</p>
-<p><img src="/img/imgs/coder/lianbiao/1.png" alt=""></p>
-<p>链表创建<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">class ListNode&#123;</span><br><span class="line">	int node;</span><br><span class="line">	ListNode next;</span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 单向链表的基本操作：</span><br><span class="line"> * 创建：头插法、尾插法</span><br><span class="line"> * 反转：递归/非递归实现</span><br><span class="line"> * @author rong</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class 链表反转 &#123;</span><br><span class="line">	/**</span><br><span class="line">	 * 头插法创建链表</span><br><span class="line">	 * @return</span><br><span class="line">	 */</span><br><span class="line">	public ListNode H_createListNode()&#123;</span><br><span class="line">		ListNode head = new ListNode();</span><br><span class="line">		head.node=0;</span><br><span class="line">		head.next=null;</span><br><span class="line">		Scanner scanner = new Scanner(System.in);</span><br><span class="line">		int n=scanner.nextInt();</span><br><span class="line">		while(n&gt;0)&#123;</span><br><span class="line">			ListNode s = new ListNode();</span><br><span class="line">			s.node=n;</span><br><span class="line">			s.next=head.next;</span><br><span class="line">			head.next=s;</span><br><span class="line">			n--;</span><br><span class="line">		&#125;</span><br><span class="line">		return head;</span><br><span class="line">	&#125;</span><br><span class="line">	/**</span><br><span class="line">	 * 尾插法创建链表</span><br><span class="line">	 * @return</span><br><span class="line">	 */</span><br><span class="line">	public ListNode S_createLinkNode()&#123;</span><br><span class="line">		ListNode head = new ListNode();</span><br><span class="line">		head.node=0;</span><br><span class="line">		head.next=null;</span><br><span class="line">		ListNode r=head;</span><br><span class="line">		Scanner scanner = new Scanner(System.in);</span><br><span class="line">		int n=scanner.nextInt();</span><br><span class="line">		while(n&gt;0)&#123;</span><br><span class="line">			ListNode node = new ListNode();</span><br><span class="line">			node.node=n;</span><br><span class="line">			r.next=node;</span><br><span class="line">			r=node;</span><br><span class="line">			n--;</span><br><span class="line">		&#125;</span><br><span class="line">		return head;</span><br><span class="line">	&#125;</span><br><span class="line">	/**</span><br><span class="line">	 * 链表输出</span><br><span class="line">	 * @param head</span><br><span class="line">	 */</span><br><span class="line">	public static void printlistNode(ListNode head)&#123;</span><br><span class="line">		head=head.next;</span><br><span class="line">		while(head!=null)&#123;</span><br><span class="line">			System.out.print(head.node+&quot;-&gt;&quot;);</span><br><span class="line">			head=head.next;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
-<p>链表反转-非递归实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">	 * 单序链表反转（非递归实现）</span><br><span class="line">	 * @param head</span><br><span class="line">	 * @return</span><br><span class="line">	 */</span><br><span class="line">	public ListNode reverseList2(ListNode head)&#123;</span><br><span class="line">		ListNode result = new ListNode();</span><br><span class="line">		result.next=null;</span><br><span class="line">		ListNode temp =null;</span><br><span class="line"></span><br><span class="line">		while(head!=null)&#123;</span><br><span class="line">			//将原链表中的第一个节点分离，头节点指向下一个节点，将分离的节点使用头插法加入到新节点中</span><br><span class="line">			temp=head;</span><br><span class="line">			head=head.next;</span><br><span class="line">			/*</span><br><span class="line">			这里新建一个头节点，再用头插法将原链表上的节点一个个加进来</span><br><span class="line">			这里将head节点作为第一个分离的节点</span><br><span class="line">			 */</span><br><span class="line">			temp.next=result.next;</span><br><span class="line">			result.next=temp;</span><br><span class="line">		&#125;</span><br><span class="line">		return result;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
-<p>链表反转-递归实现<br>这里递归，我这样理解的：递归首先是自己调用自己，其次递归的本质就是多个函数进栈的过程，首先找到出口，其次当栈顶函数弹出时，返回的是第n-1个函数。<br>较好解释：<a href="https://blog.csdn.net/fx677588/article/details/72357389" target="_blank" rel="noopener">https://blog.csdn.net/fx677588/article/details/72357389</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">	 * 单链表反转（递归实现）</span><br><span class="line">	 * 递归实现：自己调用自己，想象为多个相同函数进栈，再逐层出栈</span><br><span class="line">	 * @param head</span><br><span class="line">	 * @return</span><br><span class="line">	 */</span><br><span class="line">	private static ListNode reverseList1(ListNode head) &#123;</span><br><span class="line">		if(head == null || head.next == null)</span><br><span class="line">			return head;</span><br><span class="line">		ListNode result = reverseList1(head.next);</span><br><span class="line">		head.next.next = head;</span><br><span class="line">		head.next = null;</span><br><span class="line">		return result;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
-<p>链表反转-第k-n个节点<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">public ListNode reverseListKN(ListNode head,Integer k,Integer n)&#123;</span><br><span class="line">  /**</span><br><span class="line">   * 思路：反转前：链表是pre~k~n~s,反转后pre~n~k~s</span><br><span class="line">   */</span><br><span class="line">  //找到第k-1、k、n、n+1的节点</span><br><span class="line">  ListNode result = new ListNode();</span><br><span class="line">  result=head;</span><br><span class="line">  ListNode pre=null,nn=null,s;</span><br><span class="line">  ListNode kk = new ListNode();</span><br><span class="line">  int cont=0;</span><br><span class="line">  while(head!=null)&#123;</span><br><span class="line">    if(cont==(k-1))&#123;</span><br><span class="line">      pre=head;</span><br><span class="line">    &#125;</span><br><span class="line">    if(cont==n)&#123;</span><br><span class="line">      nn=head;</span><br><span class="line">    &#125;</span><br><span class="line">    head=head.next;</span><br><span class="line">    cont++;</span><br><span class="line">  &#125;</span><br><span class="line">  kk=pre.next;</span><br><span class="line">  s=nn.next;</span><br><span class="line">  //将k-n之间的链表反转，其中k节点是头节点，n节点是尾节点</span><br><span class="line">  System.out.println(&quot;此时nn节点的值&quot;+nn.node);</span><br><span class="line">  System.out.println(&quot;此时nn节点下一个节点的值&quot;+nn.next.node);</span><br><span class="line">  /**</span><br><span class="line">   * 这是至关重要的一句</span><br><span class="line">   * 因为我在接下来的循环语句中要根据下一个节点是否为null来判断是否遍历结束</span><br><span class="line">   * 如果没有则会将k~链表最后一个节点全部遍历</span><br><span class="line">   * 我仅仅需要遍历第k~n个节点</span><br><span class="line">   */</span><br><span class="line">  nn.next=null;</span><br><span class="line">  /**************我的BUG*************************************************</span><br><span class="line">   * 难点：调了半天bug，发现反转之后，temp成为了第一个（位于）newHead之后</span><br><span class="line">   * 而此时我失去了尾部节点的引用对象（以为是kk,但是kk已经.next滑为null了）</span><br><span class="line">   * 所以在遍历前需要把反转后的尾部节点存一下</span><br><span class="line">   */</span><br><span class="line">  ListNode tail=kk;//最后需要合并链表需要知道尾部节点，将反转之后的尾部节点存一下</span><br><span class="line">  /**</span><br><span class="line">   * 参数解释：</span><br><span class="line">   * temp：每次需要将一个节点进行头插法，临时保存</span><br><span class="line">   * newHead：反转后需要一个新的头节点</span><br><span class="line">   */</span><br><span class="line">  ListNode temp=null;</span><br><span class="line">  ListNode newHead = new ListNode();</span><br><span class="line">  newHead.next=null;</span><br><span class="line">  while(kk!=null)&#123;</span><br><span class="line">    temp=kk;</span><br><span class="line">    kk=kk.next;</span><br><span class="line">    //头插法将temp插入到newHead链表中</span><br><span class="line">    temp.next=newHead.next;</span><br><span class="line">    newHead.next=temp;</span><br><span class="line">  &#125;</span><br><span class="line">  //		printlistNode(newHead);//打印反转结果：反转成功</span><br><span class="line">  /**</span><br><span class="line">   * 当我们反转结束后，如何将三段链表接起来为关键，</span><br><span class="line">   * 需要找到反转后节点的头节点和尾节点</span><br><span class="line">   * 将节点k-1指向节点n，节点k指向节点n+1</span><br><span class="line">   */</span><br><span class="line">  pre.next=newHead.next;</span><br><span class="line">  tail.next=s;</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2019/08/15/java基础/session与cookie/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">&lt;</strong>
-      <div class="article-nav-title">
-        
-          cookie与session说不清的纠缠
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2019/08/11/代码总结/用户自动登录/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">链表反转</div>
-      <strong class="article-nav-caption">&gt;</strong>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-<div class="ds-share share" data-thread-key="代码总结/链表反转" data-title="链表反转" data-url="http://SlectRxz.github.io/2019/08/11/代码总结/链表反转/"  data-images="img/1.jpg" data-content="链表反转">
-    <div class="ds-share-inline">
-      <ul  class="ds-share-icons-16">
-      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-      </ul>
-      <div class="ds-share-icons-more">
-      </div>
-    </div>
- </div>
- 
-
-
-
-
-
-</div>
-      <footer id="footer">
-  <div class="outer">
-    <div id="footer-info">
-      <div class="footer-left">
-        &copy; 2019 Rong
-      </div>
-        <div class="footer-right">
-          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
-        </div>
-    </div>
-  </div>
-</footer>
-    </div>
-    
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-
-<script>
-	var yiliaConfig = {
-		fancybox: true,
-		mathjax: true,
-		animate: true,
-		isHome: false,
-		isPost: true,
-		isArchive: false,
-		isTag: false,
-		isCategory: false,
-		open_in_new: false
-	}
-</script>
-<script src="/js/main.js"></script>
-
-
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
-</script>
-
-<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
-
-
-  </div>
-</body>
-</html>
+<p><a href="/img/imgs/coder/lianbiao/1.png" data-fancybox="group" data-caption="" class="fancybox"><img src="/img/imgs/coder/lianbiao/1.png" alt="" title=""></a></p>
+<p>链表创建<br><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class ListNode&#123;</span><br><span class="line">	int node;</span><br><span class="line">	ListNode next;</span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 单向链表的基本操作：</span><br><span class="line"> * 创建：头插法、尾插法</span><br><span class="line"> * 反转：递归/非递归实现</span><br><span class="line"> * @author rong</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class 链表反转 &#123;</span><br><span class="line">	/**</span><br><span class="line">	 * 头插法创建链表</span><br><span class="line">	 * @return</span><br><span class="line">	 */</span><br><span class="line">	public ListNode H_createListNode()&#123;</span><br><span class="line">		ListNode head = new ListNode();</span><br><span class="line">		head.node=0;</span><br><span class="line">		head.next=null;</span><br><span class="line">		Scanner scanner = new Scanner(System.in);</span><br><span class="line">		int n=scanner.nextInt();</span><br><span class="line">		while(n&gt;0)&#123;</span><br><span class="line">			ListNode s = new ListNode();</span><br><span class="line">			s.node=n;</span><br><span class="line">			s.next=head.next;</span><br><span class="line">			head.next=s;</span><br><span class="line">			n--;</span><br><span class="line">		&#125;</span><br><span class="line">		return head;</span><br><span class="line">	&#125;</span><br><span class="line">	/**</span><br><span class="line">	 * 尾插法创建链表</span><br><span class="line">	 * @return</span><br><span class="line">	 */</span><br><span class="line">	public ListNode S_createLinkNode()&#123;</span><br><span class="line">		ListNode head = new ListNode();</span><br><span class="line">		head.node=0;</span><br><span class="line">		head.next=null;</span><br><span class="line">		ListNode r=head;</span><br><span class="line">		Scanner scanner = new Scanner(System.in);</span><br><span class="line">		int n=scanner.nextInt();</span><br><span class="line">		while(n&gt;0)&#123;</span><br><span class="line">			ListNode node = new ListNode();</span><br><span class="line">			node.node=n;</span><br><span class="line">			r.next=node;</span><br><span class="line">			r=node;</span><br><span class="line">			n--;</span><br><span class="line">		&#125;</span><br><span class="line">		return head;</span><br><span class="line">	&#125;</span><br><span class="line">	/**</span><br><span class="line">	 * 链表输出</span><br><span class="line">	 * @param head</span><br><span class="line">	 */</span><br><span class="line">	public static void printlistNode(ListNode head)&#123;</span><br><span class="line">		head=head.next;</span><br><span class="line">		while(head!=null)&#123;</span><br><span class="line">			System.out.print(head.node+&quot;-&gt;&quot;);</span><br><span class="line">			head=head.next;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></div></p>
+<p>链表反转-非递归实现<br><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/**</span><br><span class="line">	 * 单序链表反转（非递归实现）</span><br><span class="line">	 * @param head</span><br><span class="line">	 * @return</span><br><span class="line">	 */</span><br><span class="line">	public ListNode reverseList2(ListNode head)&#123;</span><br><span class="line">		ListNode result = new ListNode();</span><br><span class="line">		result.next=null;</span><br><span class="line">		ListNode temp =null;</span><br><span class="line"></span><br><span class="line">		while(head!=null)&#123;</span><br><span class="line">			//将原链表中的第一个节点分离，头节点指向下一个节点，将分离的节点使用头插法加入到新节点中</span><br><span class="line">			temp=head;</span><br><span class="line">			head=head.next;</span><br><span class="line">			/*</span><br><span class="line">			这里新建一个头节点，再用头插法将原链表上的节点一个个加进来</span><br><span class="line">			这里将head节点作为第一个分离的节点</span><br><span class="line">			 */</span><br><span class="line">			temp.next=result.next;</span><br><span class="line">			result.next=temp;</span><br><span class="line">		&#125;</span><br><span class="line">		return result;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></div></p>
+<p>链表反转-递归实现<br>这里递归，我这样理解的：递归首先是自己调用自己，其次递归的本质就是多个函数进栈的过程，首先找到出口，其次当栈顶函数弹出时，返回的是第n-1个函数。<br>较好解释：<a href="https://blog.csdn.net/fx677588/article/details/72357389" target="_blank" rel="noopener">https://blog.csdn.net/fx677588/article/details/72357389</a><br><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/**</span><br><span class="line">	 * 单链表反转（递归实现）</span><br><span class="line">	 * 递归实现：自己调用自己，想象为多个相同函数进栈，再逐层出栈</span><br><span class="line">	 * @param head</span><br><span class="line">	 * @return</span><br><span class="line">	 */</span><br><span class="line">	private static ListNode reverseList1(ListNode head) &#123;</span><br><span class="line">		if(head == null || head.next == null)</span><br><span class="line">			return head;</span><br><span class="line">		ListNode result = reverseList1(head.next);</span><br><span class="line">		head.next.next = head;</span><br><span class="line">		head.next = null;</span><br><span class="line">		return result;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></div></p>
+<p>链表反转-第k-n个节点<br><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public ListNode reverseListKN(ListNode head,Integer k,Integer n)&#123;</span><br><span class="line">  /**</span><br><span class="line">   * 思路：反转前：链表是pre~k~n~s,反转后pre~n~k~s</span><br><span class="line">   */</span><br><span class="line">  //找到第k-1、k、n、n+1的节点</span><br><span class="line">  ListNode result = new ListNode();</span><br><span class="line">  result=head;</span><br><span class="line">  ListNode pre=null,nn=null,s;</span><br><span class="line">  ListNode kk = new ListNode();</span><br><span class="line">  int cont=0;</span><br><span class="line">  while(head!=null)&#123;</span><br><span class="line">    if(cont==(k-1))&#123;</span><br><span class="line">      pre=head;</span><br><span class="line">    &#125;</span><br><span class="line">    if(cont==n)&#123;</span><br><span class="line">      nn=head;</span><br><span class="line">    &#125;</span><br><span class="line">    head=head.next;</span><br><span class="line">    cont++;</span><br><span class="line">  &#125;</span><br><span class="line">  kk=pre.next;</span><br><span class="line">  s=nn.next;</span><br><span class="line">  //将k-n之间的链表反转，其中k节点是头节点，n节点是尾节点</span><br><span class="line">  System.out.println(&quot;此时nn节点的值&quot;+nn.node);</span><br><span class="line">  System.out.println(&quot;此时nn节点下一个节点的值&quot;+nn.next.node);</span><br><span class="line">  /**</span><br><span class="line">   * 这是至关重要的一句</span><br><span class="line">   * 因为我在接下来的循环语句中要根据下一个节点是否为null来判断是否遍历结束</span><br><span class="line">   * 如果没有则会将k~链表最后一个节点全部遍历</span><br><span class="line">   * 我仅仅需要遍历第k~n个节点</span><br><span class="line">   */</span><br><span class="line">  nn.next=null;</span><br><span class="line">  /**************我的BUG*************************************************</span><br><span class="line">   * 难点：调了半天bug，发现反转之后，temp成为了第一个（位于）newHead之后</span><br><span class="line">   * 而此时我失去了尾部节点的引用对象（以为是kk,但是kk已经.next滑为null了）</span><br><span class="line">   * 所以在遍历前需要把反转后的尾部节点存一下</span><br><span class="line">   */</span><br><span class="line">  ListNode tail=kk;//最后需要合并链表需要知道尾部节点，将反转之后的尾部节点存一下</span><br><span class="line">  /**</span><br><span class="line">   * 参数解释：</span><br><span class="line">   * temp：每次需要将一个节点进行头插法，临时保存</span><br><span class="line">   * newHead：反转后需要一个新的头节点</span><br><span class="line">   */</span><br><span class="line">  ListNode temp=null;</span><br><span class="line">  ListNode newHead = new ListNode();</span><br><span class="line">  newHead.next=null;</span><br><span class="line">  while(kk!=null)&#123;</span><br><span class="line">    temp=kk;</span><br><span class="line">    kk=kk.next;</span><br><span class="line">    //头插法将temp插入到newHead链表中</span><br><span class="line">    temp.next=newHead.next;</span><br><span class="line">    newHead.next=temp;</span><br><span class="line">  &#125;</span><br><span class="line">  //		printlistNode(newHead);//打印反转结果：反转成功</span><br><span class="line">  /**</span><br><span class="line">   * 当我们反转结束后，如何将三段链表接起来为关键，</span><br><span class="line">   * 需要找到反转后节点的头节点和尾节点</span><br><span class="line">   * 将节点k-1指向节点n，节点k指向节点n+1</span><br><span class="line">   */</span><br><span class="line">  pre.next=newHead.next;</span><br><span class="line">  tail.next=s;</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Rong</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://SlectRxz.github.io/2019/08/11/代码总结/链表反转/">http://SlectRxz.github.io/2019/08/11/代码总结/链表反转/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/数据结构/">数据结构    </a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><a class="reward-button button--primary button--animated"> <i class="fa fa-qrcode"></i> Donate<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="lazyload post-qr-code__img" src="/img/wechat.jpg" alt="微信"><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="lazyload post-qr-code__img" src="/img/alipay.jpg" alt="支付寶"><div class="post-qr-code__desc">支付寶</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/2019/08/15/java基础/session与cookie/"><img class="prev_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">Previous Post</div><div class="prev_info"><span>cookie与session说不清的纠缠</span></div></a></div><div class="next-post pull_right"><a href="/2019/08/11/代码总结/用户自动登录/"><img class="next_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">Next Post</div><div class="next_info"><span>链表反转</span></div></a></div></nav></div></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2019 By Rong</div><div class="framework-info"><span>Driven </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="Read Mode"></i><i class="fa fa-plus" id="font_plus" title="Increase font size"></i><i class="fa fa-minus" id="font_minus" title="Decrease font size"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="Traditional Chinese and Simplified Chinese Conversion" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="Dark Mode"></i></div><div id="rightside-config-show"><div id="rightside_config" title="Setting"><i class="fa fa-cog" aria-hidden="true"></i></div><i class="fa fa-list-ul close" id="mobile-toc-button" title="Table of Contents" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="Back to top" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/tw_cn.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async=""></script></body></html>
